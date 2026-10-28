@@ -1,9 +1,9 @@
 <!doctype html>
-<html lang="en">
+<html lang="ko">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Anthropic (ANT) tracker</title>
+<title>Anthropic (ANT) 트래커</title>
 <meta name="description" content="Thesis scorecard, financials, compute commitments, valuation and lock-up schedule for Anthropic's IPO, updated weekly from SEC filings. English / 한국어.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -88,13 +88,13 @@
 [data-dash-source-state=refreshing] { opacity: .5; transition: opacity var(--cds-dur-slow); }
 </style>
 
-<div class="ax">
+<div class="ax ax-ko">
   <header class="ax-head" id="top">
     <div class="ax-headrow">
       <h1 class="ax-title"><span class="en">Anthropic (ANT) tracker</span><span class="ko">Anthropic (ANT) 트래커</span></h1>
       <div class="ax-langs" role="group" aria-label="Language / 언어">
-        <button type="button" class="ax-lang" data-lang="en" aria-pressed="true">EN</button>
-        <button type="button" class="ax-lang" data-lang="ko" aria-pressed="false">KR</button>
+        <button type="button" class="ax-lang" data-lang="en" aria-pressed="false">EN</button>
+        <button type="button" class="ax-lang" data-lang="ko" aria-pressed="true">KR</button>
       </div>
     </div>
     <p class="ax-take en"><b data-draw="t-on" data-source="score_summary" data-field="on_track" data-row="0">—</b> of <b data-draw="t-graded" data-source="score_summary" data-field="graded" data-row="0">—</b> graded checks are on track. At a market cap of <b data-draw="t-mcap" data-source="latest" data-field="market_cap_usd" data-row="0">—</b> (<span data-draw="t-basis" data-source="latest" data-field="basis_text" data-row="0">—</span>), revenue would need to grow about <b data-draw="t-cagr" data-source="latest" data-field="implied_cagr_base" data-row="0">—</b> a year for five years to justify it, at the base case's margin and multiple.</p>
@@ -146,81 +146,6 @@
     <p class="ax-src" data-draw="src-line" data-source="sources" data-src-ids="quarterly annual balance_sheet kpis market_cap">—</p>
   </section>
 
-  <section class="ax-sec" id="results">
-    <h2 class="ax-h2"><span class="en">Growth and margins</span><span class="ko">성장과 이익률</span></h2>
-    <div class="ax-grid">
-      <div class="ax-card" id="rev-card">
-        <h3><span class="en">Revenue caught up with operating expenses</span><span class="ko">매출이 영업비용을 따라잡았습니다</span></h3>
-        <p class="ax-note"><span class="en">Quarterly revenue and total GAAP operating expenses, $ billions</span><span class="ko">분기 매출과 GAAP 총영업비용, 단위: 10억 달러</span></p>
-        <div class="ax-legend"><span><i data-swatch="0"></i><span class="en">Revenue</span><span class="ko">매출</span></span><span><i style="background: var(--cds-chart-muted)"></i><span class="en">Operating expenses</span><span class="ko">영업비용</span></span></div>
-        <div class="ax-chart" data-draw="rev-chart" data-source="q_metrics"></div>
-      </div>
-      <div class="ax-card" id="margin-card">
-        <h3><span class="en">Operating margin by quarter</span><span class="ko">분기별 영업이익률</span></h3>
-        <p class="ax-note"><span class="en">Adjusted excludes stock pay, the donation match and the Bartz settlement</span><span class="ko">조정 기준은 주식보상비용, 기부 매칭, Bartz 합의금을 제외합니다</span></p>
-        <div class="ax-legend"><span><i data-swatch="0"></i><span class="en">Adjusted</span><span class="ko">조정</span></span><span><i data-swatch="1"></i>GAAP</span></div>
-        <div class="ax-chart" data-draw="margin-chart" data-source="q_metrics"></div>
-      </div>
-    </div>
-    <p class="ax-src" data-draw="src-line" data-source="sources" data-src-ids="quarterly">—</p>
-  </section>
-
-  <section class="ax-sec" id="balance-sheet">
-    <h2 class="ax-h2"><span class="en">Balance sheet and cash flow</span><span class="ko">재무상태와 현금흐름</span></h2>
-    <p class="ax-lede"><span class="en">Cash, debt and the main balance-sheet totals at each period end, then cash generated and spent in each period. All amounts in US dollars.</span><span class="ko">기말 기준 현금, 부채, 주요 재무상태표 항목과 기간별 현금 창출·사용 내역입니다. 모든 금액은 미국 달러 기준입니다.</span></p>
-    <div class="ax-card" id="bs-card">
-      <h3><span class="en">Liquidity and debt</span><span class="ko">유동성과 부채</span></h3>
-      <div class="ax-tablewrap en">
-        <table class="ax-table" data-source="bs_metrics" data-row-key="as_of">
-          <thead><tr><th data-field="label">Period end</th><th class="ax-num" data-field="gross_text">Gross cash</th><th class="ax-num" data-field="debt_text">Debt (principal)</th><th class="ax-num" data-field="net_text">Net cash</th><th class="ax-num" data-field="notes_fv_text">Notes at fair value</th><th class="ax-num" data-field="lease_text">Operating leases</th><th class="ax-num" data-field="wc_text">Working capital</th><th class="ax-num" data-field="ar_text">Receivables</th><th class="ax-num" data-field="deferred_text">Deferred revenue</th></tr></thead>
-          <tbody data-draw="bs-body"></tbody>
-        </table>
-      </div>
-      <div class="ax-tablewrap ko">
-        <table class="ax-table" data-source="bs_metrics" data-row-key="as_of">
-          <thead><tr><th data-field="label_ko">기말</th><th class="ax-num" data-field="gross_text">총현금</th><th class="ax-num" data-field="debt_text_ko">부채(원금)</th><th class="ax-num" data-field="net_text_ko">순현금</th><th class="ax-num" data-field="notes_fv_text">전환사채 공정가치</th><th class="ax-num" data-field="lease_text">운용리스 부채</th><th class="ax-num" data-field="wc_text">순운전자본</th><th class="ax-num" data-field="ar_text">매출채권</th><th class="ax-num" data-field="deferred_text">이연수익</th></tr></thead>
-          <tbody data-draw="bs-body-ko"></tbody>
-        </table>
-      </div>
-      <p class="ax-note"><span class="en">Gross cash is cash and cash equivalents plus short-term investments, excluding restricted cash. Debt is Amazon's convertible notes at principal, plus credit-facility borrowings (none so far) and finance leases. The notes are carried at fair value on the balance sheet, which rises with the valuation; they convert to stock rather than being repaid, except any amount above Amazon's ownership cap. The Dec 2024 principal isn't disclosed.</span><span class="ko">총현금은 현금성자산과 단기투자자산의 합계이며 제한 현금은 제외합니다. 부채는 Amazon 전환사채 원금에 신용한도 차입금(현재 없음)과 금융리스를 더한 값입니다. 전환사채는 재무상태표에 공정가치로 계상되어 기업가치가 오르면 함께 늘어나며, Amazon 지분 한도를 넘는 부분을 제외하면 상환이 아니라 주식으로 전환됩니다. 2024년 12월 원금은 공시되지 않았습니다.</span></p>
-    </div>
-    <div class="ax-grid">
-      <div class="ax-card" id="cf-card">
-        <h3><span class="en">Cash flow</span><span class="ko">현금흐름</span></h3>
-        <div class="ax-tablewrap en">
-          <table class="ax-table" data-source="cf_metrics" data-row-key="period">
-            <thead><tr><th data-field="period">Period</th><th class="ax-num" data-field="ocf_text">Operating</th><th class="ax-num" data-field="capex_text">Capex</th><th class="ax-num" data-field="fcf_text">Free cash flow</th><th class="ax-num" data-field="financing_text">Financing</th></tr></thead>
-            <tbody data-draw="cf-body"></tbody>
-          </table>
-        </div>
-        <div class="ax-tablewrap ko">
-          <table class="ax-table" data-source="cf_metrics" data-row-key="period">
-            <thead><tr><th data-field="period_ko">기간</th><th class="ax-num" data-field="ocf_text">영업활동</th><th class="ax-num" data-field="capex_text">설비투자</th><th class="ax-num" data-field="fcf_text">잉여현금흐름</th><th class="ax-num" data-field="financing_text">재무활동</th></tr></thead>
-            <tbody data-draw="cf-body-ko"></tbody>
-          </table>
-        </div>
-        <p class="ax-note"><span class="en">Financing inflows are mostly preferred-stock rounds and convertible notes. Capex will rise as more compute moves to owned and leased equipment; most of that shows up as lease payments rather than capex.</span><span class="ko">재무활동 유입은 대부분 우선주 투자와 전환사채입니다. 컴퓨팅이 직접 리스·보유 장비로 옮겨 가면서 설비투자가 늘겠지만, 대부분은 설비투자가 아니라 리스료로 잡힙니다.</span></p>
-      </div>
-      <div class="ax-card" id="cap-card">
-        <h3><span class="en">Capital structure</span><span class="ko">자본 구조</span></h3>
-        <div class="ax-tablewrap en">
-          <table class="ax-table" data-source="bs_metrics" data-row-key="as_of">
-            <thead><tr><th data-field="label">Period end</th><th class="ax-num" data-field="assets_text">Total assets</th><th class="ax-num" data-field="liabilities_text">Total liabilities</th><th class="ax-num" data-field="preferred_text">Preferred stock</th><th class="ax-num" data-field="equity_text">Stockholders' equity</th></tr></thead>
-            <tbody data-draw="cap-body"></tbody>
-          </table>
-        </div>
-        <div class="ax-tablewrap ko">
-          <table class="ax-table" data-source="bs_metrics" data-row-key="as_of">
-            <thead><tr><th data-field="label_ko">기말</th><th class="ax-num" data-field="assets_text">총자산</th><th class="ax-num" data-field="liabilities_text">총부채</th><th class="ax-num" data-field="preferred_text">우선주</th><th class="ax-num" data-field="equity_text">자본</th></tr></thead>
-            <tbody data-draw="cap-body-ko"></tbody>
-          </table>
-        </div>
-        <p class="ax-note"><span class="en">Equity is negative mainly because fair-value charges on the convertible notes built up a $132.9B accumulated deficit. Preferred stock converts to common at the IPO, which should turn equity positive.</span><span class="ko">자본이 마이너스인 주된 이유는 전환사채 공정가치 평가손실로 누적결손금이 1,329억 달러까지 쌓였기 때문입니다. 우선주는 IPO 때 보통주로 전환되며, 그러면 자본이 플러스로 돌아설 것으로 보입니다.</span></p>
-      </div>
-    </div>
-    <p class="ax-src" data-draw="src-line" data-source="sources" data-src-ids="balance_sheet">—</p>
-  </section>
-
   <section class="ax-sec" id="valuation">
     <h2 class="ax-h2"><span class="en">Valuation</span><span class="ko">밸류에이션</span></h2>
     <p class="ax-lede"><span class="en">A five-year exit model: project revenue, apply a year-5 margin and P/E, discount back, and add net cash. The last column runs it in reverse: the yearly revenue growth the current market cap needs.</span><span class="ko">5년 엑시트 모델입니다. 매출을 추정하고 5년차 이익률과 P/E를 적용해 현재가치로 할인한 뒤 순현금을 더합니다. 마지막 열은 이를 거꾸로 계산한 값으로, 현재 시가총액을 정당화하는 데 필요한 연간 매출 성장률입니다.</span></p>
@@ -260,21 +185,96 @@
       <p class="ax-src" data-draw="src-line" data-source="sources" data-src-ids="scenarios quarterly market_cap">—</p>
   </section>
 
+  <section class="ax-sec" id="results">
+    <h2 class="ax-h2"><span class="en">Growth and margins</span><span class="ko">성장과 이익률</span></h2>
+    <div class="ax-grid">
+      <div class="ax-card" id="rev-card">
+        <h3><span class="en" data-draw="note" data-source="notes" data-where="id=rev_chart_title" data-field="en">—</span><span class="ko" data-draw="note" data-source="notes" data-where="id=rev_chart_title" data-field="ko">—</span></h3>
+        <p class="ax-note"><span class="en">Quarterly revenue and total GAAP operating expenses, $ billions</span><span class="ko">분기 매출과 GAAP 총영업비용, 단위: 10억 달러</span></p>
+        <div class="ax-legend"><span><i data-swatch="0"></i><span class="en">Revenue</span><span class="ko">매출</span></span><span><i style="background: var(--cds-chart-muted)"></i><span class="en">Operating expenses</span><span class="ko">영업비용</span></span></div>
+        <div class="ax-chart" data-draw="rev-chart" data-source="q_metrics"></div>
+      </div>
+      <div class="ax-card" id="margin-card">
+        <h3><span class="en">Operating margin by quarter</span><span class="ko">분기별 영업이익률</span></h3>
+        <p class="ax-note"><span class="en" data-draw="note" data-source="notes" data-where="id=adj_margin_definition" data-field="en">—</span><span class="ko" data-draw="note" data-source="notes" data-where="id=adj_margin_definition" data-field="ko">—</span></p>
+        <div class="ax-legend"><span><i data-swatch="0"></i><span class="en">Adjusted</span><span class="ko">조정</span></span><span><i data-swatch="1"></i>GAAP</span></div>
+        <div class="ax-chart" data-draw="margin-chart" data-source="q_metrics"></div>
+      </div>
+    </div>
+    <p class="ax-src" data-draw="src-line" data-source="sources" data-src-ids="quarterly">—</p>
+  </section>
+
+  <section class="ax-sec" id="balance-sheet">
+    <h2 class="ax-h2"><span class="en">Balance sheet and cash flow</span><span class="ko">재무상태와 현금흐름</span></h2>
+    <p class="ax-lede"><span class="en">Cash, debt and the main balance-sheet totals at each period end, then cash generated and spent in each period. All amounts in US dollars.</span><span class="ko">기말 기준 현금, 부채, 주요 재무상태표 항목과 기간별 현금 창출·사용 내역입니다. 모든 금액은 미국 달러 기준입니다.</span></p>
+    <div class="ax-card" id="bs-card">
+      <h3><span class="en">Liquidity and debt</span><span class="ko">유동성과 부채</span></h3>
+      <div class="ax-tablewrap en">
+        <table class="ax-table" data-source="bs_metrics" data-row-key="as_of">
+          <thead><tr><th data-field="label">Period end</th><th class="ax-num" data-field="gross_text">Gross cash</th><th class="ax-num" data-field="debt_text">Debt (principal)</th><th class="ax-num" data-field="net_text">Net cash</th><th class="ax-num" data-field="notes_fv_text">Notes at fair value</th><th class="ax-num" data-field="lease_text">Operating leases</th><th class="ax-num" data-field="wc_text">Working capital</th><th class="ax-num" data-field="ar_text">Receivables</th><th class="ax-num" data-field="deferred_text">Deferred revenue</th></tr></thead>
+          <tbody data-draw="bs-body"></tbody>
+        </table>
+      </div>
+      <div class="ax-tablewrap ko">
+        <table class="ax-table" data-source="bs_metrics" data-row-key="as_of">
+          <thead><tr><th data-field="label_ko">기말</th><th class="ax-num" data-field="gross_text">총현금</th><th class="ax-num" data-field="debt_text_ko">부채(원금)</th><th class="ax-num" data-field="net_text_ko">순현금</th><th class="ax-num" data-field="notes_fv_text">전환사채 공정가치</th><th class="ax-num" data-field="lease_text">운용리스 부채</th><th class="ax-num" data-field="wc_text">순운전자본</th><th class="ax-num" data-field="ar_text">매출채권</th><th class="ax-num" data-field="deferred_text">이연수익</th></tr></thead>
+          <tbody data-draw="bs-body-ko"></tbody>
+        </table>
+      </div>
+      <p class="ax-note"><span class="en" data-draw="note" data-source="notes" data-where="id=debt_definition" data-field="en">—</span><span class="ko" data-draw="note" data-source="notes" data-where="id=debt_definition" data-field="ko">—</span></p>
+    </div>
+    <div class="ax-grid">
+      <div class="ax-card" id="cf-card">
+        <h3><span class="en">Cash flow</span><span class="ko">현금흐름</span></h3>
+        <div class="ax-tablewrap en">
+          <table class="ax-table" data-source="cf_metrics" data-row-key="period">
+            <thead><tr><th data-field="period">Period</th><th class="ax-num" data-field="ocf_text">Operating</th><th class="ax-num" data-field="capex_text">Capex</th><th class="ax-num" data-field="fcf_text">Free cash flow</th><th class="ax-num" data-field="financing_text">Financing</th></tr></thead>
+            <tbody data-draw="cf-body"></tbody>
+          </table>
+        </div>
+        <div class="ax-tablewrap ko">
+          <table class="ax-table" data-source="cf_metrics" data-row-key="period">
+            <thead><tr><th data-field="period_ko">기간</th><th class="ax-num" data-field="ocf_text">영업활동</th><th class="ax-num" data-field="capex_text">설비투자</th><th class="ax-num" data-field="fcf_text">잉여현금흐름</th><th class="ax-num" data-field="financing_text">재무활동</th></tr></thead>
+            <tbody data-draw="cf-body-ko"></tbody>
+          </table>
+        </div>
+        <p class="ax-note"><span class="en" data-draw="note" data-source="notes" data-where="id=cash_flow_note" data-field="en">—</span><span class="ko" data-draw="note" data-source="notes" data-where="id=cash_flow_note" data-field="ko">—</span></p>
+      </div>
+      <div class="ax-card" id="cap-card">
+        <h3><span class="en">Capital structure</span><span class="ko">자본 구조</span></h3>
+        <div class="ax-tablewrap en">
+          <table class="ax-table" data-source="bs_metrics" data-row-key="as_of">
+            <thead><tr><th data-field="label">Period end</th><th class="ax-num" data-field="assets_text">Total assets</th><th class="ax-num" data-field="liabilities_text">Total liabilities</th><th class="ax-num" data-field="preferred_text">Preferred stock</th><th class="ax-num" data-field="equity_text">Stockholders' equity</th></tr></thead>
+            <tbody data-draw="cap-body"></tbody>
+          </table>
+        </div>
+        <div class="ax-tablewrap ko">
+          <table class="ax-table" data-source="bs_metrics" data-row-key="as_of">
+            <thead><tr><th data-field="label_ko">기말</th><th class="ax-num" data-field="assets_text">총자산</th><th class="ax-num" data-field="liabilities_text">총부채</th><th class="ax-num" data-field="preferred_text">우선주</th><th class="ax-num" data-field="equity_text">자본</th></tr></thead>
+            <tbody data-draw="cap-body-ko"></tbody>
+          </table>
+        </div>
+        <p class="ax-note"><span class="en" data-draw="note" data-source="notes" data-where="id=equity_note" data-field="en">—</span><span class="ko" data-draw="note" data-source="notes" data-where="id=equity_note" data-field="ko">—</span></p>
+      </div>
+    </div>
+    <p class="ax-src" data-draw="src-line" data-source="sources" data-src-ids="balance_sheet">—</p>
+  </section>
+
   <section class="ax-sec" id="compute">
     <h2 class="ax-h2"><span class="en">Compute commitments</span><span class="ko">컴퓨팅 약정</span></h2>
-    <p class="ax-lede en">Firm minimums are <b data-draw="c-firm" data-source="commit_totals" data-field="firm_usd" data-row="0">—</b> of <b data-draw="c-total" data-source="commit_totals" data-field="total_low_usd" data-row="0">—</b> in named deals, about <b data-draw="c-years" data-source="commit_totals" data-field="years_of_revenue" data-row="0">—</b> annualized revenue. The filing's own total is blank until the price-range amendment.</p>
-    <p class="ax-lede ko">명시된 계약 <b data-draw="c-total" data-source="commit_totals" data-field="total_low_usd" data-row="0">—</b> 중 확정 최소 약정은 <b data-draw="c-firm" data-source="commit_totals" data-field="firm_usd" data-row="0">—</b>로, 연환산 매출의 약 <b data-draw="c-years-ko" data-source="commit_totals" data-field="years_of_revenue" data-row="0">—</b>에 해당합니다. 공시상 총액은 가격 범위 수정 공시 전까지 공란입니다.</p>
+    <p class="ax-lede en">Firm minimums are <b data-draw="c-firm" data-source="commit_totals" data-field="firm_usd" data-row="0">—</b> of <b data-draw="c-total" data-source="commit_totals" data-field="total_low_usd" data-row="0">—</b> in named deals, about <b data-draw="c-years" data-source="commit_totals" data-field="years_of_revenue" data-row="0">—</b> annualized revenue. <span data-draw="note" data-source="notes" data-where="id=compute_filing_total" data-field="en">—</span></p>
+    <p class="ax-lede ko">명시된 계약 <b data-draw="c-total" data-source="commit_totals" data-field="total_low_usd" data-row="0">—</b> 중 확정 최소 약정은 <b data-draw="c-firm" data-source="commit_totals" data-field="firm_usd" data-row="0">—</b>로, 연환산 매출의 약 <b data-draw="c-years-ko" data-source="commit_totals" data-field="years_of_revenue" data-row="0">—</b>에 해당합니다. <span data-draw="note" data-source="notes" data-where="id=compute_filing_total" data-field="ko">—</span></p>
     <div class="ax-card" id="commit-card">
       <h3><span class="en">Named compute deals, $ billions</span><span class="ko">명시된 컴퓨팅 계약, 단위: 10억 달러</span></h3>
       <div class="ax-legend"><span><i data-swatch="0"></i><span class="en">Firm minimum</span><span class="ko">확정 최소 약정</span></span><span><i style="background: var(--cds-chart-muted)"></i><span class="en">Up to, conditional or estimate</span><span class="ko">상한·조건부·추정</span></span></div>
       <div class="ax-chart" data-draw="commit-chart" data-source="commitments"></div>
-      <p class="ax-note"><span class="en">Hover a bar for its period and exit terms. Broadcom is lease rent excluding interest.</span><span class="ko">막대에 마우스를 올리면 기간과 해지 조건이 표시됩니다. Broadcom은 이자를 제외한 리스료입니다.</span></p>
+      <p class="ax-note"><span class="en" data-draw="note" data-source="notes" data-where="id=compute_deals_note" data-field="en">—</span><span class="ko" data-draw="note" data-source="notes" data-where="id=compute_deals_note" data-field="ko">—</span></p>
     </div>
     <div class="ax-card" id="commit-years-card">
       <h3><span class="en">Estimated payments by year, $ billions</span><span class="ko">연도별 예상 지급액, 단위: 10억 달러</span></h3>
       <div class="ax-legend"><span><i data-swatch="0"></i><span class="en">Firm minimum</span><span class="ko">확정 최소 약정</span></span><span><i style="background: var(--cds-chart-muted)"></i><span class="en">Up to, conditional or estimate</span><span class="ko">상한·조건부·추정</span></span></div>
       <div class="ax-chart" data-draw="commit-years-chart" data-source="commit_years"></div>
-      <p class="ax-note"><span class="en">An illustration, not filing data: each named deal is spread evenly over its stated term, SpaceXAI at about $3.1B a month from Dec 2026, Broadcom over five years from mid-2026, extra TPUs at the midpoint of the estimate. Real contracts ramp up, and some amounts may overlap. Years switch to the filing's own schedule once it is published. Hover a bar to see each deal.</span><span class="ko">공시 자료가 아닌 예시입니다. 명시된 각 계약을 계약 기간에 고르게 나눴으며, SpaceXAI는 2026년 12월부터 월 약 31억 달러, Broadcom은 2026년 중반부터 5년, 추가 TPU는 추정치의 중간값으로 잡았습니다. 실제 계약은 단계적으로 늘어나며 일부 금액은 겹칠 수 있습니다. 공시된 연도별 일정이 나오면 해당 연도는 공시 수치로 바뀝니다. 막대에 마우스를 올리면 계약별 금액이 표시됩니다.</span></p>
+      <p class="ax-note"><span class="en" data-draw="note" data-source="notes" data-where="id=payments_by_year_note" data-field="en">—</span><span class="ko" data-draw="note" data-source="notes" data-where="id=payments_by_year_note" data-field="ko">—</span></p>
     </div>
       <p class="ax-src" data-draw="src-line" data-source="sources" data-src-ids="commitments">—</p>
   </section>
@@ -287,7 +287,7 @@
         <h3><span class="en">Cumulative share unlocked, by milestone</span><span class="ko">마일스톤별 누적 해제 비율</span></h3>
         <div class="ax-legend"><span><i data-swatch="0"></i><span class="en">Co-founders</span><span class="ko">공동창업자</span></span><span><i data-swatch="1"></i><span class="en">Holders over 0.5%</span><span class="ko">0.5% 초과 보유자</span></span><span><i data-swatch="2"></i><span class="en">Certain other holders</span><span class="ko">기타 특정 주주</span></span><span><i data-swatch="3"></i><span class="en">Officers and some employees</span><span class="ko">임원 및 일부 직원</span></span></div>
         <div class="ax-chart" data-draw="lock-chart" data-source="lockup_sched"></div>
-        <p class="ax-note"><span class="en">Milestones evenly spaced, not to scale. Goldman Sachs and Morgan Stanley can release shares early.</span><span class="ko">마일스톤은 같은 간격으로 표시되며 실제 기간 비율과 다릅니다. 골드만삭스와 모건스탠리는 보호예수를 조기 해제할 수 있습니다.</span></p>
+        <p class="ax-note"><span class="en" data-draw="note" data-source="notes" data-where="id=lockup_note" data-field="en">—</span><span class="ko" data-draw="note" data-source="notes" data-where="id=lockup_note" data-field="ko">—</span></p>
       </div>
       <div class="ax-card">
         <h3><span class="en">Release dates</span><span class="ko">해제 일정</span></h3>
@@ -719,7 +719,7 @@ dash.calc('lockup_sched', {
 });
 
 // ---------- shared helpers ----------
-window.axLang = () => (dash.params().lang === 'ko' ? 'ko' : 'en');
+window.axLang = () => (dash.params().lang === 'en' ? 'en' : 'ko');
 window.axFmt = {
   pct: (v, d = 1) => (v === null || v === undefined || isNaN(v) ? '—' : (v * 100).toFixed(d) + '%'),
   signed: (v) => (v === null || v === undefined || isNaN(v) ? '—' : (v >= 0 ? '+' : '−') + Math.abs(v * 100).toFixed(0) + '%'),
@@ -1022,11 +1022,23 @@ dash.draw('commit-years-chart', (el) => {
 </script>
 
 <script>
+// ---------- commentary notes (rewritten by the weekly update when a filing changes them) ----------
+dash.draw('note', (el) => {
+  const d = dash.data('notes');
+  const id = new URLSearchParams(el.dataset.where || '').get('id');
+  const r = d.status === 'ok' ? d.data.find((x) => x.id === id) : null;
+  const v = r ? r[el.dataset.field] : null;
+  el.textContent = v === null || v === undefined ? '—' : String(v);
+});
+
 // ---------- language ----------
 document.querySelectorAll('.ax-lang').forEach((b) => b.addEventListener('click', () => {
   document.querySelectorAll('.ax').forEach((root) => root.classList.toggle('ax-ko', b.dataset.lang === 'ko'));
   dash.setParams({ lang: b.dataset.lang });
+  dash.setLink(b.dataset.lang);
 }));
+const linkLang = location.hash.slice(1);
+if (linkLang === 'en' || linkLang === 'ko') dash.setParams({ lang: linkLang });
 dash.onData(() => {
   const ko = axLang() === 'ko';
   document.querySelectorAll('.ax').forEach((root) => root.classList.toggle('ax-ko', ko));

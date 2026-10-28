@@ -3,8 +3,8 @@
 (function () {
   'use strict';
   var DATASETS = ['quarterly', 'annual', 'balance_sheet', 'kpis', 'deal', 'price_history', 'commitments',
-    'commit_schedule', 'lockups', 'events', 'scenarios', 'sources'];
-  var DEFAULT_PARAMS = { lang: 'en' };
+    'commit_schedule', 'lockups', 'events', 'scenarios', 'sources', 'notes'];
+  var DEFAULT_PARAMS = { lang: 'ko' };
 
   var calcs = {};
   var calcOrder = [];
@@ -18,6 +18,16 @@
     var saved = window.localStorage.getItem('ant-tracker-lang');
     if (saved === 'en' || saved === 'ko') params.lang = saved;
   } catch (e) { /* storage unavailable */ }
+  try {
+    var asked = new URLSearchParams(window.location.search).get('lang');
+    if (asked === 'en' || asked === 'ko') params.lang = asked;
+  } catch (e) { /* no query string */ }
+
+  function setDocLang() {
+    var ko = params.lang !== 'en';
+    document.documentElement.lang = ko ? 'ko' : 'en';
+    document.title = ko ? 'Anthropic (ANT) 트래커' : 'Anthropic (ANT) tracker';
+  }
 
   function runDraw(name) {
     var fn = draws[name];
@@ -28,6 +38,7 @@
   }
 
   function refresh() {
+    setDocLang();
     onDataFns.forEach(function (fn) { try { fn(); } catch (e) { console.error('onData', e); } });
     drawOrder.forEach(runDraw);
   }

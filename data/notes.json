@@ -1,0 +1,74 @@
+[
+ {
+  "id": "rev_chart_title",
+  "section": "Growth and margins",
+  "en": "Revenue caught up with operating expenses",
+  "ko": "매출이 영업비용을 따라잡았습니다",
+  "basis": "S-1 filed Oct 26, 2026",
+  "as_of": "2026-10-26"
+ },
+ {
+  "id": "adj_margin_definition",
+  "section": "Growth and margins",
+  "en": "Adjusted excludes stock pay, the donation match and the Bartz settlement",
+  "ko": "조정 기준은 주식보상비용, 기부 매칭, Bartz 합의금을 제외합니다",
+  "basis": "S-1 filed Oct 26, 2026",
+  "as_of": "2026-10-26"
+ },
+ {
+  "id": "debt_definition",
+  "section": "Balance sheet and cash flow",
+  "en": "Gross cash is cash and cash equivalents plus short-term investments, excluding restricted cash. Debt is Amazon's convertible notes at principal, plus credit-facility borrowings (none so far) and finance leases. The notes are carried at fair value on the balance sheet, which rises with the valuation; they convert to stock rather than being repaid, except any amount above Amazon's ownership cap. The Dec 2024 principal isn't disclosed.",
+  "ko": "총현금은 현금성자산과 단기투자자산의 합계이며 제한 현금은 제외합니다. 부채는 Amazon 전환사채 원금에 신용한도 차입금(현재 없음)과 금융리스를 더한 값입니다. 전환사채는 재무상태표에 공정가치로 계상되어 기업가치가 오르면 함께 늘어나며, Amazon 지분 한도를 넘는 부분을 제외하면 상환이 아니라 주식으로 전환됩니다. 2024년 12월 원금은 공시되지 않았습니다.",
+  "basis": "S-1 filed Oct 26, 2026",
+  "as_of": "2026-10-26"
+ },
+ {
+  "id": "cash_flow_note",
+  "section": "Balance sheet and cash flow",
+  "en": "Financing inflows are mostly preferred-stock rounds and convertible notes. Capex will rise as more compute moves to owned and leased equipment; most of that shows up as lease payments rather than capex.",
+  "ko": "재무활동 유입은 대부분 우선주 투자와 전환사채입니다. 컴퓨팅이 직접 리스·보유 장비로 옮겨 가면서 설비투자가 늘겠지만, 대부분은 설비투자가 아니라 리스료로 잡힙니다.",
+  "basis": "S-1 filed Oct 26, 2026",
+  "as_of": "2026-10-26"
+ },
+ {
+  "id": "equity_note",
+  "section": "Balance sheet and cash flow",
+  "en": "Equity is negative mainly because fair-value charges on the convertible notes built up a $132.9B accumulated deficit. Preferred stock converts to common at the IPO, which should turn equity positive.",
+  "ko": "자본이 마이너스인 주된 이유는 전환사채 공정가치 평가손실로 누적결손금이 1,329억 달러까지 쌓였기 때문입니다. 우선주는 IPO 때 보통주로 전환되며, 그러면 자본이 플러스로 돌아설 것으로 보입니다.",
+  "basis": "S-1 filed Oct 26, 2026",
+  "as_of": "2026-10-26"
+ },
+ {
+  "id": "compute_deals_note",
+  "section": "Compute commitments",
+  "en": "Hover a bar for its period and exit terms. Broadcom is lease rent excluding interest.",
+  "ko": "막대에 마우스를 올리면 기간과 해지 조건이 표시됩니다. Broadcom은 이자를 제외한 리스료입니다.",
+  "basis": "S-1 filed Oct 26, 2026",
+  "as_of": "2026-10-26"
+ },
+ {
+  "id": "compute_filing_total",
+  "section": "Compute commitments",
+  "en": "The filing's own total is blank until the price-range amendment.",
+  "ko": "공시상 총액은 가격 범위 수정 공시 전까지 공란입니다.",
+  "basis": "S-1 filed Oct 26, 2026",
+  "as_of": "2026-10-26"
+ },
+ {
+  "id": "payments_by_year_note",
+  "section": "Compute commitments",
+  "en": "An illustration, not filing data: each named deal is spread evenly over its stated term, SpaceXAI at about $3.1B a month from Dec 2026, Broadcom over five years from mid-2026, extra TPUs at the midpoint of the estimate. Real contracts ramp up, and some amounts may overlap. Years switch to the filing's own schedule once it is published. Hover a bar to see each deal.",
+  "ko": "공시 자료가 아닌 예시입니다. 명시된 각 계약을 계약 기간에 고르게 나눴으며, SpaceXAI는 2026년 12월부터 월 약 31억 달러, Broadcom은 2026년 중반부터 5년, 추가 TPU는 추정치의 중간값으로 잡았습니다. 실제 계약은 단계적으로 늘어나며 일부 금액은 겹칠 수 있습니다. 공시된 연도별 일정이 나오면 해당 연도는 공시 수치로 바뀝니다. 막대에 마우스를 올리면 계약별 금액이 표시됩니다.",
+  "basis": "S-1 filed Oct 26, 2026; Claude's even-spread illustration",
+  "as_of": "2026-10-26"
+ },
+ {
+  "id": "lockup_note",
+  "section": "Lock-up releases",
+  "en": "Milestones evenly spaced, not to scale. Goldman Sachs and Morgan Stanley can release shares early.",
+  "ko": "마일스톤은 같은 간격으로 표시되며 실제 기간 비율과 다릅니다. 골드만삭스와 모건스탠리는 보호예수를 조기 해제할 수 있습니다.",
+  "basis": "S-1 filed Oct 26, 2026",
+  "as_of": "2026-10-26"
+ }
+]
