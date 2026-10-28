@@ -47,6 +47,12 @@
 .ax-chart { min-height: 260px; position: relative; }
 .ax-chart svg { display: block; }
 .ax-tablewrap { overflow-x: auto; }
+.ax-details { font-size: var(--cds-font-size-caption); min-width: 0; }
+.ax > *, .ax-sec > *, .ax-card > * { min-width: 0; }
+.ax-details > summary { cursor: pointer; color: var(--color-fg-muted); padding-block: var(--cds-pad-xs); }
+.ax-details > summary:focus-visible { outline: 2px solid var(--color-fg); outline-offset: 2px; }
+.ax-details[open] > summary { margin-bottom: var(--cds-pad-sm); }
+.ax-basis td:nth-last-child(2) { min-width: 18rem; }
 .ax-table { width: 100%; border-collapse: collapse; font-size: var(--cds-font-size-caption); font-variant-numeric: tabular-nums; }
 .ax-table th { text-align: left; font-weight: var(--cds-font-weight-medium); color: var(--color-fg-muted); padding: var(--cds-pad-xs) var(--cds-pad-sm); border-bottom: 1px solid var(--color-border-line); white-space: nowrap; }
 .ax-table td { padding: var(--cds-pad-xs) var(--cds-pad-sm); border-bottom: 1px solid var(--color-border-line); vertical-align: top; }
@@ -141,9 +147,24 @@
 
   <section class="ax-sec" id="scorecard">
     <h2 class="ax-h2"><span class="en">Thesis scorecard</span><span class="ko">투자 논지 점검표</span></h2>
-    <p class="ax-lede"><span class="en">Each card shows the latest disclosed figure, its change since the one before, and every data point so far. The dashed line is the on-track threshold. Thresholds are starting points for a long-term growth thesis, not targets the company sets.</span><span class="ko">각 카드는 최근 공시 수치, 직전 대비 변화, 지금까지의 모든 데이터 포인트를 보여줍니다. 점선은 '양호' 기준선입니다. 기준값은 장기 성장 논지를 점검하기 위한 출발점이며, 회사가 제시한 목표가 아닙니다.</span></p>
+    <p class="ax-lede"><span class="en">Each card shows the latest disclosed figure, its change since the one before, and every data point so far. The dashed line is the on-track threshold. Thresholds come from public benchmarks or from the valuation scenarios; the table below gives each one's basis. They are not targets the company sets.</span><span class="ko">각 카드는 최근 공시 수치, 직전 대비 변화, 지금까지의 모든 데이터 포인트를 보여줍니다. 점선은 '양호' 기준선입니다. 기준값은 공개 벤치마크나 밸류에이션 시나리오에서 가져왔으며, 각 근거는 아래 표에 있습니다. 회사가 제시한 목표가 아닙니다.</span></p>
     <div class="ax-scgrid" id="scorecard-cards" data-draw="sc-grid" data-source="scorecard trends"></div>
-    <p class="ax-src" data-draw="src-line" data-source="sources" data-src-ids="quarterly annual balance_sheet kpis market_cap">—</p>
+    <details class="ax-details" id="threshold-basis">
+      <summary><span class="en">How the thresholds were set</span><span class="ko">기준값 설정 근거</span></summary>
+      <div class="ax-tablewrap en">
+        <table class="ax-table ax-basis" data-source="scorecard" data-row-key="id">
+          <thead><tr><th data-field="check">Check</th><th class="ax-num" data-field="green_text">On track</th><th class="ax-num" data-field="amber_text">Watch</th><th data-field="basis">Basis</th><th data-field="source">Source</th></tr></thead>
+          <tbody data-draw="thr-body"></tbody>
+        </table>
+      </div>
+      <div class="ax-tablewrap ko">
+        <table class="ax-table ax-basis" data-source="scorecard" data-row-key="id">
+          <thead><tr><th data-field="check_ko">항목</th><th class="ax-num" data-field="green_text">양호</th><th class="ax-num" data-field="amber_text">주의</th><th data-field="basis_ko">근거</th><th data-field="source_ko">출처</th></tr></thead>
+          <tbody data-draw="thr-body-ko"></tbody>
+        </table>
+      </div>
+    </details>
+    <p class="ax-src" data-draw="src-line" data-source="sources" data-src-ids="quarterly annual balance_sheet kpis market_cap thresholds">—</p>
   </section>
 
   <section class="ax-sec" id="valuation">
@@ -163,15 +184,30 @@
           <tbody data-draw="val-body-ko"></tbody>
         </table>
       </div>
-      <p class="ax-note"><span class="en">Assumptions are illustrative. Edit the scenarios file in Sources to change them for everyone, or try your own below.</span><span class="ko">가정은 예시입니다. 모든 사람에게 적용하려면 Sources에서 시나리오 파일을 수정하고, 직접 시험해 보려면 아래를 사용하세요.</span></p>
+      <p class="ax-note"><span class="en">Each input is anchored to a public source below; they are estimates, not company guidance. Try your own further down.</span><span class="ko">각 가정은 아래의 공개 자료에 근거한 추정치이며 회사 전망이 아닙니다. 직접 가정을 넣어보려면 아래를 사용하세요.</span></p>
+      <details class="ax-details" id="valuation-basis">
+        <summary><span class="en">How the assumptions were set</span><span class="ko">가정 설정 근거</span></summary>
+        <div class="ax-tablewrap en">
+          <table class="ax-table ax-basis" data-source="valuation_basis" data-row-key="id">
+            <thead><tr><th data-field="input">Input</th><th data-field="basis">Basis</th><th data-field="source">Source</th></tr></thead>
+            <tbody data-draw="vb-body"></tbody>
+          </table>
+        </div>
+        <div class="ax-tablewrap ko">
+          <table class="ax-table ax-basis" data-source="valuation_basis" data-row-key="id">
+            <thead><tr><th data-field="input_ko">항목</th><th data-field="basis_ko">근거</th><th data-field="source_ko">출처</th></tr></thead>
+            <tbody data-draw="vb-body-ko"></tbody>
+          </table>
+        </div>
+      </details>
     </div>
     <div class="ax-card" id="whatif">
       <h3><span class="en">Try your own assumptions</span><span class="ko">직접 가정 넣어보기</span></h3>
       <div class="ax-wi">
         <label for="wi-cagr"><span class="en">Revenue growth per year, 5 years</span><span class="ko">연간 매출 성장률(5년)</span> <output data-draw="wi-cagr-v">—</output><input type="range" id="wi-cagr" min="0" max="1.2" step="0.01" value="0.5"></label>
-        <label for="wi-margin"><span class="en">Operating margin in year 5</span><span class="ko">5년차 영업이익률</span> <output data-draw="wi-margin-v">—</output><input type="range" id="wi-margin" min="0.05" max="0.6" step="0.01" value="0.3"></label>
-        <label for="wi-pe"><span class="en">Exit P/E</span><span class="ko">엑시트 P/E</span> <output data-draw="wi-pe-v">—</output><input type="range" id="wi-pe" min="8" max="60" step="1" value="25"></label>
-        <label for="wi-disc"><span class="en">Discount rate</span><span class="ko">할인율</span> <output data-draw="wi-disc-v">—</output><input type="range" id="wi-disc" min="0.06" max="0.2" step="0.005" value="0.12"></label>
+        <label for="wi-margin"><span class="en">Operating margin in year 5</span><span class="ko">5년차 영업이익률</span> <output data-draw="wi-margin-v">—</output><input type="range" id="wi-margin" min="0.05" max="0.6" step="0.01" value="0.33"></label>
+        <label for="wi-pe"><span class="en">Exit P/E</span><span class="ko">엑시트 P/E</span> <output data-draw="wi-pe-v">—</output><input type="range" id="wi-pe" min="8" max="60" step="1" value="27"></label>
+        <label for="wi-disc"><span class="en">Discount rate</span><span class="ko">할인율</span> <output data-draw="wi-disc-v">—</output><input type="range" id="wi-disc" min="0.06" max="0.2" step="0.005" value="0.115"></label>
         <label for="wi-dil"><span class="en">Share dilution per year</span><span class="ko">연간 주식 희석률</span> <output data-draw="wi-dil-v">—</output><input type="range" id="wi-dil" min="0" max="0.06" step="0.005" value="0.02"></label>
       </div>
       <div class="ax-wi-out">
@@ -376,6 +412,8 @@ dash.calc('q_metrics', {
         adj_op_income_bn: adjOp / 1000,
         adj_net_income_bn: (net + n(q.sbc) + n(q.donation_match) + n(q.bartz) - n(q.fv_change_notes) + n(q.mtm_change)) / 1000,
         op_margin: op / rev, adj_margin: adjOp / rev, compute_pct: n(q.compute_infra) / rev,
+        net_margin: net / rev, adj_net_margin: (net + n(q.sbc) + n(q.donation_match) + n(q.bartz) - n(q.fv_change_notes) + n(q.mtm_change)) / rev,
+        notes_fv: n(q.fv_change_notes) !== 0,
         qoq: prev ? rev / n(prev.revenue) - 1 : null,
         yoy: yr ? rev / n(yr.revenue) - 1 : null,
         run_rate_bn: rev * 4 / 1000,
@@ -458,6 +496,7 @@ dash.calc('cf_metrics', {
       const y = String(r.period).slice(-4);
       return {
         period: r.period, kind: r.kind, end: end(r), period_ko: r.kind === 'H1' ? y + '년 상반기' : y + '년',
+        revenue: Number(r.revenue), fcf_margin: fcf === null || !Number(r.revenue) ? null : fcf / Number(r.revenue),
         ocf: Number(r.operating_cash_flow), capex, fcf, financing: has(r.financing_cash_flow) ? Number(r.financing_cash_flow) : null,
         ocf_text: bn(Number(r.operating_cash_flow)), capex_text: capex === null ? '' : bn(-capex), fcf_text: fcf === null ? '' : bn(fcf),
         financing_text: has(r.financing_cash_flow) ? bn(Number(r.financing_cash_flow)) : '',
@@ -514,7 +553,8 @@ dash.calc('latest', {
       cash_usd: bsLast ? bsLast.gross_cash * 1e6 : null, restricted_usd: bsLast ? bsLast.restricted_cash * 1e6 : null, cash_bn: bsLast ? bsLast.gross_cash / 1000 : null,
       net_cash_usd: bsLast && bsLast.net_cash !== null ? bsLast.net_cash * 1e6 : null, net_cash_bs_bn: bsLast && bsLast.net_cash !== null ? bsLast.net_cash / 1000 : null,
       cash_as_of: bsLast ? bsLast.as_of : null, cash_as_of_text: bsLast ? bsLast.label : null, cash_as_of_text_ko: bsLast ? bsLast.label_ko : null,
-      fcf_bn: cfLast ? cfLast.fcf / 1000 : null, fcf_period: cfLast ? cfLast.period : null,
+      fcf_bn: cfLast ? cfLast.fcf / 1000 : null, fcf_margin: cfLast ? cfLast.fcf_margin : null, fcf_period: cfLast ? cfLast.period : null,
+      net_margin: q.net_margin, adj_net_margin: q.adj_net_margin, notes_fv_q: q.notes_fv,
       latest_quarter: q.quarter, run_rate_bn: q.run_rate_bn, qoq: q.qoq, yoy: q.yoy,
       adj_margin: q.adj_margin, op_margin: q.op_margin, compute_pct: q.compute_pct,
       gross_margin: gm ? (gm.revenue - gm.cost_of_revenue) / gm.revenue : null, gm_period: gm ? gm.period : null,
@@ -548,6 +588,7 @@ dash.calc('trends', {
       push('yoy', q.quarter, q.period_end, q.yoy); push('qoq', q.quarter, q.period_end, q.qoq);
       push('compute', q.quarter, q.period_end, q.compute_pct); push('adj_margin', q.quarter, q.period_end, q.adj_margin);
       push('op_margin', q.quarter, q.period_end, q.op_margin);
+      push('net_margin', q.quarter, q.period_end, q.net_margin); push('adj_net_margin', q.quarter, q.period_end, q.adj_net_margin);
     });
     const end = (r) => (r.kind === 'H1' ? String(r.period).slice(-4) + '-06-30' : String(r.period) + '-12-31');
     const ann = annual.slice().sort((x, y) => end(x).localeCompare(end(y)));
@@ -562,7 +603,7 @@ dash.calc('trends', {
     });
     bs_metrics.forEach((r) => { push('cash', nice(r.as_of), r.as_of, r.gross_cash / 1000, 'date'); if (r.net_cash !== null) push('net_cash', nice(r.as_of), r.as_of, r.net_cash / 1000, 'date'); });
     const cfKind = cf_metrics.filter((r) => r.fcf !== null).slice(-1)[0];
-    cf_metrics.filter((r) => r.fcf !== null && cfKind && r.kind === cfKind.kind).forEach((r) => push('fcf', r.period, r.end, r.fcf / 1000, r.kind));
+    cf_metrics.filter((r) => r.fcf !== null && cfKind && r.kind === cfKind.kind).forEach((r) => push('fcf', r.period, r.end, r.fcf_margin, r.kind));
     const base = scenarios.find((x) => x.scenario === 'Base') || scenarios[0];
     price_history.slice().sort((x, y) => String(x.date).localeCompare(String(y.date))).forEach((p) => {
       const known = q_metrics.filter((q) => String(q.period_end) < String(p.date));
@@ -578,42 +619,64 @@ dash.calc('trends', {
 });
 
 dash.calc('scorecard', {
-  inputs: ['latest', 'trends'],
+  inputs: ['latest', 'trends', 'thresholds', 'scenarios', 'valuation'],
   title: 'Scorecard checks',
-  description: 'Each tracked figure graded against fixed thresholds, with its change since the previous data point.',
-  fn: (latest, trends) => {
+  description: 'Each tracked figure graded against the thresholds file (some follow the valuation scenarios), with its change since the previous data point.',
+  fn: (latest, trends, thresholds, scenarios, valuation) => {
     const L = latest[0];
+    const num = (x) => (x === null || x === undefined || x === '' ? null : Number(x));
+    const scen = (n) => scenarios.find((x) => x.scenario === n) || {};
+    const val = (n) => valuation.find((x) => x.scenario === n) || {};
+    const limits = (t) => {
+      if (!t) return [null, null];
+      const b = scen('Base'), br = scen('Bear');
+      switch (t.rule) {
+        case 'fixed': return [num(t.on_track), num(t.watch)];
+        case 'fixed_if_no_notes_fv': return L.notes_fv_q ? [null, null] : [num(t.on_track), num(t.watch)];
+        case 'scenario_growth': return [num(b.growth_y1), num(br.growth_y1)];
+        case 'scenario_growth_q': return [Math.pow(1 + num(b.growth_y1), 0.25) - 1, Math.pow(1 + num(br.growth_y1), 0.25) - 1];
+        case 'compute_room': return [1 - num(b.op_margin_y5) - num(t.ref), 1 - num(br.op_margin_y5) - num(t.ref)];
+        case 'scenario_cagr': return [num(val('Base').cagr_5y), num(val('Bull').cagr_5y)];
+        default: return [null, null];
+      }
+    };
     const F = {
       pct: (v) => (v * 100).toFixed(1) + '%', pct0: (v) => (v * 100).toFixed(0) + '%',
       bn: (v) => (v < 0 ? '−$' : '$') + Math.abs(v).toFixed(1) + 'B', x: (v) => v.toFixed(1) + 'x',
       num: (v) => Math.round(v).toLocaleString('en-US'),
     };
     const checks = [
-      ['yoy', 'Revenue growth, year over year', L.yoy, L.latest_quarter, 1.0, 0.5, 'higher', 'pct0'],
-      ['qoq', 'Revenue growth, quarter over quarter', L.qoq, L.latest_quarter, 0.2, 0.08, 'higher', 'pct0'],
-      ['compute', 'Compute and infrastructure, % of revenue', L.compute_pct, L.latest_quarter, 0.6, 0.8, 'lower', 'pct'],
-      ['adj_margin', 'Adjusted operating margin', L.adj_margin, L.latest_quarter, 0.1, 0, 'higher', 'pct'],
-      ['op_margin', 'GAAP operating margin', L.op_margin, L.latest_quarter, 0, -0.15, 'higher', 'pct'],
-      ['gross_margin', 'Gross margin', L.gross_margin, L.gm_period, 0.75, 0.6, 'higher', 'pct'],
-      ['ocf', 'Operating cash flow', L.ocf_bn, L.ocf_period, 0, -2, 'higher', 'bn'],
-      ['nrr', 'Net revenue retention', L.nrr, L.nrr_as_of, 1.5, 1.1, 'higher', 'pct0'],
-      ['top5', 'Revenue outside top 5 customers', L.outside_top5, L.top5_as_of, 0.7, 0.55, 'higher', 'pct0'],
-      ['marketplace', 'Revenue through cloud marketplaces', L.marketplace_share, L.marketplace_as_of, 0.5, 0.65, 'lower', 'pct0'],
-      ['ps', 'Market cap ÷ annualized revenue', L.ps, 'Now', 25, 40, 'lower', 'x'],
-      ['implied', 'Growth per year the price needs (base case)', L.implied_cagr_base, 'Now', 0.4, 0.6, 'lower', 'pct0'],
-      ['customers', 'Customers paying $100k+ a year', L.customers_100k, L.customers_as_of, null, null, 'higher', 'num'],
-      ['fcf', 'Free cash flow (operating cash flow − capex)', L.fcf_bn, L.fcf_period, 0, -2, 'higher', 'bn'],
-      ['cash', 'Cash and short-term investments', L.cash_bn, L.cash_as_of, null, null, 'higher', 'bn'],
-      ['net_cash', 'Net cash (after debt at principal)', L.net_cash_bs_bn, L.cash_as_of, null, null, 'higher', 'bn'],
+      ['yoy', 'Revenue growth, year over year', L.yoy, L.latest_quarter, 'higher', 'pct0'],
+      ['qoq', 'Revenue growth, quarter over quarter', L.qoq, L.latest_quarter, 'higher', 'pct0'],
+      ['compute', 'Compute and infrastructure, % of revenue', L.compute_pct, L.latest_quarter, 'lower', 'pct'],
+      ['adj_margin', 'Adjusted operating margin', L.adj_margin, L.latest_quarter, 'higher', 'pct'],
+      ['op_margin', 'GAAP operating margin', L.op_margin, L.latest_quarter, 'higher', 'pct'],
+      ['net_margin', 'GAAP net profit margin', L.net_margin, L.latest_quarter, 'higher', 'pct0'],
+      ['adj_net_margin', 'Adjusted net profit margin', L.adj_net_margin, L.latest_quarter, 'higher', 'pct'],
+      ['gross_margin', 'Gross margin', L.gross_margin, L.gm_period, 'higher', 'pct'],
+      ['ocf', 'Operating cash flow', L.ocf_bn, L.ocf_period, 'higher', 'bn'],
+      ['fcf', 'Free cash flow margin (operating cash flow − capex)', L.fcf_margin, L.fcf_period, 'higher', 'pct'],
+      ['nrr', 'Net revenue retention', L.nrr, L.nrr_as_of, 'higher', 'pct0'],
+      ['top5', 'Revenue outside top 5 customers', L.outside_top5, L.top5_as_of, 'higher', 'pct0'],
+      ['marketplace', 'Revenue through cloud marketplaces', L.marketplace_share, L.marketplace_as_of, 'lower', 'pct0'],
+      ['ps', 'Market cap ÷ annualized revenue', L.ps, 'Now', 'lower', 'x'],
+      ['implied', 'Growth per year the price needs (base case)', L.implied_cagr_base, 'Now', 'lower', 'pct0'],
+      ['customers', 'Customers paying $100k+ a year', L.customers_100k, L.customers_as_of, 'higher', 'num'],
+      ['cash', 'Cash and short-term investments', L.cash_bn, L.cash_as_of, 'higher', 'bn'],
+      ['net_cash', 'Net cash (after debt at principal)', L.net_cash_bs_bn, L.cash_as_of, 'higher', 'bn'],
     ];
+    const TH = {};
+    thresholds.forEach((t) => { TH[t.id] = t; });
     const KO = {
       yoy: '매출 성장률(전년 동기 대비)', qoq: '매출 성장률(전 분기 대비)', compute: '매출 대비 컴퓨팅·인프라 비용',
-      adj_margin: '조정 영업이익률', op_margin: 'GAAP 영업이익률', gross_margin: '매출총이익률', ocf: '영업활동 현금흐름',
+      adj_margin: '조정 영업이익률', op_margin: 'GAAP 영업이익률', net_margin: 'GAAP 순이익률', adj_net_margin: '조정 순이익률', gross_margin: '매출총이익률', ocf: '영업활동 현금흐름',
       nrr: '순매출 유지율(NRR)', top5: '상위 5개 고객 외 매출 비중', marketplace: '클라우드 마켓플레이스 경유 매출 비중',
-      ps: '시가총액 ÷ 연환산 매출', implied: '주가가 요구하는 연간 성장률(기준 시나리오)', customers: '연 10만 달러 이상 지출 고객 수', cash: '현금 및 단기투자자산', net_cash: '순현금(원금 기준 부채 차감)', fcf: '잉여현금흐름(영업현금흐름 − 설비투자)',
+      ps: '시가총액 ÷ 연환산 매출', implied: '주가가 요구하는 연간 성장률(기준 시나리오)', customers: '연 10만 달러 이상 지출 고객 수', cash: '현금 및 단기투자자산', net_cash: '순현금(원금 기준 부채 차감)', fcf: '잉여현금흐름 마진(영업현금흐름 − 설비투자)',
     };
     const ST = { 'On track': '양호', Watch: '주의', 'Thesis at risk': '논지 위험', 'Track trend': '추세 관찰', 'No data': '데이터 없음' };
-    return checks.map(([id, check, v, period, g, a, better, fmt]) => {
+    return checks.map(([id, check, v, period, better, fmt]) => {
+      const t = TH[id];
+      const [g, a] = limits(t);
       const f = F[fmt];
       const ok = v !== null && v !== undefined && !isNaN(v);
       let status = 'No data';
@@ -636,14 +699,16 @@ dash.calc('scorecard', {
         good = better === 'lower' ? diff <= 0 : diff >= 0;
       }
       const cmp = better === 'higher' ? '≥ ' : '≤ ';
+      const waiting = t && t.rule === 'fixed_if_no_notes_fv' && L.notes_fv_q;
       return {
+        basis: t ? t.basis : '', basis_ko: t ? t.basis_ko : '', source: t ? t.source : '', source_ko: t ? t.source_ko : '', url: t ? t.url : '',
         id, check, period: period || '', value: ok ? v : null, value_text: ok ? f(v) : '', fmt, better,
         on_track_at: g, watch_at: a, points: series.length,
         green_text: g === null ? '' : cmp + f(g), amber_text: a === null ? '' : cmp + f(a),
-        threshold_text: g === null ? 'No threshold: watch the trend' : 'On track ' + cmp + f(g) + ' · watch ' + cmp + f(a),
+        threshold_text: waiting ? 'Graded once fair-value charges on the notes stop' : g === null ? 'No threshold: watch the trend' : 'On track ' + cmp + f(g) + ' · watch ' + cmp + f(a),
         change_text: change || (ok ? 'First data point' : ''), change_good: good, status,
         check_ko: KO[id] || check, status_ko: ST[status] || status, change_text_ko: changeKo || (ok ? '첫 데이터' : ''),
-        threshold_text_ko: g === null ? '기준 없음: 추세를 확인하세요' : '양호 ' + cmp + f(g) + ' · 주의 ' + cmp + f(a),
+        threshold_text_ko: waiting ? '전환사채 공정가치 손실이 사라진 뒤 채점' : g === null ? '기준 없음: 추세를 확인하세요' : '양호 ' + cmp + f(g) + ' · 주의 ' + cmp + f(a),
       };
     });
   },
@@ -853,6 +918,10 @@ const linkDoc = (field) => (f, td, r) => {
   a.href = r.url; a.target = '_blank'; a.rel = 'noopener noreferrer'; a.textContent = String(r[field]);
   td.replaceChildren(a);
 };
+fillTable('thr-body', 'scorecard', 'id', [['check'], ['green_text', 'ax-num'], ['amber_text', 'ax-num'], ['basis'], ['source']], linkDoc('source'));
+fillTable('thr-body-ko', 'scorecard', 'id', [['check_ko'], ['green_text', 'ax-num'], ['amber_text', 'ax-num'], ['basis_ko'], ['source_ko']], linkDoc('source_ko'));
+fillTable('vb-body', 'valuation_basis', 'id', [['input'], ['basis'], ['source']], linkDoc('source'));
+fillTable('vb-body-ko', 'valuation_basis', 'id', [['input_ko'], ['basis_ko'], ['source_ko']], linkDoc('source_ko'));
 fillTable('src-body', 'sources', 'id', [['topic'], ['document'], ['publisher'], ['date'], ['covers']], linkDoc('document'));
 fillTable('src-body-ko', 'sources', 'id', [['topic_ko'], ['document_ko'], ['publisher'], ['date'], ['covers_ko']], linkDoc('document_ko'));
 dash.draw('src-line', (el) => {

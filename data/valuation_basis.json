@@ -1,0 +1,72 @@
+[
+ {
+  "id": "growth_y1",
+  "input": "First-year growth",
+  "input_ko": "1년차 성장률",
+  "basis": "Base reaches Anthropic's own 2028 forecast, low end ($190B, Reuters, Aug 2026). Bear and bull are an outside forecaster's 10th and 50th percentiles for the May 2027 run-rate ($85B and $115B, against about $47B in May 2026).",
+  "basis_ko": "기준 시나리오는 Anthropic 자체 2028년 전망의 하단(1,900억 달러, Reuters, 2026년 8월)에 도달합니다. 비관·낙관 시나리오는 외부 예측 기관이 제시한 2027년 5월 연환산 매출의 10번째·50번째 백분위수(850억·1,150억 달러, 2026년 5월 약 470억 달러 대비)입니다.",
+  "source": "Reuters, Aug 14, 2026; FutureSearch, Oct 26, 2026",
+  "source_ko": "Reuters, 2026년 8월 14일; FutureSearch, 2026년 10월 26일",
+  "url": "https://finance.yahoo.com/technology/ai/articles/exclusive-anthropic-ipo-valuation-hinges-001158885.html"
+ },
+ {
+  "id": "decay",
+  "input": "Growth after year 1",
+  "input_ko": "2년차 이후 성장률",
+  "basis": "Each year's growth is 60% of the year before: the fast end of the 10–40% yearly slowdown seen in public SaaS companies, since no company has grown this fast at this size.",
+  "basis_ko": "매년 성장률이 전년의 60%가 됩니다. 상장 SaaS 기업에서 관찰된 연 10~40% 둔화 중 빠른 쪽을 택했는데, 이 규모에서 이렇게 빠르게 성장한 기업이 없기 때문입니다.",
+  "source": "Point Nine, growth persistence study",
+  "source_ko": "Point Nine, 성장 지속성 연구",
+  "url": "https://writing.pointnine.com/p/persistence-and-predictability-of"
+ },
+ {
+  "id": "margin",
+  "input": "Year-5 operating margin",
+  "input_ko": "5년차 영업이익률",
+  "basis": "Bear 20%: New Constructs' low case. Base 33%: the software industry average (Damodaran, Jan 2026), close to Alphabet's 34% (Q2 2026). Bull 45%: close to Microsoft's 47% (fiscal 2026).",
+  "basis_ko": "비관 20%: New Constructs의 하단 시나리오. 기준 33%: 소프트웨어 업종 평균(Damodaran, 2026년 1월)으로 Alphabet의 34%(2026년 2분기)와 비슷합니다. 낙관 45%: Microsoft의 47%(2026 회계연도)에 가깝습니다.",
+  "source": "Damodaran, margins by industry",
+  "source_ko": "Damodaran, 업종별 이익률",
+  "url": "https://pages.stern.nyu.edu/~adamodar/New_Home_Page/datafile/margin.html"
+ },
+ {
+  "id": "pe",
+  "input": "Exit P/E",
+  "input_ko": "엑시트 P/E",
+  "basis": "Bear 19x: the S&P 500's 10-year average forward P/E (FactSet, Oct 2026). Bull 34x: software's forward P/E (Damodaran, Jan 2026). Base 27x: halfway between.",
+  "basis_ko": "비관 19배: S&P 500의 10년 평균 선행 P/E(FactSet, 2026년 10월). 낙관 34배: 소프트웨어 업종 선행 P/E(Damodaran, 2026년 1월). 기준 27배: 그 중간값입니다.",
+  "source": "FactSet Earnings Insight, Oct 23, 2026",
+  "source_ko": "FactSet Earnings Insight, 2026년 10월 23일",
+  "url": "https://insight.factset.com/sp-500-earnings-season-update-october-23-2026"
+ },
+ {
+  "id": "discount",
+  "input": "Discount rate",
+  "input_ko": "할인율",
+  "basis": "Cost of equity of 11.5%: the 10-year Treasury yield (5.0% on Oct 28, 2026) plus a beta of 1.5 (software and chipmakers range from 1.3 to 1.7) times the 4.23% implied equity risk premium (Damodaran, Jan 2026).",
+  "basis_ko": "자기자본비용 11.5%: 미국 10년물 국채금리(2026년 10월 28일 5.0%)에 베타 1.5(소프트웨어·반도체 업종 1.3~1.7)와 내재 주식위험프리미엄 4.23%(Damodaran, 2026년 1월)를 곱한 값을 더했습니다.",
+  "source": "Damodaran, Data Update 2 for 2026",
+  "source_ko": "Damodaran, 2026년 데이터 업데이트 2",
+  "url": "https://aswathdamodaran.substack.com/p/data-update-2-for-2026-a-testing"
+ },
+ {
+  "id": "dilution",
+  "input": "Share dilution per year",
+  "input_ko": "연간 주식 희석률",
+  "basis": "Judgment: 2% a year (3% in the bear case). Large tech companies now dilute about 0.5% a year; fast growers usually more.",
+  "basis_ko": "판단으로 정했습니다: 연 2%(비관 시나리오 3%). 대형 기술기업은 현재 연 0.5% 안팎이며, 고성장 기업은 보통 그보다 높습니다.",
+  "source": "Platform Aeronaut, Aug 2024",
+  "source_ko": "Platform Aeronaut, 2024년 8월",
+  "url": "https://www.platformaeronaut.com/p/tech-dilution-shareholder-heroes"
+ },
+ {
+  "id": "tax",
+  "input": "Tax rate",
+  "input_ko": "세율",
+  "basis": "21%, the US federal corporate rate.",
+  "basis_ko": "미국 연방 법인세율 21%입니다.",
+  "source": "",
+  "source_ko": "",
+  "url": ""
+ }
+]

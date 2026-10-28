@@ -3,7 +3,7 @@
 (function () {
   'use strict';
   var DATASETS = ['quarterly', 'annual', 'balance_sheet', 'kpis', 'deal', 'price_history', 'commitments',
-    'commit_schedule', 'lockups', 'events', 'scenarios', 'sources', 'notes'];
+    'commit_schedule', 'lockups', 'events', 'scenarios', 'sources', 'notes', 'thresholds', 'valuation_basis'];
   var DEFAULT_PARAMS = { lang: 'ko' };
 
   var calcs = {};

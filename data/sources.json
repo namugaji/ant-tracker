@@ -111,12 +111,24 @@
   "id": "scenarios",
   "topic": "Valuation assumptions",
   "topic_ko": "밸류에이션 가정",
-  "document": "Illustrative bear, base and bull assumptions",
-  "document_ko": "비관·기준·낙관 시나리오 예시 가정",
-  "url": "",
-  "publisher": "Claude",
-  "date": "2026-10-27",
-  "covers": "Not company guidance",
-  "covers_ko": "회사 전망치 아님"
+  "document": "Anthropic's 2028 revenue forecast (Reuters) and public benchmarks; full list under Valuation",
+  "document_ko": "Anthropic 2028년 매출 전망(Reuters)과 공개 벤치마크, 전체 목록은 밸류에이션 섹션 참고",
+  "url": "https://finance.yahoo.com/technology/ai/articles/exclusive-anthropic-ipo-valuation-hinges-001158885.html",
+  "publisher": "Reuters and others",
+  "date": "2026-10-28",
+  "covers": "Growth, margin, P/E, discount rate and dilution in each scenario; estimates, not company guidance",
+  "covers_ko": "시나리오별 성장률, 이익률, P/E, 할인율, 희석률; 회사 전망이 아닌 추정치"
+ },
+ {
+  "id": "thresholds",
+  "topic": "Scorecard thresholds",
+  "topic_ko": "점검표 기준값",
+  "document": "Public software benchmarks and the valuation scenarios; full list under the scorecard",
+  "document_ko": "상장 소프트웨어 벤치마크와 밸류에이션 시나리오, 전체 목록은 점검표 아래 참고",
+  "url": "https://cloudedjudgement.substack.com/p/clouded-judgement-102226-ai-goes",
+  "publisher": "Clouded Judgement, Damodaran and others",
+  "date": "2026-10-28",
+  "covers": "On-track and watch levels for each graded check",
+  "covers_ko": "채점 항목별 양호·주의 기준"
  }
 ]
