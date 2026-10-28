@@ -1,0 +1,110 @@
+[
+ {
+  "counterparty": "Broadcom equipment leases",
+  "low_bn": 161.2,
+  "high_bn": 161.2,
+  "type": "Firm minimum",
+  "period": "5-yr leases from 2026-27",
+  "exit_terms": "Non-cancelable finance leases; cross-defaults",
+  "counterparty_ko": "Broadcom 장비 리스",
+  "type_ko": "확정 최소 약정",
+  "period_ko": "5년 리스, 2026~27년 개시",
+  "exit_terms_ko": "해지 불가 금융리스, 교차 부도 조항"
+ },
+ {
+  "counterparty": "More TPUs, 2028-31",
+  "low_bn": 125.0,
+  "high_bn": 150.0,
+  "type": "Estimate",
+  "period": "2028-2031",
+  "exit_terms": "Estimate, not in the commitments table",
+  "counterparty_ko": "추가 TPU(2028~31년)",
+  "type_ko": "추정",
+  "period_ko": "2028~2031년",
+  "exit_terms_ko": "추정치, 약정 표에 미포함"
+ },
+ {
+  "counterparty": "SpaceXAI",
+  "low_bn": 120.5,
+  "high_bn": 120.5,
+  "type": "Up to / conditional",
+  "period": "Into 2029",
+  "exit_terms": "Cancelable on 90 days' notice after Jan / Mar 2027",
+  "counterparty_ko": "SpaceXAI",
+  "type_ko": "상한·조건부",
+  "period_ko": "2029년까지",
+  "exit_terms_ko": "2027년 1월·3월 이후 90일 전 통지로 해지 가능"
+ },
+ {
+  "counterparty": "Google Cloud",
+  "low_bn": 114.5,
+  "high_bn": 114.5,
+  "type": "Firm minimum",
+  "period": "Apr 2026 - Jul 2033",
+  "exit_terms": "True-up if usage falls short",
+  "counterparty_ko": "Google Cloud",
+  "type_ko": "확정 최소 약정",
+  "period_ko": "2026년 4월 ~ 2033년 7월",
+  "exit_terms_ko": "사용량 미달 시 차액 정산"
+ },
+ {
+  "counterparty": "Amazon",
+  "low_bn": 110.0,
+  "high_bn": 110.0,
+  "type": "Firm minimum",
+  "period": "May 2026 - Apr 2036",
+  "exit_terms": "True-up if usage falls short",
+  "counterparty_ko": "Amazon",
+  "type_ko": "확정 최소 약정",
+  "period_ko": "2026년 5월 ~ 2036년 4월",
+  "exit_terms_ko": "사용량 미달 시 차액 정산"
+ },
+ {
+  "counterparty": "Microsoft",
+  "low_bn": 44.9,
+  "high_bn": 44.9,
+  "type": "Firm minimum",
+  "period": "Nov 2026 - May 2033",
+  "exit_terms": "Non-cancelable",
+  "counterparty_ko": "Microsoft",
+  "type_ko": "확정 최소 약정",
+  "period_ko": "2026년 11월 ~ 2033년 5월",
+  "exit_terms_ko": "해지 불가"
+ },
+ {
+  "counterparty": "Nscale",
+  "low_bn": 44.6,
+  "high_bn": 44.6,
+  "type": "Up to / conditional",
+  "period": "Into 2033",
+  "exit_terms": "Owed only as delivered; Nscale must raise financing",
+  "counterparty_ko": "Nscale",
+  "type_ko": "상한·조건부",
+  "period_ko": "2033년까지",
+  "exit_terms_ko": "공급분에 대해서만 지급, Nscale의 자금 조달이 전제"
+ },
+ {
+  "counterparty": "Lambda",
+  "low_bn": 41.3,
+  "high_bn": 41.3,
+  "type": "Up to / conditional",
+  "period": "Into 2034",
+  "exit_terms": "$34.9B deal ends without a facility lease",
+  "counterparty_ko": "Lambda",
+  "type_ko": "상한·조건부",
+  "period_ko": "2034년까지",
+  "exit_terms_ko": "시설 리스를 확보하지 못하면 349억 달러 계약 종료"
+ },
+ {
+  "counterparty": "AMD, first tranche",
+  "low_bn": 20.0,
+  "high_bn": 20.0,
+  "type": "Estimate",
+  "period": "2027",
+  "exit_terms": "Expected spend, over $20B",
+  "counterparty_ko": "AMD(1차분)",
+  "type_ko": "추정",
+  "period_ko": "2027년",
+  "exit_terms_ko": "예상 지출액, 200억 달러 이상"
+ }
+]

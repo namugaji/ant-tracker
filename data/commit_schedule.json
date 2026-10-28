@@ -1,0 +1,290 @@
+[
+ {
+  "year": "2026",
+  "deal": "Broadcom equipment leases",
+  "deal_ko": "Broadcom 장비 리스",
+  "group": "firm",
+  "amount_bn": 16.1,
+  "kind": "estimate"
+ },
+ {
+  "year": "2027",
+  "deal": "Broadcom equipment leases",
+  "deal_ko": "Broadcom 장비 리스",
+  "group": "firm",
+  "amount_bn": 32.2,
+  "kind": "estimate"
+ },
+ {
+  "year": "2028",
+  "deal": "Broadcom equipment leases",
+  "deal_ko": "Broadcom 장비 리스",
+  "group": "firm",
+  "amount_bn": 32.2,
+  "kind": "estimate"
+ },
+ {
+  "year": "2029",
+  "deal": "Broadcom equipment leases",
+  "deal_ko": "Broadcom 장비 리스",
+  "group": "firm",
+  "amount_bn": 32.2,
+  "kind": "estimate"
+ },
+ {
+  "year": "2030",
+  "deal": "Broadcom equipment leases",
+  "deal_ko": "Broadcom 장비 리스",
+  "group": "firm",
+  "amount_bn": 32.2,
+  "kind": "estimate"
+ },
+ {
+  "year": "2026",
+  "deal": "Google Cloud",
+  "deal_ko": "Google Cloud",
+  "group": "firm",
+  "amount_bn": 11.7,
+  "kind": "estimate"
+ },
+ {
+  "year": "2027",
+  "deal": "Google Cloud",
+  "deal_ko": "Google Cloud",
+  "group": "firm",
+  "amount_bn": 15.6,
+  "kind": "estimate"
+ },
+ {
+  "year": "2028",
+  "deal": "Google Cloud",
+  "deal_ko": "Google Cloud",
+  "group": "firm",
+  "amount_bn": 15.6,
+  "kind": "estimate"
+ },
+ {
+  "year": "2029",
+  "deal": "Google Cloud",
+  "deal_ko": "Google Cloud",
+  "group": "firm",
+  "amount_bn": 15.6,
+  "kind": "estimate"
+ },
+ {
+  "year": "2030",
+  "deal": "Google Cloud",
+  "deal_ko": "Google Cloud",
+  "group": "firm",
+  "amount_bn": 15.6,
+  "kind": "estimate"
+ },
+ {
+  "year": "2026",
+  "deal": "Amazon",
+  "deal_ko": "Amazon",
+  "group": "firm",
+  "amount_bn": 7.3,
+  "kind": "estimate"
+ },
+ {
+  "year": "2027",
+  "deal": "Amazon",
+  "deal_ko": "Amazon",
+  "group": "firm",
+  "amount_bn": 11.0,
+  "kind": "estimate"
+ },
+ {
+  "year": "2028",
+  "deal": "Amazon",
+  "deal_ko": "Amazon",
+  "group": "firm",
+  "amount_bn": 11.0,
+  "kind": "estimate"
+ },
+ {
+  "year": "2029",
+  "deal": "Amazon",
+  "deal_ko": "Amazon",
+  "group": "firm",
+  "amount_bn": 11.0,
+  "kind": "estimate"
+ },
+ {
+  "year": "2030",
+  "deal": "Amazon",
+  "deal_ko": "Amazon",
+  "group": "firm",
+  "amount_bn": 11.0,
+  "kind": "estimate"
+ },
+ {
+  "year": "2026",
+  "deal": "Microsoft",
+  "deal_ko": "Microsoft",
+  "group": "firm",
+  "amount_bn": 1.1,
+  "kind": "estimate"
+ },
+ {
+  "year": "2027",
+  "deal": "Microsoft",
+  "deal_ko": "Microsoft",
+  "group": "firm",
+  "amount_bn": 6.8,
+  "kind": "estimate"
+ },
+ {
+  "year": "2028",
+  "deal": "Microsoft",
+  "deal_ko": "Microsoft",
+  "group": "firm",
+  "amount_bn": 6.8,
+  "kind": "estimate"
+ },
+ {
+  "year": "2029",
+  "deal": "Microsoft",
+  "deal_ko": "Microsoft",
+  "group": "firm",
+  "amount_bn": 6.8,
+  "kind": "estimate"
+ },
+ {
+  "year": "2030",
+  "deal": "Microsoft",
+  "deal_ko": "Microsoft",
+  "group": "firm",
+  "amount_bn": 6.8,
+  "kind": "estimate"
+ },
+ {
+  "year": "2026",
+  "deal": "SpaceXAI",
+  "deal_ko": "SpaceXAI",
+  "group": "other",
+  "amount_bn": 10.0,
+  "kind": "estimate"
+ },
+ {
+  "year": "2027",
+  "deal": "SpaceXAI",
+  "deal_ko": "SpaceXAI",
+  "group": "other",
+  "amount_bn": 37.2,
+  "kind": "estimate"
+ },
+ {
+  "year": "2028",
+  "deal": "SpaceXAI",
+  "deal_ko": "SpaceXAI",
+  "group": "other",
+  "amount_bn": 37.2,
+  "kind": "estimate"
+ },
+ {
+  "year": "2029",
+  "deal": "SpaceXAI",
+  "deal_ko": "SpaceXAI",
+  "group": "other",
+  "amount_bn": 36.1,
+  "kind": "estimate"
+ },
+ {
+  "year": "2027",
+  "deal": "Nscale",
+  "deal_ko": "Nscale",
+  "group": "other",
+  "amount_bn": 6.4,
+  "kind": "estimate"
+ },
+ {
+  "year": "2028",
+  "deal": "Nscale",
+  "deal_ko": "Nscale",
+  "group": "other",
+  "amount_bn": 6.4,
+  "kind": "estimate"
+ },
+ {
+  "year": "2029",
+  "deal": "Nscale",
+  "deal_ko": "Nscale",
+  "group": "other",
+  "amount_bn": 6.4,
+  "kind": "estimate"
+ },
+ {
+  "year": "2030",
+  "deal": "Nscale",
+  "deal_ko": "Nscale",
+  "group": "other",
+  "amount_bn": 6.4,
+  "kind": "estimate"
+ },
+ {
+  "year": "2027",
+  "deal": "Lambda",
+  "deal_ko": "Lambda",
+  "group": "other",
+  "amount_bn": 5.2,
+  "kind": "estimate"
+ },
+ {
+  "year": "2028",
+  "deal": "Lambda",
+  "deal_ko": "Lambda",
+  "group": "other",
+  "amount_bn": 5.2,
+  "kind": "estimate"
+ },
+ {
+  "year": "2029",
+  "deal": "Lambda",
+  "deal_ko": "Lambda",
+  "group": "other",
+  "amount_bn": 5.2,
+  "kind": "estimate"
+ },
+ {
+  "year": "2030",
+  "deal": "Lambda",
+  "deal_ko": "Lambda",
+  "group": "other",
+  "amount_bn": 5.2,
+  "kind": "estimate"
+ },
+ {
+  "year": "2027",
+  "deal": "AMD, first tranche",
+  "deal_ko": "AMD(1차분)",
+  "group": "other",
+  "amount_bn": 20.0,
+  "kind": "estimate"
+ },
+ {
+  "year": "2028",
+  "deal": "More TPUs, 2028-31",
+  "deal_ko": "추가 TPU(2028~31년)",
+  "group": "other",
+  "amount_bn": 34.4,
+  "kind": "estimate"
+ },
+ {
+  "year": "2029",
+  "deal": "More TPUs, 2028-31",
+  "deal_ko": "추가 TPU(2028~31년)",
+  "group": "other",
+  "amount_bn": 34.4,
+  "kind": "estimate"
+ },
+ {
+  "year": "2030",
+  "deal": "More TPUs, 2028-31",
+  "deal_ko": "추가 TPU(2028~31년)",
+  "group": "other",
+  "amount_bn": 34.4,
+  "kind": "estimate"
+ }
+]

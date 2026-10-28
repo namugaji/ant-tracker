@@ -1,0 +1,122 @@
+[
+ {
+  "id": "quarterly",
+  "topic": "Quarterly results",
+  "topic_ko": "분기 실적",
+  "document": "Form S-1: Quarterly Results of Operations and non-GAAP reconciliations",
+  "document_ko": "Form S-1: 분기 실적 및 비GAAP 조정표",
+  "url": "https://www.sec.gov/Archives/edgar/data/2130357/000162828026067168/anthropicpbc-sx1.htm",
+  "publisher": "SEC EDGAR",
+  "date": "2026-10-26",
+  "covers": "Q1 2025 – Q2 2026",
+  "covers_ko": "2025년 1분기 – 2026년 2분기"
+ },
+ {
+  "id": "annual",
+  "topic": "Annual and half-year results",
+  "topic_ko": "연간·반기 실적",
+  "document": "Form S-1: financial statements and Note 8 (cost of revenue)",
+  "document_ko": "Form S-1: 재무제표 및 주석 8(매출원가)",
+  "url": "https://www.sec.gov/Archives/edgar/data/2130357/000162828026067168/anthropicpbc-sx1.htm",
+  "publisher": "SEC EDGAR",
+  "date": "2026-10-26",
+  "covers": "2023 – H1 2026",
+  "covers_ko": "2023년 – 2026년 상반기"
+ },
+ {
+  "id": "balance_sheet",
+  "topic": "Balance sheet and cash flow",
+  "topic_ko": "재무상태와 현금흐름",
+  "document": "Form S-1: consolidated balance sheets, cash flow statements, Notes 8, 9 and 10",
+  "document_ko": "Form S-1: 연결재무상태표, 현금흐름표, 주석 8·9·10",
+  "url": "https://www.sec.gov/Archives/edgar/data/2130357/000162828026067168/anthropicpbc-sx1.htm",
+  "publisher": "SEC EDGAR",
+  "date": "2026-10-26",
+  "covers": "Dec 2024 – Jun 2026",
+  "covers_ko": "2024년 12월 – 2026년 6월"
+ },
+ {
+  "id": "kpis",
+  "topic": "Customer metrics",
+  "topic_ko": "고객 지표",
+  "document": "Form S-1: key business metrics and risk factors",
+  "document_ko": "Form S-1: 핵심 사업 지표 및 위험 요인",
+  "url": "https://www.sec.gov/Archives/edgar/data/2130357/000162828026067168/anthropicpbc-sx1.htm",
+  "publisher": "SEC EDGAR",
+  "date": "2026-10-26",
+  "covers": "Dec 2023 – Sep 2026",
+  "covers_ko": "2023년 12월 – 2026년 9월"
+ },
+ {
+  "id": "commitments",
+  "topic": "Compute commitments",
+  "topic_ko": "컴퓨팅 약정",
+  "document": "Form S-1: MD&A, Compute Commitments; Notes 7 and 13",
+  "document_ko": "Form S-1: 경영진 분석(MD&A) 컴퓨팅 약정, 주석 7·13",
+  "url": "https://www.sec.gov/Archives/edgar/data/2130357/000162828026067168/anthropicpbc-sx1.htm",
+  "publisher": "SEC EDGAR",
+  "date": "2026-10-26",
+  "covers": "Named deals as of Oct 2026",
+  "covers_ko": "2026년 10월 기준 명시된 계약"
+ },
+ {
+  "id": "lockups",
+  "topic": "Lock-up terms",
+  "topic_ko": "보호예수 조건",
+  "document": "Form S-1: Underwriting, Lock-Up and Market Standoff Agreements",
+  "document_ko": "Form S-1: 인수(Underwriting) 중 보호예수 약정",
+  "url": "https://www.sec.gov/Archives/edgar/data/2130357/000162828026067168/anthropicpbc-sx1.htm",
+  "publisher": "SEC EDGAR",
+  "date": "2026-10-26",
+  "covers": "All lock-up groups",
+  "covers_ko": "모든 보호예수 그룹"
+ },
+ {
+  "id": "events",
+  "topic": "Pending events",
+  "topic_ko": "진행 중인 이슈",
+  "document": "Form S-1: Legal Proceedings and Risk Factors",
+  "document_ko": "Form S-1: 소송 및 위험 요인",
+  "url": "https://www.sec.gov/Archives/edgar/data/2130357/000162828026067168/anthropicpbc-sx1.htm",
+  "publisher": "SEC EDGAR",
+  "date": "2026-10-26",
+  "covers": "Status as of Oct 2026",
+  "covers_ko": "2026년 10월 기준 현황"
+ },
+ {
+  "id": "market_cap",
+  "topic": "Market cap (placeholder)",
+  "topic_ko": "시가총액(임시값)",
+  "document": "Report of a $1.5–2T IPO target, via TechBooky",
+  "document_ko": "1.5~2조 달러 IPO 목표 보도(TechBooky 인용)",
+  "url": "https://www.techbooky.com/anthropics-november-ipo-could-raise-100b-at-1-5t-2t-valuation-report-says/",
+  "publisher": "The Wall Street Journal",
+  "date": "2026-10-27",
+  "covers": "Used until ANT trades",
+  "covers_ko": "ANT 상장 전까지 사용"
+ },
+ {
+  "id": "ipo_dates",
+  "topic": "Earliest IPO dates",
+  "topic_ko": "최단 IPO 일정",
+  "document": "Anthropic's IPO could start trading as soon as Nov. 16",
+  "document_ko": "Anthropic IPO, 이르면 11월 16일 거래 시작",
+  "url": "https://finance.yahoo.com/markets/article/anthropics-ipo-could-start-trading-as-soon-as-nov-16--heres-the-road-from-filing-to-first-trade-155405578.html",
+  "publisher": "Yahoo Finance",
+  "date": "2026-10-27",
+  "covers": "Pricing and first-trade dates until set",
+  "covers_ko": "확정 전까지 가격 결정일·첫 거래일"
+ },
+ {
+  "id": "scenarios",
+  "topic": "Valuation assumptions",
+  "topic_ko": "밸류에이션 가정",
+  "document": "Illustrative bear, base and bull assumptions",
+  "document_ko": "비관·기준·낙관 시나리오 예시 가정",
+  "url": "",
+  "publisher": "Claude",
+  "date": "2026-10-27",
+  "covers": "Not company guidance",
+  "covers_ko": "회사 전망치 아님"
+ }
+]

@@ -1,0 +1,50 @@
+[
+ {
+  "event": "Price-range amendment",
+  "status": "Pending",
+  "why_it_matters": "Price range, share count, Q3 2026 revenue, run-rate and total compute commitment",
+  "event_ko": "가격 범위 수정 공시(S-1/A)",
+  "status_ko": "대기 중",
+  "why_ko": "가격 범위, 공모 주식 수, 2026년 3분기 매출, 연환산 매출, 컴퓨팅 약정 총액 공개"
+ },
+ {
+  "event": "D.C. Circuit rehearing",
+  "status": "Petition filed after 2-1 ruling on Sept 25, 2026",
+  "why_it_matters": "Supply-chain-risk designation; government and contractor sales",
+  "event_ko": "D.C. 항소법원 재심리",
+  "status_ko": "2026년 9월 25일 2대1 판결 후 재심리 청구",
+  "why_ko": "공급망 위험 지정, 정부 및 정부 계약업체 매출"
+ },
+ {
+  "event": "FTC civil investigative demand",
+  "status": "Received Oct 2026",
+  "why_it_matters": "Consumer protection, data, privacy and product safety",
+  "event_ko": "FTC 민사조사요구(CID)",
+  "status_ko": "2026년 10월 수령",
+  "why_ko": "소비자 보호, 데이터, 개인정보, 제품 안전"
+ },
+ {
+  "event": "Concord summary judgment",
+  "status": "Hearing held Oct 21, 2026",
+  "why_it_matters": "First ruling in the music-publisher copyright suits",
+  "event_ko": "Concord 소송 약식판결",
+  "status_ko": "2026년 10월 21일 심리 진행",
+  "why_ko": "음악 출판사 저작권 소송의 첫 판결"
+ },
+ {
+  "event": "Sherman Act class action",
+  "status": "Filed Sept 2026",
+  "why_it_matters": "Alleged agreement to slow AI development; treble damages",
+  "event_ko": "셔먼법 집단소송",
+  "status_ko": "2026년 9월 제기",
+  "why_ko": "AI 개발 속도를 늦추기로 담합했다는 주장, 3배 손해배상"
+ },
+ {
+  "event": "Google $10B private placement",
+  "status": "Option at the IPO price",
+  "why_it_matters": "More non-voting shares; cuts Google's undrawn notes by up to $10B",
+  "event_ko": "Google 100억 달러 사모 배정",
+  "status_ko": "IPO 가격 기준 옵션",
+  "why_ko": "무의결권 주식 증가, Google 미인출 노트 최대 100억 달러 감소"
+ }
+]

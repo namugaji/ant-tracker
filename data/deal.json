@@ -1,0 +1,17 @@
+[
+ {
+  "as_of": "2026-10-27",
+  "status": "Filed, not priced",
+  "share_price": null,
+  "diluted_shares_mm": 16937,
+  "placeholder_market_cap_mm": 1750000,
+  "net_cash_mm": 131651,
+  "prospectus_date": "2026-11-13",
+  "first_trade_date": "2026-11-16",
+  "fy26_earnings_date": null,
+  "q1_27_earnings_date": null,
+  "q2_27_earnings_date": null,
+  "q3_27_earnings_date": null,
+  "note": "Placeholder market cap = midpoint of the $1.5T-$2T target the WSJ reported; dates are the earliest possible per Yahoo Finance. Diluted shares are estimated from the Public Benefit Fund's 5% stake."
+ }
+]

@@ -1,0 +1,1118 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Anthropic (ANT) tracker</title>
+<meta name="description" content="Thesis scorecard, financials, compute commitments, valuation and lock-up schedule for Anthropic's IPO, updated weekly from SEC filings. English / 한국어.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Source+Serif+4:opsz,wght@8..60,400&display=swap">
+<link rel="stylesheet" href="assets/theme.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+<script src="assets/dash-shim.js"></script>
+</head>
+<body>
+<div id="dash-root">
+<style>
+.ax { max-width: 76rem; margin-inline: auto; font-family: var(--font-anthropic-sans); color: var(--color-fg); display: grid; gap: var(--cds-gap-xl); }
+.ax-head { display: grid; gap: var(--cds-gap-sm); }
+.ax-headrow { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: var(--cds-gap-sm); }
+.ax-langs { display: inline-flex; border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); overflow: hidden; }
+.ax-lang { font: inherit; font-size: var(--cds-font-size-caption); background: none; border: 0; padding: var(--cds-pad-xs) var(--cds-pad-sm); color: var(--color-fg-muted); cursor: pointer; min-width: 2.75rem; }
+.ax-lang + .ax-lang { border-left: 1px solid var(--color-border-line); }
+.ax-lang[aria-pressed=true] { background: var(--color-panel); color: var(--color-fg); font-weight: var(--cds-font-weight-medium); }
+.ax-lang:focus-visible { outline: 2px solid var(--color-fg); outline-offset: -2px; }
+.ax .ko { display: none; }
+.ax.ax-ko .en { display: none; }
+.ax.ax-ko .ko { display: revert; }
+.ax.ax-ko .ax-tablewrap.ko { display: block; }
+.ax.ax-ko { word-break: keep-all; }
+.ax-title { font-family: var(--font-anthropic-serif); font-weight: 400; font-size: var(--cds-font-size-title); margin: 0; text-wrap: balance; }
+.ax-take { font-size: var(--cds-font-size-body); margin: 0; max-width: 62rem; line-height: 1.5; }
+.ax-take b { font-weight: 600; }
+.ax-asof { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); margin: 0; }
+.ax-tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 11rem), 1fr)); gap: var(--cds-gap-md); }
+.ax-tile { background: var(--color-panel); border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); padding: var(--cds-pad-md) var(--cds-pad-lg); display: grid; gap: var(--cds-gap-xs); align-content: start; }
+.ax-tile-l { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
+.ax-tile-v { font-family: var(--font-anthropic-serif); font-weight: 400; font-size: var(--cds-font-size-title); font-variant-numeric: tabular-nums; min-height: 1.3em; }
+.ax-tile-s { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); font-variant-numeric: tabular-nums; }
+.ax-sec { display: grid; gap: var(--cds-gap-md); }
+.ax-h2 { font-size: var(--cds-font-size-heading); font-weight: var(--cds-font-weight-medium); margin: 0; }
+.ax-lede { font-size: var(--cds-font-size-body); color: var(--color-fg-muted); margin: 0; max-width: 62rem; }
+.ax-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 24rem), 1fr)); gap: var(--cds-gap-md); }
+.ax-card { background: var(--color-panel); border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); padding: var(--cds-pad-lg); display: grid; gap: var(--cds-gap-sm); align-content: start; min-width: 0; position: relative; }
+.ax-card h3 { font-size: var(--cds-font-size-heading); font-weight: var(--cds-font-weight-medium); margin: 0; }
+.ax-note { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); margin: 0; }
+.ax-chart { min-height: 260px; position: relative; }
+.ax-chart svg { display: block; }
+.ax-tablewrap { overflow-x: auto; }
+.ax-table { width: 100%; border-collapse: collapse; font-size: var(--cds-font-size-caption); font-variant-numeric: tabular-nums; }
+.ax-table th { text-align: left; font-weight: var(--cds-font-weight-medium); color: var(--color-fg-muted); padding: var(--cds-pad-xs) var(--cds-pad-sm); border-bottom: 1px solid var(--color-border-line); white-space: nowrap; }
+.ax-table td { padding: var(--cds-pad-xs) var(--cds-pad-sm); border-bottom: 1px solid var(--color-border-line); vertical-align: top; }
+.ax-table td.ax-num, .ax-table th.ax-num { text-align: right; white-space: nowrap; }
+.ax-scgrid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr)); gap: var(--cds-gap-md); min-height: 200px; }
+.ax-sc { background: var(--color-panel); border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); padding: var(--cds-pad-md) var(--cds-pad-lg); display: grid; gap: var(--cds-gap-xs); align-content: start; min-width: 0; position: relative; }
+.ax-sc-top { display: flex; justify-content: space-between; align-items: start; gap: var(--cds-gap-sm); }
+.ax-sc-name { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
+.ax-sc-val { font-family: var(--font-anthropic-serif); font-weight: 400; font-size: var(--cds-font-size-title); font-variant-numeric: tabular-nums; }
+.ax-sc-per { font-family: var(--font-anthropic-sans); font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); margin-left: 6px; }
+.ax-sc-chg, .ax-sc-thr { font-size: var(--cds-font-size-caption); font-variant-numeric: tabular-nums; }
+.ax-sc-thr { color: var(--color-fg-muted); }
+.ax-spark { height: 56px; position: relative; }
+.ax-spark svg { display: block; overflow: visible; }
+.ax-pill { display: inline-block; padding: 1px 8px; border-radius: 999px; border: 1px solid var(--color-border-line); white-space: nowrap; }
+.ax-pill.ok { color: var(--color-ok); }
+.ax-pill.warn { color: var(--color-warn); }
+.ax-pill.bad { color: var(--color-bad); }
+.ax-pill.muted { color: var(--color-fg-muted); }
+.ax-wi { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr)); gap: var(--cds-gap-md); }
+.ax-wi label { display: grid; gap: var(--cds-gap-xs); font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
+.ax-wi input[type=range] { width: 100%; }
+.ax-wi output { color: var(--color-fg); font-variant-numeric: tabular-nums; }
+.ax-wi-out { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 12rem), 1fr)); gap: var(--cds-gap-md); padding-top: var(--cds-pad-sm); border-top: 1px solid var(--color-border-line); }
+.ax-wi-out div { display: grid; gap: var(--cds-gap-xs); }
+.ax-wi-out span.l { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
+.ax-wi-out b { font-family: var(--font-anthropic-serif); font-weight: 400; font-size: var(--cds-font-size-title); font-variant-numeric: tabular-nums; }
+.ax-btn { justify-self: start; font: inherit; font-size: var(--cds-font-size-caption); background: none; border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); padding: var(--cds-pad-xs) var(--cds-pad-sm); color: var(--color-fg); cursor: pointer; }
+.ax-btn:focus-visible { outline: 2px solid var(--color-fg); outline-offset: 2px; }
+.ax-tip { position: absolute; pointer-events: none; background: var(--cds-surface-popover); border: 1px solid var(--cds-border); border-radius: var(--cds-radius); box-shadow: var(--cds-shadow-popover); padding: var(--cds-pad-xs) var(--cds-pad-sm); font-size: var(--cds-font-size-caption); white-space: nowrap; z-index: 2; }
+.ax-tip .k { color: var(--cds-text-secondary); }
+.ax-legend { display: flex; flex-wrap: wrap; gap: var(--cds-gap-md); font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
+.ax-legend i { display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-right: 6px; vertical-align: -1px; }
+.ax-src { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); margin: 0; line-height: 1.5; }
+.ax-src a, .ax-table a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
+.ax-foot { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); display: grid; gap: var(--cds-gap-xs); max-width: 62rem; }
+.ax-foot p { margin: 0; }
+[data-dash-source-state=empty] { color: transparent; }
+[data-dash-source-state=refreshing] { opacity: .5; transition: opacity var(--cds-dur-slow); }
+</style>
+
+<div class="ax">
+  <header class="ax-head" id="top">
+    <div class="ax-headrow">
+      <h1 class="ax-title"><span class="en">Anthropic (ANT) tracker</span><span class="ko">Anthropic (ANT) 트래커</span></h1>
+      <div class="ax-langs" role="group" aria-label="Language / 언어">
+        <button type="button" class="ax-lang" data-lang="en" aria-pressed="true">EN</button>
+        <button type="button" class="ax-lang" data-lang="ko" aria-pressed="false">KR</button>
+      </div>
+    </div>
+    <p class="ax-take en"><b data-draw="t-on" data-source="score_summary" data-field="on_track" data-row="0">—</b> of <b data-draw="t-graded" data-source="score_summary" data-field="graded" data-row="0">—</b> graded checks are on track. At a market cap of <b data-draw="t-mcap" data-source="latest" data-field="market_cap_usd" data-row="0">—</b> (<span data-draw="t-basis" data-source="latest" data-field="basis_text" data-row="0">—</span>), revenue would need to grow about <b data-draw="t-cagr" data-source="latest" data-field="implied_cagr_base" data-row="0">—</b> a year for five years to justify it, at the base case's margin and multiple.</p>
+    <p class="ax-take ko">채점 대상 <b data-draw="t-graded" data-source="score_summary" data-field="graded" data-row="0">—</b>개 항목 중 <b data-draw="t-on" data-source="score_summary" data-field="on_track" data-row="0">—</b>개가 양호합니다. 시가총액 <b data-draw="t-mcap" data-source="latest" data-field="market_cap_usd" data-row="0">—</b>(<span data-draw="t-basis-ko" data-source="latest" data-field="basis_text_ko" data-row="0">—</span>)을 정당화하려면 기준 시나리오의 이익률과 배수에서 매출이 5년간 매년 약 <b data-draw="t-cagr" data-source="latest" data-field="implied_cagr_base" data-row="0">—</b>씩 성장해야 합니다.</p>
+    <p class="ax-asof en">Latest reported quarter: <span data-draw="t-q" data-source="latest" data-field="latest_quarter" data-row="0">—</span>. Market data as of <span data-draw="t-asof" data-source="deal" data-field="as_of" data-row="0">—</span>. Updated weekly from SEC filings, the share price and news on pending events.</p>
+    <p class="ax-asof ko">최근 보고 분기: <span data-draw="t-q" data-source="latest" data-field="latest_quarter" data-row="0">—</span>. 시장 데이터 기준일: <span data-draw="t-asof" data-source="deal" data-field="as_of" data-row="0">—</span>. SEC 공시, 주가, 진행 중인 이슈 소식을 바탕으로 매주 업데이트됩니다.</p>
+  </header>
+
+  <div class="ax-tiles" id="headline">
+    <div class="ax-tile">
+      <span class="ax-tile-l"><span class="en">Annualized revenue</span><span class="ko">연환산 매출</span></span>
+      <span class="ax-tile-v dash-skeleton" data-draw="k-rr" data-source="latest" data-field="run_rate_usd" data-row="0" data-fetchpriority="high">—</span>
+      <span class="ax-tile-s en"><span data-draw="k-rr-q" data-source="latest" data-field="latest_quarter" data-row="0">—</span> × 4 · <span data-draw="k-qoq" data-source="latest" data-field="qoq" data-row="0">—</span> vs prior quarter</span>
+      <span class="ax-tile-s ko"><span data-draw="k-rr-q" data-source="latest" data-field="latest_quarter" data-row="0">—</span> × 4 · 전 분기 대비 <span data-draw="k-qoq" data-source="latest" data-field="qoq" data-row="0">—</span></span>
+    </div>
+    <div class="ax-tile">
+      <span class="ax-tile-l"><span class="en">Adjusted operating margin</span><span class="ko">조정 영업이익률</span></span>
+      <span class="ax-tile-v dash-skeleton" data-draw="k-adj" data-source="latest" data-field="adj_margin" data-row="0">—</span>
+      <span class="ax-tile-s">GAAP <span data-draw="k-op" data-source="latest" data-field="op_margin" data-row="0">—</span> · <span class="en"><span data-draw="k-adj-chg" data-source="scorecard" data-field="change_text" data-where="id=adj_margin">—</span></span><span class="ko"><span data-draw="k-adj-chg-ko" data-source="scorecard" data-field="change_text_ko" data-where="id=adj_margin">—</span></span></span>
+    </div>
+    <div class="ax-tile">
+      <span class="ax-tile-l"><span class="en">Compute as a share of revenue</span><span class="ko">매출 대비 컴퓨팅 비용</span></span>
+      <span class="ax-tile-v dash-skeleton" data-draw="k-comp" data-source="latest" data-field="compute_pct" data-row="0">—</span>
+      <span class="ax-tile-s"><span class="en"><span data-draw="k-comp-chg" data-source="scorecard" data-field="change_text" data-where="id=compute">—</span></span><span class="ko"><span data-draw="k-comp-chg-ko" data-source="scorecard" data-field="change_text_ko" data-where="id=compute">—</span></span></span>
+    </div>
+    <div class="ax-tile">
+      <span class="ax-tile-l"><span class="en">Gross margin</span><span class="ko">매출총이익률</span></span>
+      <span class="ax-tile-v dash-skeleton" data-draw="k-gm" data-source="latest" data-field="gross_margin" data-row="0">—</span>
+      <span class="ax-tile-s"><span data-draw="k-gm-p" data-source="latest" data-field="gm_period" data-row="0">—</span> · <span class="en"><span data-draw="k-gm-chg" data-source="scorecard" data-field="change_text" data-where="id=gross_margin">—</span></span><span class="ko"><span data-draw="k-gm-chg-ko" data-source="scorecard" data-field="change_text_ko" data-where="id=gross_margin">—</span></span></span>
+    </div>
+    <div class="ax-tile">
+      <span class="ax-tile-l"><span class="en">Market cap ÷ annualized revenue</span><span class="ko">시가총액 ÷ 연환산 매출</span></span>
+      <span class="ax-tile-v dash-skeleton" data-draw="k-ps" data-source="latest" data-field="ps" data-row="0">—</span>
+      <span class="ax-tile-s en"><span data-draw="k-mc" data-source="latest" data-field="market_cap_usd" data-row="0">—</span> market cap</span>
+      <span class="ax-tile-s ko">시가총액 <span data-draw="k-mc" data-source="latest" data-field="market_cap_usd" data-row="0">—</span></span>
+    </div>
+    <div class="ax-tile">
+      <span class="ax-tile-l"><span class="en">Cash and short-term investments</span><span class="ko">현금 및 단기투자자산</span></span>
+      <span class="ax-tile-v dash-skeleton" data-draw="k-cash" data-source="latest" data-field="cash_usd" data-row="0">—</span>
+      <span class="ax-tile-s en"><span data-draw="k-cash-d" data-source="latest" data-field="cash_as_of_text" data-row="0">—</span> · net of debt <span data-draw="k-ncash" data-source="latest" data-field="net_cash_usd" data-row="0">—</span></span>
+      <span class="ax-tile-s ko"><span data-draw="k-cash-d-ko" data-source="latest" data-field="cash_as_of_text_ko" data-row="0">—</span> · 부채 차감 후 순현금 <span data-draw="k-ncash" data-source="latest" data-field="net_cash_usd" data-row="0">—</span></span>
+    </div>
+  </div>
+
+  <section class="ax-sec" id="scorecard">
+    <h2 class="ax-h2"><span class="en">Thesis scorecard</span><span class="ko">투자 논지 점검표</span></h2>
+    <p class="ax-lede"><span class="en">Each card shows the latest disclosed figure, its change since the one before, and every data point so far. The dashed line is the on-track threshold. Thresholds are starting points for a long-term growth thesis, not targets the company sets.</span><span class="ko">각 카드는 최근 공시 수치, 직전 대비 변화, 지금까지의 모든 데이터 포인트를 보여줍니다. 점선은 '양호' 기준선입니다. 기준값은 장기 성장 논지를 점검하기 위한 출발점이며, 회사가 제시한 목표가 아닙니다.</span></p>
+    <div class="ax-scgrid" id="scorecard-cards" data-draw="sc-grid" data-source="scorecard trends"></div>
+    <p class="ax-src" data-draw="src-line" data-source="sources" data-src-ids="quarterly annual balance_sheet kpis market_cap">—</p>
+  </section>
+
+  <section class="ax-sec" id="results">
+    <h2 class="ax-h2"><span class="en">Growth and margins</span><span class="ko">성장과 이익률</span></h2>
+    <div class="ax-grid">
+      <div class="ax-card" id="rev-card">
+        <h3><span class="en">Revenue caught up with operating expenses</span><span class="ko">매출이 영업비용을 따라잡았습니다</span></h3>
+        <p class="ax-note"><span class="en">Quarterly revenue and total GAAP operating expenses, $ billions</span><span class="ko">분기 매출과 GAAP 총영업비용, 단위: 10억 달러</span></p>
+        <div class="ax-legend"><span><i data-swatch="0"></i><span class="en">Revenue</span><span class="ko">매출</span></span><span><i style="background: var(--cds-chart-muted)"></i><span class="en">Operating expenses</span><span class="ko">영업비용</span></span></div>
+        <div class="ax-chart" data-draw="rev-chart" data-source="q_metrics"></div>
+      </div>
+      <div class="ax-card" id="margin-card">
+        <h3><span class="en">Operating margin by quarter</span><span class="ko">분기별 영업이익률</span></h3>
+        <p class="ax-note"><span class="en">Adjusted excludes stock pay, the donation match and the Bartz settlement</span><span class="ko">조정 기준은 주식보상비용, 기부 매칭, Bartz 합의금을 제외합니다</span></p>
+        <div class="ax-legend"><span><i data-swatch="0"></i><span class="en">Adjusted</span><span class="ko">조정</span></span><span><i data-swatch="1"></i>GAAP</span></div>
+        <div class="ax-chart" data-draw="margin-chart" data-source="q_metrics"></div>
+      </div>
+    </div>
+    <p class="ax-src" data-draw="src-line" data-source="sources" data-src-ids="quarterly">—</p>
+  </section>
+
+  <section class="ax-sec" id="balance-sheet">
+    <h2 class="ax-h2"><span class="en">Balance sheet and cash flow</span><span class="ko">재무상태와 현금흐름</span></h2>
+    <p class="ax-lede"><span class="en">Cash, debt and the main balance-sheet totals at each period end, then cash generated and spent in each period. All amounts in US dollars.</span><span class="ko">기말 기준 현금, 부채, 주요 재무상태표 항목과 기간별 현금 창출·사용 내역입니다. 모든 금액은 미국 달러 기준입니다.</span></p>
+    <div class="ax-card" id="bs-card">
+      <h3><span class="en">Liquidity and debt</span><span class="ko">유동성과 부채</span></h3>
+      <div class="ax-tablewrap en">
+        <table class="ax-table" data-source="bs_metrics" data-row-key="as_of">
+          <thead><tr><th data-field="label">Period end</th><th class="ax-num" data-field="gross_text">Gross cash</th><th class="ax-num" data-field="debt_text">Debt (principal)</th><th class="ax-num" data-field="net_text">Net cash</th><th class="ax-num" data-field="notes_fv_text">Notes at fair value</th><th class="ax-num" data-field="lease_text">Operating leases</th><th class="ax-num" data-field="wc_text">Working capital</th><th class="ax-num" data-field="ar_text">Receivables</th><th class="ax-num" data-field="deferred_text">Deferred revenue</th></tr></thead>
+          <tbody data-draw="bs-body"></tbody>
+        </table>
+      </div>
+      <div class="ax-tablewrap ko">
+        <table class="ax-table" data-source="bs_metrics" data-row-key="as_of">
+          <thead><tr><th data-field="label_ko">기말</th><th class="ax-num" data-field="gross_text">총현금</th><th class="ax-num" data-field="debt_text_ko">부채(원금)</th><th class="ax-num" data-field="net_text_ko">순현금</th><th class="ax-num" data-field="notes_fv_text">전환사채 공정가치</th><th class="ax-num" data-field="lease_text">운용리스 부채</th><th class="ax-num" data-field="wc_text">순운전자본</th><th class="ax-num" data-field="ar_text">매출채권</th><th class="ax-num" data-field="deferred_text">이연수익</th></tr></thead>
+          <tbody data-draw="bs-body-ko"></tbody>
+        </table>
+      </div>
+      <p class="ax-note"><span class="en">Gross cash is cash and cash equivalents plus short-term investments, excluding restricted cash. Debt is Amazon's convertible notes at principal, plus credit-facility borrowings (none so far) and finance leases. The notes are carried at fair value on the balance sheet, which rises with the valuation; they convert to stock rather than being repaid, except any amount above Amazon's ownership cap. The Dec 2024 principal isn't disclosed.</span><span class="ko">총현금은 현금성자산과 단기투자자산의 합계이며 제한 현금은 제외합니다. 부채는 Amazon 전환사채 원금에 신용한도 차입금(현재 없음)과 금융리스를 더한 값입니다. 전환사채는 재무상태표에 공정가치로 계상되어 기업가치가 오르면 함께 늘어나며, Amazon 지분 한도를 넘는 부분을 제외하면 상환이 아니라 주식으로 전환됩니다. 2024년 12월 원금은 공시되지 않았습니다.</span></p>
+    </div>
+    <div class="ax-grid">
+      <div class="ax-card" id="cf-card">
+        <h3><span class="en">Cash flow</span><span class="ko">현금흐름</span></h3>
+        <div class="ax-tablewrap en">
+          <table class="ax-table" data-source="cf_metrics" data-row-key="period">
+            <thead><tr><th data-field="period">Period</th><th class="ax-num" data-field="ocf_text">Operating</th><th class="ax-num" data-field="capex_text">Capex</th><th class="ax-num" data-field="fcf_text">Free cash flow</th><th class="ax-num" data-field="financing_text">Financing</th></tr></thead>
+            <tbody data-draw="cf-body"></tbody>
+          </table>
+        </div>
+        <div class="ax-tablewrap ko">
+          <table class="ax-table" data-source="cf_metrics" data-row-key="period">
+            <thead><tr><th data-field="period_ko">기간</th><th class="ax-num" data-field="ocf_text">영업활동</th><th class="ax-num" data-field="capex_text">설비투자</th><th class="ax-num" data-field="fcf_text">잉여현금흐름</th><th class="ax-num" data-field="financing_text">재무활동</th></tr></thead>
+            <tbody data-draw="cf-body-ko"></tbody>
+          </table>
+        </div>
+        <p class="ax-note"><span class="en">Financing inflows are mostly preferred-stock rounds and convertible notes. Capex will rise as more compute moves to owned and leased equipment; most of that shows up as lease payments rather than capex.</span><span class="ko">재무활동 유입은 대부분 우선주 투자와 전환사채입니다. 컴퓨팅이 직접 리스·보유 장비로 옮겨 가면서 설비투자가 늘겠지만, 대부분은 설비투자가 아니라 리스료로 잡힙니다.</span></p>
+      </div>
+      <div class="ax-card" id="cap-card">
+        <h3><span class="en">Capital structure</span><span class="ko">자본 구조</span></h3>
+        <div class="ax-tablewrap en">
+          <table class="ax-table" data-source="bs_metrics" data-row-key="as_of">
+            <thead><tr><th data-field="label">Period end</th><th class="ax-num" data-field="assets_text">Total assets</th><th class="ax-num" data-field="liabilities_text">Total liabilities</th><th class="ax-num" data-field="preferred_text">Preferred stock</th><th class="ax-num" data-field="equity_text">Stockholders' equity</th></tr></thead>
+            <tbody data-draw="cap-body"></tbody>
+          </table>
+        </div>
+        <div class="ax-tablewrap ko">
+          <table class="ax-table" data-source="bs_metrics" data-row-key="as_of">
+            <thead><tr><th data-field="label_ko">기말</th><th class="ax-num" data-field="assets_text">총자산</th><th class="ax-num" data-field="liabilities_text">총부채</th><th class="ax-num" data-field="preferred_text">우선주</th><th class="ax-num" data-field="equity_text">자본</th></tr></thead>
+            <tbody data-draw="cap-body-ko"></tbody>
+          </table>
+        </div>
+        <p class="ax-note"><span class="en">Equity is negative mainly because fair-value charges on the convertible notes built up a $132.9B accumulated deficit. Preferred stock converts to common at the IPO, which should turn equity positive.</span><span class="ko">자본이 마이너스인 주된 이유는 전환사채 공정가치 평가손실로 누적결손금이 1,329억 달러까지 쌓였기 때문입니다. 우선주는 IPO 때 보통주로 전환되며, 그러면 자본이 플러스로 돌아설 것으로 보입니다.</span></p>
+      </div>
+    </div>
+    <p class="ax-src" data-draw="src-line" data-source="sources" data-src-ids="balance_sheet">—</p>
+  </section>
+
+  <section class="ax-sec" id="valuation">
+    <h2 class="ax-h2"><span class="en">Valuation</span><span class="ko">밸류에이션</span></h2>
+    <p class="ax-lede"><span class="en">A five-year exit model: project revenue, apply a year-5 margin and P/E, discount back, and add net cash. The last column runs it in reverse: the yearly revenue growth the current market cap needs.</span><span class="ko">5년 엑시트 모델입니다. 매출을 추정하고 5년차 이익률과 P/E를 적용해 현재가치로 할인한 뒤 순현금을 더합니다. 마지막 열은 이를 거꾸로 계산한 값으로, 현재 시가총액을 정당화하는 데 필요한 연간 매출 성장률입니다.</span></p>
+    <div class="ax-card">
+      <h3><span class="en">Scenarios</span><span class="ko">시나리오</span></h3>
+      <div class="ax-tablewrap en">
+        <table class="ax-table" data-source="valuation" data-row-key="scenario">
+          <thead><tr><th data-field="scenario">Scenario</th><th class="ax-num" data-field="growth_text">Growth, years 1–5</th><th class="ax-num" data-field="margin_text">Margin · P/E</th><th class="ax-num" data-field="rev_y5_text">Year-5 revenue</th><th class="ax-num" data-field="value_text">Implied value today</th><th class="ax-num" data-field="vs_text">vs market cap</th><th class="ax-num" data-field="need_text">Growth the price needs</th></tr></thead>
+          <tbody data-draw="val-body"></tbody>
+        </table>
+      </div>
+      <div class="ax-tablewrap ko">
+        <table class="ax-table" data-source="valuation" data-row-key="scenario">
+          <thead><tr><th data-field="scenario_ko">시나리오</th><th class="ax-num" data-field="growth_text">1~5년차 성장률</th><th class="ax-num" data-field="margin_text">이익률 · P/E</th><th class="ax-num" data-field="rev_y5_text">5년차 매출</th><th class="ax-num" data-field="value_text">현재 내재가치</th><th class="ax-num" data-field="vs_text">시가총액 대비</th><th class="ax-num" data-field="need_text">주가가 요구하는 성장률</th></tr></thead>
+          <tbody data-draw="val-body-ko"></tbody>
+        </table>
+      </div>
+      <p class="ax-note"><span class="en">Assumptions are illustrative. Edit the scenarios file in Sources to change them for everyone, or try your own below.</span><span class="ko">가정은 예시입니다. 모든 사람에게 적용하려면 Sources에서 시나리오 파일을 수정하고, 직접 시험해 보려면 아래를 사용하세요.</span></p>
+    </div>
+    <div class="ax-card" id="whatif">
+      <h3><span class="en">Try your own assumptions</span><span class="ko">직접 가정 넣어보기</span></h3>
+      <div class="ax-wi">
+        <label for="wi-cagr"><span class="en">Revenue growth per year, 5 years</span><span class="ko">연간 매출 성장률(5년)</span> <output data-draw="wi-cagr-v">—</output><input type="range" id="wi-cagr" min="0" max="1.2" step="0.01" value="0.5"></label>
+        <label for="wi-margin"><span class="en">Operating margin in year 5</span><span class="ko">5년차 영업이익률</span> <output data-draw="wi-margin-v">—</output><input type="range" id="wi-margin" min="0.05" max="0.6" step="0.01" value="0.3"></label>
+        <label for="wi-pe"><span class="en">Exit P/E</span><span class="ko">엑시트 P/E</span> <output data-draw="wi-pe-v">—</output><input type="range" id="wi-pe" min="8" max="60" step="1" value="25"></label>
+        <label for="wi-disc"><span class="en">Discount rate</span><span class="ko">할인율</span> <output data-draw="wi-disc-v">—</output><input type="range" id="wi-disc" min="0.06" max="0.2" step="0.005" value="0.12"></label>
+        <label for="wi-dil"><span class="en">Share dilution per year</span><span class="ko">연간 주식 희석률</span> <output data-draw="wi-dil-v">—</output><input type="range" id="wi-dil" min="0" max="0.06" step="0.005" value="0.02"></label>
+      </div>
+      <div class="ax-wi-out">
+        <div><span class="l"><span class="en">Implied value today</span><span class="ko">현재 내재가치</span></span><b data-draw="wi-value" data-source="latest">—</b></div>
+        <div><span class="l"><span class="en">vs market cap</span><span class="ko">시가총액 대비</span></span><b data-draw="wi-vs" data-source="latest">—</b></div>
+        <div><span class="l"><span class="en">Growth the price needs at this margin and P/E</span><span class="ko">이 이익률과 P/E에서 주가가 요구하는 성장률</span></span><b data-draw="wi-need" data-source="latest">—</b></div>
+      </div>
+      <button class="ax-btn" type="button" id="wi-reset"><span class="en">Reset to base case</span><span class="ko">기준 시나리오로 초기화</span></button>
+      <p class="ax-note"><span class="en">Your changes here stay on this page and reset when you reload it. Tax is fixed at 21%.</span><span class="ko">여기서 바꾼 값은 이 화면에만 적용되며 새로고침하면 초기화됩니다. 세율은 21%로 고정입니다.</span></p>
+    </div>
+      <p class="ax-src" data-draw="src-line" data-source="sources" data-src-ids="scenarios quarterly market_cap">—</p>
+  </section>
+
+  <section class="ax-sec" id="compute">
+    <h2 class="ax-h2"><span class="en">Compute commitments</span><span class="ko">컴퓨팅 약정</span></h2>
+    <p class="ax-lede en">Firm minimums are <b data-draw="c-firm" data-source="commit_totals" data-field="firm_usd" data-row="0">—</b> of <b data-draw="c-total" data-source="commit_totals" data-field="total_low_usd" data-row="0">—</b> in named deals, about <b data-draw="c-years" data-source="commit_totals" data-field="years_of_revenue" data-row="0">—</b> annualized revenue. The filing's own total is blank until the price-range amendment.</p>
+    <p class="ax-lede ko">명시된 계약 <b data-draw="c-total" data-source="commit_totals" data-field="total_low_usd" data-row="0">—</b> 중 확정 최소 약정은 <b data-draw="c-firm" data-source="commit_totals" data-field="firm_usd" data-row="0">—</b>로, 연환산 매출의 약 <b data-draw="c-years-ko" data-source="commit_totals" data-field="years_of_revenue" data-row="0">—</b>에 해당합니다. 공시상 총액은 가격 범위 수정 공시 전까지 공란입니다.</p>
+    <div class="ax-card" id="commit-card">
+      <h3><span class="en">Named compute deals, $ billions</span><span class="ko">명시된 컴퓨팅 계약, 단위: 10억 달러</span></h3>
+      <div class="ax-legend"><span><i data-swatch="0"></i><span class="en">Firm minimum</span><span class="ko">확정 최소 약정</span></span><span><i style="background: var(--cds-chart-muted)"></i><span class="en">Up to, conditional or estimate</span><span class="ko">상한·조건부·추정</span></span></div>
+      <div class="ax-chart" data-draw="commit-chart" data-source="commitments"></div>
+      <p class="ax-note"><span class="en">Hover a bar for its period and exit terms. Broadcom is lease rent excluding interest.</span><span class="ko">막대에 마우스를 올리면 기간과 해지 조건이 표시됩니다. Broadcom은 이자를 제외한 리스료입니다.</span></p>
+    </div>
+    <div class="ax-card" id="commit-years-card">
+      <h3><span class="en">Estimated payments by year, $ billions</span><span class="ko">연도별 예상 지급액, 단위: 10억 달러</span></h3>
+      <div class="ax-legend"><span><i data-swatch="0"></i><span class="en">Firm minimum</span><span class="ko">확정 최소 약정</span></span><span><i style="background: var(--cds-chart-muted)"></i><span class="en">Up to, conditional or estimate</span><span class="ko">상한·조건부·추정</span></span></div>
+      <div class="ax-chart" data-draw="commit-years-chart" data-source="commit_years"></div>
+      <p class="ax-note"><span class="en">An illustration, not filing data: each named deal is spread evenly over its stated term, SpaceXAI at about $3.1B a month from Dec 2026, Broadcom over five years from mid-2026, extra TPUs at the midpoint of the estimate. Real contracts ramp up, and some amounts may overlap. Years switch to the filing's own schedule once it is published. Hover a bar to see each deal.</span><span class="ko">공시 자료가 아닌 예시입니다. 명시된 각 계약을 계약 기간에 고르게 나눴으며, SpaceXAI는 2026년 12월부터 월 약 31억 달러, Broadcom은 2026년 중반부터 5년, 추가 TPU는 추정치의 중간값으로 잡았습니다. 실제 계약은 단계적으로 늘어나며 일부 금액은 겹칠 수 있습니다. 공시된 연도별 일정이 나오면 해당 연도는 공시 수치로 바뀝니다. 막대에 마우스를 올리면 계약별 금액이 표시됩니다.</span></p>
+    </div>
+      <p class="ax-src" data-draw="src-line" data-source="sources" data-src-ids="commitments">—</p>
+  </section>
+
+  <section class="ax-sec" id="lockups">
+    <h2 class="ax-h2"><span class="en">Lock-up releases</span><span class="ko">보호예수 해제</span></h2>
+    <p class="ax-lede"><span class="en">Share of each group's locked-up stock that may be sold, cumulative. Dates tied to earnings releases fill in once the company announces them.</span><span class="ko">그룹별 보호예수 주식 중 매도 가능한 비율(누적)입니다. 실적 발표일에 연동된 날짜는 회사가 발표하면 채워집니다.</span></p>
+    <div class="ax-grid">
+      <div class="ax-card" id="lock-card">
+        <h3><span class="en">Cumulative share unlocked, by milestone</span><span class="ko">마일스톤별 누적 해제 비율</span></h3>
+        <div class="ax-legend"><span><i data-swatch="0"></i><span class="en">Co-founders</span><span class="ko">공동창업자</span></span><span><i data-swatch="1"></i><span class="en">Holders over 0.5%</span><span class="ko">0.5% 초과 보유자</span></span><span><i data-swatch="2"></i><span class="en">Certain other holders</span><span class="ko">기타 특정 주주</span></span><span><i data-swatch="3"></i><span class="en">Officers and some employees</span><span class="ko">임원 및 일부 직원</span></span></div>
+        <div class="ax-chart" data-draw="lock-chart" data-source="lockup_sched"></div>
+        <p class="ax-note"><span class="en">Milestones evenly spaced, not to scale. Goldman Sachs and Morgan Stanley can release shares early.</span><span class="ko">마일스톤은 같은 간격으로 표시되며 실제 기간 비율과 다릅니다. 골드만삭스와 모건스탠리는 보호예수를 조기 해제할 수 있습니다.</span></p>
+      </div>
+      <div class="ax-card">
+        <h3><span class="en">Release dates</span><span class="ko">해제 일정</span></h3>
+        <div class="ax-tablewrap en" style="max-height: 340px; overflow: auto;">
+          <table class="ax-table" data-source="lockup_sched" data-row-key="step">
+            <thead><tr><th data-field="milestone">Milestone</th><th data-field="date_text">Date</th><th class="ax-num" data-field="off_text">Officers</th><th class="ax-num" data-field="cs_text">Certain</th><th class="ax-num" data-field="big_text">&gt;0.5%</th><th class="ax-num" data-field="fnd_text">Co-founders</th></tr></thead>
+            <tbody data-draw="lock-body"></tbody>
+          </table>
+        </div>
+        <div class="ax-tablewrap ko" style="max-height: 340px; overflow: auto;">
+          <table class="ax-table" data-source="lockup_sched" data-row-key="step">
+            <thead><tr><th data-field="milestone_ko">마일스톤</th><th data-field="date_text_ko">날짜</th><th class="ax-num" data-field="off_text">임원</th><th class="ax-num" data-field="cs_text">특정 주주</th><th class="ax-num" data-field="big_text">0.5% 초과</th><th class="ax-num" data-field="fnd_text">공동창업자</th></tr></thead>
+            <tbody data-draw="lock-body-ko"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+      <p class="ax-src" data-draw="src-line" data-source="sources" data-src-ids="lockups ipo_dates">—</p>
+  </section>
+
+  <section class="ax-sec" id="events">
+    <h2 class="ax-h2"><span class="en">Pending events</span><span class="ko">진행 중인 이슈</span></h2>
+    <div class="ax-card">
+      <div class="ax-tablewrap en">
+        <table class="ax-table" data-source="events" data-row-key="event">
+          <thead><tr><th data-field="event">Event</th><th data-field="status">Status</th><th data-field="why_it_matters">Why it matters</th></tr></thead>
+          <tbody data-draw="ev-body"></tbody>
+        </table>
+      </div>
+      <div class="ax-tablewrap ko">
+        <table class="ax-table" data-source="events" data-row-key="event">
+          <thead><tr><th data-field="event_ko">이슈</th><th data-field="status_ko">현황</th><th data-field="why_ko">중요한 이유</th></tr></thead>
+          <tbody data-draw="ev-body-ko"></tbody>
+        </table>
+      </div>
+    </div>
+      <p class="ax-src" data-draw="src-line" data-source="sources" data-src-ids="events">—</p>
+  </section>
+
+  <section class="ax-sec" id="sources">
+    <h2 class="ax-h2"><span class="en">Sources</span><span class="ko">출처</span></h2>
+    <p class="ax-lede"><span class="en">Every figure on this page comes from the documents below or is calculated from them. The raw data files are in the <a href="https://github.com/namugaji/ant-tracker/tree/main/data">data folder of this site's GitHub repository</a>.</span><span class="ko">이 페이지의 모든 수치는 아래 문서에서 가져왔거나 이를 바탕으로 계산한 값입니다. 원본 데이터 파일은 <a href="https://github.com/namugaji/ant-tracker/tree/main/data">이 사이트 GitHub 저장소의 data 폴더</a>에 있습니다.</span></p>
+    <div class="ax-card">
+      <div class="ax-tablewrap en">
+        <table class="ax-table" data-source="sources" data-row-key="id">
+          <thead><tr><th data-field="topic">Data</th><th data-field="document">Document</th><th data-field="publisher">Published by</th><th data-field="date">Date</th><th data-field="covers">Covers</th></tr></thead>
+          <tbody data-draw="src-body"></tbody>
+        </table>
+      </div>
+      <div class="ax-tablewrap ko">
+        <table class="ax-table" data-source="sources" data-row-key="id">
+          <thead><tr><th data-field="topic_ko">데이터</th><th data-field="document_ko">문서</th><th data-field="publisher">발행처</th><th data-field="date">날짜</th><th data-field="covers_ko">범위</th></tr></thead>
+          <tbody data-draw="src-body-ko"></tbody>
+        </table>
+      </div>
+      <p class="ax-note"><span class="en">Calculated here, not reported by the company: annualized revenue, gross margin, gross and net cash, free cash flow, working capital, the diluted share count, commitment totals, lock-up dates, scorecard grades and all valuation outputs.</span><span class="ko">회사가 발표한 값이 아니라 이 페이지에서 계산한 값: 연환산 매출, 매출총이익률, 총현금·순현금, 잉여현금흐름, 순운전자본, 희석 주식 수, 약정 합계, 보호예수 날짜, 점검표 등급, 모든 밸류에이션 결과.</span></p>
+    </div>
+  </section>
+
+  <footer class="ax-foot">
+    <p><span class="en">Source: Anthropic, PBC Form S-1 (filed Oct 26, 2026) and later SEC filings. Diluted share count, gross margin, the commitments sum and all valuation outputs are calculations, not company figures. Until ANT trades, market cap is a placeholder at the midpoint of the reported $1.5–2T target.</span><span class="ko">출처: Anthropic, PBC Form S-1(2026년 10월 26일 제출) 및 이후 SEC 공시. 희석 주식 수, 매출총이익률, 약정 합계와 모든 밸류에이션 결과는 계산값이며 회사가 발표한 수치가 아닙니다. ANT 상장 전까지 시가총액은 보도된 1.5~2조 달러 목표의 중간값을 임시로 사용합니다.</span></p>
+    <p><span class="en">For tracking a thesis, not investment advice.</span><span class="ko">투자 논지 추적용이며 투자 조언이 아닙니다.</span></p>
+    <p><span class="en">Data and code:</span><span class="ko">데이터와 코드:</span> <a href="https://github.com/namugaji/ant-tracker">github.com/namugaji/ant-tracker</a></p>
+  </footer>
+</div>
+
+<script>
+// ---------- calculations ----------
+dash.calc('q_metrics', {
+  inputs: ['quarterly'],
+  title: 'Quarterly metrics',
+  description: 'Operating expenses, income, adjusted figures, margins and growth for each quarter.',
+  fn: (quarterly) => {
+    const n = (x) => Number(x) || 0;
+    const qs = quarterly.filter((q) => q.revenue !== null && q.revenue !== '').slice().sort((a, b) => String(a.period_end).localeCompare(String(b.period_end)));
+    return qs.map((q, i) => {
+      const rev = n(q.revenue);
+      const opex = n(q.compute_infra) + n(q.personnel) + n(q.bartz) + n(q.sales_mktg_partners) + n(q.other_opex);
+      const op = rev - opex;
+      const net = op + n(q.interest_income) + n(q.fv_change_notes) + n(q.other_income) - n(q.tax);
+      const adjOp = op + n(q.sbc) + n(q.donation_match) + n(q.bartz);
+      const prev = qs[i - 1], yr = qs[i - 4];
+      return {
+        quarter: q.quarter, period_end: q.period_end,
+        revenue_bn: rev / 1000, opex_bn: opex / 1000, op_income_bn: op / 1000, net_income_bn: net / 1000,
+        adj_op_income_bn: adjOp / 1000,
+        adj_net_income_bn: (net + n(q.sbc) + n(q.donation_match) + n(q.bartz) - n(q.fv_change_notes) + n(q.mtm_change)) / 1000,
+        op_margin: op / rev, adj_margin: adjOp / rev, compute_pct: n(q.compute_infra) / rev,
+        qoq: prev ? rev / n(prev.revenue) - 1 : null,
+        yoy: yr ? rev / n(yr.revenue) - 1 : null,
+        run_rate_bn: rev * 4 / 1000,
+      };
+    });
+  },
+});
+
+dash.calc('valuation', {
+  inputs: ['q_metrics', 'deal', 'scenarios'],
+  title: 'Valuation scenarios',
+  description: 'Five-year exit value per scenario from the latest annualized revenue, and the growth the market cap needs.',
+  fn: (q_metrics, deal, scenarios) => {
+    const last = q_metrics[q_metrics.length - 1];
+    const d = deal[0];
+    const R = last.run_rate_bn, S = Number(d.diluted_shares_mm), N = Number(d.net_cash_mm) / 1000;
+    const M = d.share_price ? Number(d.share_price) * S / 1000 : Number(d.placeholder_market_cap_mm) / 1000;
+    const pct = (v) => (v * 100).toFixed(0) + '%';
+    const bn = (v) => v >= 1000 ? '$' + (v / 1000).toFixed(2) + 'T' : '$' + v.toFixed(0) + 'B';
+    return scenarios.map((s) => {
+      const g = [s.growth_y1, s.growth_y2, s.growth_y3, s.growth_y4, s.growth_y5].map(Number);
+      const rev5 = g.reduce((acc, x) => acc * (1 + x), R);
+      const m = Number(s.op_margin_y5), t = Number(s.tax_rate), pe = Number(s.exit_pe), r = Number(s.discount_rate), dil = Number(s.annual_dilution);
+      const value = rev5 * m * (1 - t) * pe / Math.pow(1 + dil, 5) / Math.pow(1 + r, 5) + N;
+      const need5 = (M - N) * Math.pow(1 + r, 5) * Math.pow(1 + dil, 5) / pe / (m * (1 - t));
+      const needCagr = Math.pow(need5 / R, 1 / 5) - 1;
+      return {
+        scenario: s.scenario, scenario_ko: ({ Bear: '비관', Base: '기준', Bull: '낙관' })[s.scenario] || s.scenario, rev_y5_bn: rev5, value_bn: value, vs_market_cap: value / M - 1, need_cagr: needCagr,
+        growth_text: g.map(pct).join(' · '), margin_text: pct(m) + ' · ' + pe + 'x',
+        rev_y5_text: bn(rev5), value_text: bn(value),
+        vs_text: (value / M - 1 >= 0 ? '+' : '') + pct(value / M - 1), need_text: pct(needCagr),
+        cagr_5y: Math.pow(rev5 / R, 1 / 5) - 1, op_margin: m, exit_pe: pe, discount_rate: r, dilution: dil, tax_rate: t,
+      };
+    });
+  },
+});
+
+dash.calc('bs_metrics', {
+  inputs: ['balance_sheet'],
+  title: 'Balance sheet summary',
+  description: 'Gross cash, debt at principal, net cash, working capital and other balance-sheet totals at each period end.',
+  fn: (balance_sheet) => {
+    const has = (v) => v !== null && v !== undefined && v !== '' && !isNaN(v);
+    const n = (v) => Number(v) || 0;
+    const mon = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    const bn = (v) => (v === null ? '' : (v < 0 ? '−$' : '$') + (Math.abs(v) < 1000 ? Math.round(Math.abs(v)) + 'M' : Math.abs(v / 1000).toFixed(1) + 'B'));
+    return balance_sheet.slice().sort((x, y) => String(x.as_of).localeCompare(String(y.as_of))).map((r) => {
+      const d = String(r.as_of);
+      const gross = n(r.cash_and_equivalents) + n(r.st_investments);
+      const debt = has(r.convertible_notes_principal) ? n(r.convertible_notes_principal) + n(r.credit_facility_drawn) + n(r.finance_lease_liabilities) : null;
+      const net = debt === null ? null : gross - debt;
+      const wc = n(r.total_current_assets) - n(r.total_current_liabilities);
+      return {
+        as_of: d, label: mon[Number(d.slice(5, 7)) - 1] + ' ' + Number(d.slice(8, 10)) + ', ' + d.slice(0, 4),
+        label_ko: d.slice(0, 4) + '년 ' + Number(d.slice(5, 7)) + '월 ' + Number(d.slice(8, 10)) + '일',
+        gross_cash: gross, restricted_cash: n(r.restricted_cash), debt_principal: debt, net_cash: net,
+        notes_fair_value: n(r.convertible_notes_fair_value), working_capital: wc,
+        gross_text: bn(gross), debt_text: debt === null ? 'Not disclosed' : bn(debt), debt_text_ko: debt === null ? '미공시' : bn(debt),
+        net_text: net === null ? 'Not disclosed' : bn(net), net_text_ko: net === null ? '미공시' : bn(net),
+        notes_fv_text: bn(n(r.convertible_notes_fair_value)), lease_text: bn(n(r.operating_lease_liabilities)),
+        wc_text: bn(wc), ar_text: bn(n(r.accounts_receivable)), deferred_text: bn(n(r.deferred_revenue)),
+        assets_text: bn(n(r.total_assets)), liabilities_text: bn(n(r.total_liabilities)),
+        preferred_text: bn(n(r.preferred_stock_carrying)), equity_text: bn(n(r.stockholders_equity)),
+      };
+    });
+  },
+});
+
+dash.calc('cf_metrics', {
+  inputs: ['annual'],
+  title: 'Cash flow summary',
+  description: 'Operating cash flow, capital expenditure, free cash flow and financing inflows for each full year and half year.',
+  fn: (annual) => {
+    const has = (v) => v !== null && v !== undefined && v !== '' && !isNaN(v);
+    const end = (r) => (r.kind === 'H1' ? String(r.period).slice(-4) + '-06-30' : String(r.period) + '-12-31');
+    const bn = (v) => (v === null ? '' : (v < 0 ? '−$' : '$') + (Math.abs(v) < 1000 ? Math.round(Math.abs(v)) + 'M' : Math.abs(v / 1000).toFixed(1) + 'B'));
+    return annual.filter((r) => has(r.operating_cash_flow)).slice().sort((x, y) => end(x).localeCompare(end(y)) || String(x.kind).localeCompare(String(y.kind))).map((r) => {
+      const capex = has(r.capex) ? Number(r.capex) : null;
+      const fcf = capex === null ? null : Number(r.operating_cash_flow) - capex;
+      const y = String(r.period).slice(-4);
+      return {
+        period: r.period, kind: r.kind, end: end(r), period_ko: r.kind === 'H1' ? y + '년 상반기' : y + '년',
+        ocf: Number(r.operating_cash_flow), capex, fcf, financing: has(r.financing_cash_flow) ? Number(r.financing_cash_flow) : null,
+        ocf_text: bn(Number(r.operating_cash_flow)), capex_text: capex === null ? '' : bn(-capex), fcf_text: fcf === null ? '' : bn(fcf),
+        financing_text: has(r.financing_cash_flow) ? bn(Number(r.financing_cash_flow)) : '',
+      };
+    });
+  },
+});
+
+dash.calc('commit_years', {
+  inputs: ['commit_schedule'],
+  title: 'Compute payments by year',
+  description: 'Yearly payments summed into firm minimums and other deals; firm minimums come from the filing\'s own schedule for a year when published, otherwise from the estimate rows.',
+  fn: (commit_schedule) => {
+    const years = {};
+    commit_schedule.forEach((r) => {
+      const y = String(r.year);
+      years[y] = years[y] || { official: [], estimate: [] };
+      (r.kind === 'official' ? years[y].official : years[y].estimate).push(r);
+    });
+    return Object.keys(years).sort().map((y) => {
+      const off = years[y].official, est = years[y].estimate;
+      const rows = (off.length ? off : est.filter((r) => r.group === 'firm')).concat(est.filter((r) => r.group === 'other'));
+      const sum = (g) => rows.filter((r) => r.group === g).reduce((a, r) => a + Number(r.amount_bn), 0);
+      const firm = sum('firm'), other = sum('other');
+      return {
+        year: y, kind: years[y].official.length ? 'official' : 'estimate', firm_bn: firm, other_bn: other, total_bn: firm + other,
+        deals: rows.map((r) => r.deal + ' $' + Number(r.amount_bn).toFixed(1) + 'B').join('; '),
+        deals_ko: rows.map((r) => (r.deal_ko || r.deal) + ' $' + Number(r.amount_bn).toFixed(1) + 'B').join('; '),
+      };
+    });
+  },
+});
+
+dash.calc('latest', {
+  inputs: ['q_metrics', 'annual', 'kpis', 'deal', 'valuation', 'bs_metrics', 'cf_metrics'],
+  title: 'Latest figures',
+  description: 'The most recent value of each tracked figure, the market cap in use and the base-case growth it implies.',
+  fn: (q_metrics, annual, kpis, deal, valuation, bs_metrics, cf_metrics) => {
+    const q = q_metrics[q_metrics.length - 1];
+    const d = deal[0];
+    const has = (v) => v !== null && v !== undefined && v !== '';
+    const lastWith = (rows, f) => { for (let i = rows.length - 1; i >= 0; i--) if (has(rows[i][f])) return rows[i]; return null; };
+    const kp = kpis.slice().sort((a, b) => String(a.as_of).localeCompare(String(b.as_of)));
+    const gm = lastWith(annual, 'cost_of_revenue');
+    const ocf = lastWith(annual, 'operating_cash_flow');
+    const nrr = lastWith(kp, 'net_revenue_retention'), top5 = lastWith(kp, 'outside_top5_share');
+    const mkt = lastWith(kp, 'marketplace_share'), cust = lastWith(kp, 'customers_100k');
+    const S = Number(d.diluted_shares_mm);
+    const M = d.share_price ? Number(d.share_price) * S / 1000 : Number(d.placeholder_market_cap_mm) / 1000;
+    const base = valuation.find((v) => v.scenario === 'Base') || valuation[0];
+    const bsLast = bs_metrics.length ? bs_metrics[bs_metrics.length - 1] : null;
+    const cfLast = cf_metrics.filter((r) => r.fcf !== null).slice(-1)[0] || null;
+    return [{
+      cash_usd: bsLast ? bsLast.gross_cash * 1e6 : null, restricted_usd: bsLast ? bsLast.restricted_cash * 1e6 : null, cash_bn: bsLast ? bsLast.gross_cash / 1000 : null,
+      net_cash_usd: bsLast && bsLast.net_cash !== null ? bsLast.net_cash * 1e6 : null, net_cash_bs_bn: bsLast && bsLast.net_cash !== null ? bsLast.net_cash / 1000 : null,
+      cash_as_of: bsLast ? bsLast.as_of : null, cash_as_of_text: bsLast ? bsLast.label : null, cash_as_of_text_ko: bsLast ? bsLast.label_ko : null,
+      fcf_bn: cfLast ? cfLast.fcf / 1000 : null, fcf_period: cfLast ? cfLast.period : null,
+      latest_quarter: q.quarter, run_rate_bn: q.run_rate_bn, qoq: q.qoq, yoy: q.yoy,
+      adj_margin: q.adj_margin, op_margin: q.op_margin, compute_pct: q.compute_pct,
+      gross_margin: gm ? (gm.revenue - gm.cost_of_revenue) / gm.revenue : null, gm_period: gm ? gm.period : null,
+      ocf_bn: ocf ? ocf.operating_cash_flow / 1000 : null, ocf_period: ocf ? ocf.period : null,
+      nrr: nrr ? nrr.net_revenue_retention : null, nrr_as_of: nrr ? nrr.as_of : null,
+      outside_top5: top5 ? top5.outside_top5_share : null, top5_as_of: top5 ? top5.as_of : null,
+      marketplace_share: mkt ? mkt.marketplace_share : null, marketplace_as_of: mkt ? mkt.as_of : null,
+      customers_100k: cust ? cust.customers_100k : null, customers_as_of: cust ? cust.as_of : null,
+      market_cap_bn: M, market_cap_usd: M * 1e9, run_rate_usd: q.run_rate_bn * 1e9, ps: M / q.run_rate_bn,
+      basis_text: d.share_price ? 'at $' + Number(d.share_price).toFixed(2) + ' a share' : 'a placeholder until ANT trades',
+      basis_text_ko: d.share_price ? '주당 $' + Number(d.share_price).toFixed(2) + ' 기준' : 'ANT 상장 전 임시값',
+      implied_cagr_base: base.need_cagr,
+      shares_mm: S, net_cash_bn: Number(d.net_cash_mm) / 1000,
+      base_cagr: base.cagr_5y, base_margin: base.op_margin, base_pe: base.exit_pe, base_discount: base.discount_rate, base_dilution: base.dilution,
+    }];
+  },
+});
+
+dash.calc('trends', {
+  inputs: ['q_metrics', 'annual', 'kpis', 'price_history', 'scenarios', 'bs_metrics', 'cf_metrics'],
+  title: 'Scorecard history',
+  description: 'Every data point so far for each scorecard check, oldest first.',
+  fn: (q_metrics, annual, kpis, price_history, scenarios, bs_metrics, cf_metrics) => {
+    const out = [];
+    const has = (v) => v !== null && v !== undefined && v !== '' && !isNaN(v);
+    const koDate = (d) => /^\d{4}-\d{2}-\d{2}/.test(String(d)) ? String(d).slice(0, 4) + '년 ' + Number(String(d).slice(5, 7)) + '월 ' + Number(String(d).slice(8, 10)) + '일' : null;
+    const push = (id, label, date, value, kind) => { if (has(value)) out.push({ id, label, label_ko: kind === 'date' ? koDate(date) : label, date, value: Number(value), kind: kind || 'point' }); };
+    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    const nice = (d) => { const s2 = String(d); return months[Number(s2.slice(5, 7)) - 1] + ' ' + Number(s2.slice(8, 10)) + ', ' + s2.slice(0, 4); };
+    q_metrics.forEach((q) => {
+      push('yoy', q.quarter, q.period_end, q.yoy); push('qoq', q.quarter, q.period_end, q.qoq);
+      push('compute', q.quarter, q.period_end, q.compute_pct); push('adj_margin', q.quarter, q.period_end, q.adj_margin);
+      push('op_margin', q.quarter, q.period_end, q.op_margin);
+    });
+    const end = (r) => (r.kind === 'H1' ? String(r.period).slice(-4) + '-06-30' : String(r.period) + '-12-31');
+    const ann = annual.slice().sort((x, y) => end(x).localeCompare(end(y)));
+    ann.forEach((r) => { if (has(r.cost_of_revenue)) push('gross_margin', r.period, end(r), (r.revenue - r.cost_of_revenue) / r.revenue, r.kind); });
+    const withOcf = ann.filter((r) => has(r.operating_cash_flow));
+    const kind = withOcf.length ? withOcf[withOcf.length - 1].kind : null;
+    withOcf.filter((r) => r.kind === kind).forEach((r) => push('ocf', r.period, end(r), r.operating_cash_flow / 1000, r.kind));
+    kpis.slice().sort((x, y) => String(x.as_of).localeCompare(String(y.as_of))).forEach((k) => {
+      const lb = nice(k.as_of);
+      push('nrr', lb, k.as_of, k.net_revenue_retention, 'date'); push('top5', lb, k.as_of, k.outside_top5_share, 'date');
+      push('marketplace', lb, k.as_of, k.marketplace_share, 'date'); push('customers', lb, k.as_of, k.customers_100k, 'date');
+    });
+    bs_metrics.forEach((r) => { push('cash', nice(r.as_of), r.as_of, r.gross_cash / 1000, 'date'); if (r.net_cash !== null) push('net_cash', nice(r.as_of), r.as_of, r.net_cash / 1000, 'date'); });
+    const cfKind = cf_metrics.filter((r) => r.fcf !== null).slice(-1)[0];
+    cf_metrics.filter((r) => r.fcf !== null && cfKind && r.kind === cfKind.kind).forEach((r) => push('fcf', r.period, r.end, r.fcf / 1000, r.kind));
+    const base = scenarios.find((x) => x.scenario === 'Base') || scenarios[0];
+    price_history.slice().sort((x, y) => String(x.date).localeCompare(String(y.date))).forEach((p) => {
+      const known = q_metrics.filter((q) => String(q.period_end) < String(p.date));
+      if (!known.length || !has(p.market_cap_mm)) return;
+      const R = known[known.length - 1].run_rate_bn, M = p.market_cap_mm / 1000, N = (Number(p.net_cash_mm) || 0) / 1000;
+      const m = Number(base.op_margin_y5), t = Number(base.tax_rate), pe = Number(base.exit_pe), r = Number(base.discount_rate), dil = Number(base.annual_dilution);
+      const need5 = (M - N) * Math.pow(1 + r, 5) * Math.pow(1 + dil, 5) / pe / (m * (1 - t));
+      push('ps', nice(p.date), p.date, M / R, 'date');
+      push('implied', nice(p.date), p.date, Math.pow(need5 / R, 1 / 5) - 1, 'date');
+    });
+    return out;
+  },
+});
+
+dash.calc('scorecard', {
+  inputs: ['latest', 'trends'],
+  title: 'Scorecard checks',
+  description: 'Each tracked figure graded against fixed thresholds, with its change since the previous data point.',
+  fn: (latest, trends) => {
+    const L = latest[0];
+    const F = {
+      pct: (v) => (v * 100).toFixed(1) + '%', pct0: (v) => (v * 100).toFixed(0) + '%',
+      bn: (v) => (v < 0 ? '−$' : '$') + Math.abs(v).toFixed(1) + 'B', x: (v) => v.toFixed(1) + 'x',
+      num: (v) => Math.round(v).toLocaleString('en-US'),
+    };
+    const checks = [
+      ['yoy', 'Revenue growth, year over year', L.yoy, L.latest_quarter, 1.0, 0.5, 'higher', 'pct0'],
+      ['qoq', 'Revenue growth, quarter over quarter', L.qoq, L.latest_quarter, 0.2, 0.08, 'higher', 'pct0'],
+      ['compute', 'Compute and infrastructure, % of revenue', L.compute_pct, L.latest_quarter, 0.6, 0.8, 'lower', 'pct'],
+      ['adj_margin', 'Adjusted operating margin', L.adj_margin, L.latest_quarter, 0.1, 0, 'higher', 'pct'],
+      ['op_margin', 'GAAP operating margin', L.op_margin, L.latest_quarter, 0, -0.15, 'higher', 'pct'],
+      ['gross_margin', 'Gross margin', L.gross_margin, L.gm_period, 0.75, 0.6, 'higher', 'pct'],
+      ['ocf', 'Operating cash flow', L.ocf_bn, L.ocf_period, 0, -2, 'higher', 'bn'],
+      ['nrr', 'Net revenue retention', L.nrr, L.nrr_as_of, 1.5, 1.1, 'higher', 'pct0'],
+      ['top5', 'Revenue outside top 5 customers', L.outside_top5, L.top5_as_of, 0.7, 0.55, 'higher', 'pct0'],
+      ['marketplace', 'Revenue through cloud marketplaces', L.marketplace_share, L.marketplace_as_of, 0.5, 0.65, 'lower', 'pct0'],
+      ['ps', 'Market cap ÷ annualized revenue', L.ps, 'Now', 25, 40, 'lower', 'x'],
+      ['implied', 'Growth per year the price needs (base case)', L.implied_cagr_base, 'Now', 0.4, 0.6, 'lower', 'pct0'],
+      ['customers', 'Customers paying $100k+ a year', L.customers_100k, L.customers_as_of, null, null, 'higher', 'num'],
+      ['fcf', 'Free cash flow (operating cash flow − capex)', L.fcf_bn, L.fcf_period, 0, -2, 'higher', 'bn'],
+      ['cash', 'Cash and short-term investments', L.cash_bn, L.cash_as_of, null, null, 'higher', 'bn'],
+      ['net_cash', 'Net cash (after debt at principal)', L.net_cash_bs_bn, L.cash_as_of, null, null, 'higher', 'bn'],
+    ];
+    const KO = {
+      yoy: '매출 성장률(전년 동기 대비)', qoq: '매출 성장률(전 분기 대비)', compute: '매출 대비 컴퓨팅·인프라 비용',
+      adj_margin: '조정 영업이익률', op_margin: 'GAAP 영업이익률', gross_margin: '매출총이익률', ocf: '영업활동 현금흐름',
+      nrr: '순매출 유지율(NRR)', top5: '상위 5개 고객 외 매출 비중', marketplace: '클라우드 마켓플레이스 경유 매출 비중',
+      ps: '시가총액 ÷ 연환산 매출', implied: '주가가 요구하는 연간 성장률(기준 시나리오)', customers: '연 10만 달러 이상 지출 고객 수', cash: '현금 및 단기투자자산', net_cash: '순현금(원금 기준 부채 차감)', fcf: '잉여현금흐름(영업현금흐름 − 설비투자)',
+    };
+    const ST = { 'On track': '양호', Watch: '주의', 'Thesis at risk': '논지 위험', 'Track trend': '추세 관찰', 'No data': '데이터 없음' };
+    return checks.map(([id, check, v, period, g, a, better, fmt]) => {
+      const f = F[fmt];
+      const ok = v !== null && v !== undefined && !isNaN(v);
+      let status = 'No data';
+      if (g === null) status = 'Track trend';
+      else if (ok && better === 'higher') status = v >= g ? 'On track' : v >= a ? 'Watch' : 'Thesis at risk';
+      else if (ok) status = v <= g ? 'On track' : v <= a ? 'Watch' : 'Thesis at risk';
+      const series = trends.filter((t) => t.id === id);
+      const lastPt = series[series.length - 1];
+      const earlier = series.slice(0, -1);
+      const same = lastPt && (lastPt.kind === 'FY' || lastPt.kind === 'H1') ? earlier.filter((t) => t.kind === lastPt.kind) : [];
+      const prev = same.length ? same[same.length - 1] : earlier.length ? earlier[earlier.length - 1] : null;
+      let change = '', changeKo = '', good = null;
+      if (ok && prev) {
+        const diff = v - prev.value;
+        const sign = diff >= 0 ? '+' : '−';
+        const amt = fmt === 'num' ? Math.abs(v / prev.value - 1) * 100 : Math.abs(diff);
+        const body = fmt === 'pct' || fmt === 'pct0' ? (amt * 100).toFixed(1) + ' pts' : fmt === 'bn' ? '$' + amt.toFixed(1) + 'B' : fmt === 'x' ? amt.toFixed(1) + 'x' : amt.toFixed(0) + '%';
+        change = sign + body + ' vs ' + prev.label;
+        changeKo = (prev.label_ko || prev.label) + ' 대비 ' + sign + body.replace(' pts', '%p');
+        good = better === 'lower' ? diff <= 0 : diff >= 0;
+      }
+      const cmp = better === 'higher' ? '≥ ' : '≤ ';
+      return {
+        id, check, period: period || '', value: ok ? v : null, value_text: ok ? f(v) : '', fmt, better,
+        on_track_at: g, watch_at: a, points: series.length,
+        green_text: g === null ? '' : cmp + f(g), amber_text: a === null ? '' : cmp + f(a),
+        threshold_text: g === null ? 'No threshold: watch the trend' : 'On track ' + cmp + f(g) + ' · watch ' + cmp + f(a),
+        change_text: change || (ok ? 'First data point' : ''), change_good: good, status,
+        check_ko: KO[id] || check, status_ko: ST[status] || status, change_text_ko: changeKo || (ok ? '첫 데이터' : ''),
+        threshold_text_ko: g === null ? '기준 없음: 추세를 확인하세요' : '양호 ' + cmp + f(g) + ' · 주의 ' + cmp + f(a),
+      };
+    });
+  },
+});
+
+dash.calc('score_summary', {
+  inputs: ['scorecard'],
+  title: 'Scorecard summary',
+  description: 'How many graded checks are on track.',
+  fn: (scorecard) => {
+    const graded = scorecard.filter((r) => r.status === 'On track' || r.status === 'Watch' || r.status === 'Thesis at risk');
+    return [{ on_track: graded.filter((r) => r.status === 'On track').length, graded: graded.length }];
+  },
+});
+
+dash.calc('commit_totals', {
+  inputs: ['commitments', 'latest'],
+  title: 'Commitment totals',
+  description: 'Named compute deals summed by type, and the low total as years of annualized revenue.',
+  fn: (commitments, latest) => {
+    const sum = (type, f) => commitments.filter((c) => c.type === type).reduce((a, c) => a + Number(c[f]), 0);
+    const firm = sum('Firm minimum', 'low_bn');
+    const total = commitments.reduce((a, c) => a + Number(c.low_bn), 0);
+    const totalHigh = commitments.reduce((a, c) => a + Number(c.high_bn), 0);
+    return [{ firm_bn: firm, firm_usd: firm * 1e9, total_low_usd: total * 1e9, conditional_bn: sum('Up to / conditional', 'low_bn'), total_low_bn: total, total_high_bn: totalHigh,
+      years_of_revenue: total / latest[0].run_rate_bn }];
+  },
+});
+
+dash.calc('lockup_sched', {
+  inputs: ['lockups', 'deal'],
+  title: 'Lock-up schedule',
+  description: 'Each release date from the pricing and earnings dates, with cumulative share unlocked per group.',
+  fn: (lockups, deal) => {
+    const d = deal[0];
+    const day = 864e5;
+    const parse = (s) => (s ? Date.parse(String(s).slice(0, 10) + 'T00:00:00Z') : null);
+    const add = (t, n) => t + n * day;
+    const biz2 = (t) => { let x = t, k = 0; while (k < 2) { x += day; const w = new Date(x).getUTCDay(); if (w !== 0 && w !== 6) k++; } return x; };
+    const P = parse(d.prospectus_date), FT = parse(d.first_trade_date);
+    const E = { fy26: parse(d.fy26_earnings_date), q1: parse(d.q1_27_earnings_date), q2: parse(d.q2_27_earnings_date), q3: parse(d.q3_27_earnings_date) };
+    const iso = (t) => (t === null ? null : new Date(t).toISOString().slice(0, 10));
+    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    const nice = (t) => { const x = new Date(t); return months[x.getUTCMonth()] + ' ' + x.getUTCDate() + ', ' + x.getUTCFullYear(); };
+    const rows = lockups.slice().sort((a, b) => a.step - b.step);
+    const cum = { officers: 0, certain_holders: 0, holders_over_half_pct: 0, cofounders: 0 };
+    return rows.map((r) => {
+      const off = Number(r.offset_days) || 0;
+      let t = null, pending = '';
+      if (r.anchor === 'first_trade') t = FT;
+      else if (r.anchor === 'prospectus') t = P === null ? null : add(P, off);
+      else if (r.anchor === 'q1_or_180') t = E.q1 === null ? add(P, 180) : Math.min(biz2(E.q1), add(P, 180));
+      else if (r.anchor === 'q3_or_365') t = E.q3 === null ? add(P, 365) : Math.min(biz2(E.q3), add(P, 365));
+      else { const e = E[r.anchor]; t = e === null ? null : off ? add(e, off) : biz2(e); pending = r.anchor === 'fy26' ? 'After FY2026 earnings' : r.anchor === 'q1' ? 'After Q1 2027 earnings' : 'After Q2 2027 earnings'; }
+      const tr = {};
+      Object.keys(cum).forEach((k) => { const v = r[k] === 'rem' ? 1 - cum[k] : Number(r[k]) || 0; tr[k] = v; cum[k] = cum[k] + v; });
+      const pc = (v) => (v * 100).toFixed(1) + '%';
+      const anchorKo = { fy26: 'FY2026 실적 발표', q1: 'Q1 2027 실적 발표', q2: 'Q2 2027 실적 발표' };
+      let milestoneKo = r.milestone;
+      if (r.anchor === 'first_trade') milestoneKo = '첫 거래일';
+      else if (r.anchor === 'prospectus') milestoneKo = off + '일차';
+      else if (r.anchor === 'q1_or_180') milestoneKo = 'Q1 2027 실적 발표 또는 180일차';
+      else if (r.anchor === 'q3_or_365') milestoneKo = 'Q3 2027 실적 발표 또는 365일차';
+      else if (anchorKo[r.anchor]) milestoneKo = anchorKo[r.anchor] + (off ? ' + ' + off + '일' : '');
+      const dateKo = t === null ? (anchorKo[r.anchor] ? anchorKo[r.anchor] + ' 후' : '') : (() => { const x = new Date(t); return x.getUTCFullYear() + '년 ' + (x.getUTCMonth() + 1) + '월 ' + x.getUTCDate() + '일'; })();
+      return {
+        step: r.step, milestone: r.milestone, milestone_ko: milestoneKo, date: iso(t), date_text: t === null ? pending : nice(t), date_text_ko: dateKo,
+        officers: cum.officers, certain_holders: cum.certain_holders, holders_over_half_pct: cum.holders_over_half_pct, cofounders: cum.cofounders,
+        off_text: pc(cum.officers), cs_text: pc(cum.certain_holders), big_text: pc(cum.holders_over_half_pct), fnd_text: pc(cum.cofounders),
+      };
+    });
+  },
+});
+
+// ---------- shared helpers ----------
+window.axLang = () => (dash.params().lang === 'ko' ? 'ko' : 'en');
+window.axFmt = {
+  pct: (v, d = 1) => (v === null || v === undefined || isNaN(v) ? '—' : (v * 100).toFixed(d) + '%'),
+  signed: (v) => (v === null || v === undefined || isNaN(v) ? '—' : (v >= 0 ? '+' : '−') + Math.abs(v * 100).toFixed(0) + '%'),
+  bn: (v) => (v === null || v === undefined || isNaN(v) ? '—' : v >= 1000 ? '$' + (v / 1000).toFixed(2) + 'T' : '$' + v.toFixed(1) + 'B'),
+  x: (v) => (v === null || v === undefined || isNaN(v) ? '—' : v.toFixed(1) + 'x'),
+  usd: (v) => (v === null || v === undefined || isNaN(v) ? '—' : Math.abs(v) >= 1e12 ? '$' + (v / 1e12).toFixed(2) + 'T' : '$' + (v / 1e9).toFixed(1) + 'B'),
+  byKind: {
+    pct: (v) => (v * 100).toFixed(1) + '%',
+    pct0: (v) => (v * 100).toFixed(0) + '%',
+    bn: (v) => (v < 0 ? '−$' : '$') + Math.abs(v).toFixed(1) + 'B',
+    x: (v) => v.toFixed(1) + 'x',
+    num: (v) => Math.round(v).toLocaleString('en-US'),
+  },
+};
+window.axTip = (host) => {
+  let tip = host.querySelector(':scope > .ax-tip');
+  if (!tip) { tip = document.createElement('div'); tip.className = 'ax-tip'; tip.hidden = true; host.appendChild(tip); }
+  return {
+    show(event, head, lines) {
+      tip.replaceChildren();
+      const h = document.createElement('div'); h.className = 'k'; h.textContent = head; tip.appendChild(h);
+      lines.forEach((l) => { const e = document.createElement('div'); e.textContent = l; tip.appendChild(e); });
+      tip.hidden = false;
+      const box = host.getBoundingClientRect();
+      let left = event.clientX - box.left + 12, topPx = event.clientY - box.top + 12;
+      const w = tip.offsetWidth, hgt = tip.offsetHeight;
+      if (left + w > box.width) left = Math.max(0, event.clientX - box.left - w - 12);
+      if (topPx + hgt > box.height) topPx = Math.max(0, event.clientY - box.top - hgt - 12);
+      tip.style.left = left + 'px'; tip.style.top = topPx + 'px';
+    },
+    hide() { tip.hidden = true; },
+  };
+};
+document.querySelectorAll('[data-swatch]').forEach((e) => { e.style.background = dash.colors[Number(e.dataset.swatch)]; });
+window.axField = (name, src, field, fmt, tone) => dash.draw(name, (el) => {
+  const d = dash.data(src);
+  if (d.status !== 'ok' || !d.data.length) { el.textContent = '—'; return; }
+  const v = d.data[0][field];
+  el.textContent = fmt(v);
+  el.classList.remove('dash-skeleton');
+  if (tone) el.style.color = tone(v);
+});
+</script>
+
+<script>
+// ---------- header and tiles ----------
+const F = window.axFmt;
+const txt = (v) => (v === null || v === undefined ? '—' : String(v));
+axField('t-on', 'score_summary', 'on_track', txt);
+axField('t-graded', 'score_summary', 'graded', txt);
+axField('t-mcap', 'latest', 'market_cap_usd', F.usd);
+axField('t-basis', 'latest', 'basis_text', txt);
+axField('t-basis-ko', 'latest', 'basis_text_ko', txt);
+axField('t-cagr', 'latest', 'implied_cagr_base', (v) => F.pct(v, 0));
+axField('t-q', 'latest', 'latest_quarter', txt);
+axField('t-asof', 'deal', 'as_of', txt);
+axField('k-rr', 'latest', 'run_rate_usd', F.usd);
+axField('k-rr-q', 'latest', 'latest_quarter', txt);
+axField('k-qoq', 'latest', 'qoq', F.signed, (v) => (v >= 0 ? 'var(--color-ok)' : 'var(--color-bad)'));
+axField('k-adj', 'latest', 'adj_margin', (v) => F.pct(v));
+axField('k-op', 'latest', 'op_margin', (v) => F.pct(v));
+axField('k-comp', 'latest', 'compute_pct', (v) => F.pct(v));
+axField('k-gm', 'latest', 'gross_margin', (v) => F.pct(v));
+axField('k-gm-p', 'latest', 'gm_period', txt);
+const chg = (name, id, field) => dash.draw(name, (el) => {
+  const d = dash.data('scorecard');
+  const r = d.status === 'ok' ? d.data.find((x) => x.id === id) : null;
+  el.textContent = r ? r[field || 'change_text'] : '—';
+  el.style.color = r && r.change_good !== null ? (r.change_good ? 'var(--color-ok)' : 'var(--color-bad)') : '';
+});
+chg('k-adj-chg', 'adj_margin');
+chg('k-comp-chg', 'compute');
+chg('k-gm-chg', 'gross_margin');
+chg('k-adj-chg-ko', 'adj_margin', 'change_text_ko');
+chg('k-comp-chg-ko', 'compute', 'change_text_ko');
+chg('k-gm-chg-ko', 'gross_margin', 'change_text_ko');
+axField('k-ps', 'latest', 'ps', F.x);
+axField('k-mc', 'latest', 'market_cap_usd', F.usd);
+axField('k-cash', 'latest', 'cash_usd', F.usd);
+axField('k-ncash', 'latest', 'net_cash_usd', F.usd);
+axField('k-cash-d', 'latest', 'cash_as_of_text', txt);
+axField('k-cash-d-ko', 'latest', 'cash_as_of_text_ko', txt);
+axField('c-firm', 'commit_totals', 'firm_usd', F.usd);
+axField('c-total', 'commit_totals', 'total_low_usd', F.usd);
+axField('c-years', 'commit_totals', 'years_of_revenue', (v) => (v === null || isNaN(v) ? '—' : v.toFixed(0) + ' years of'));
+axField('c-years-ko', 'commit_totals', 'years_of_revenue', (v) => (v === null || isNaN(v) ? '—' : v.toFixed(0) + '년치'));
+</script>
+
+<script>
+// ---------- tables ----------
+const fillTable = (name, src, key, cols, decorate) => dash.draw(name, (tb) => {
+  const d = dash.data(src);
+  if (d.status !== 'ok') { tb.replaceChildren(); return; }
+  tb.replaceChildren(...d.data.map((r) => {
+    const tr = document.createElement('tr');
+    tr.dataset.key = String(r[key]);
+    cols.forEach(([f, cls]) => {
+      const td = document.createElement('td');
+      if (cls) td.className = cls;
+      td.textContent = r[f] === null || r[f] === undefined ? '' : String(r[f]);
+      if (decorate) decorate(f, td, r);
+      tr.appendChild(td);
+    });
+    return tr;
+  }));
+});
+fillTable('val-body', 'valuation', 'scenario', [['scenario'], ['growth_text', 'ax-num'], ['margin_text', 'ax-num'], ['rev_y5_text', 'ax-num'], ['value_text', 'ax-num'], ['vs_text', 'ax-num'], ['need_text', 'ax-num']], (f, td, r) => {
+  if (f === 'vs_text') td.style.color = r.vs_market_cap >= 0 ? 'var(--color-ok)' : 'var(--color-bad)';
+});
+fillTable('lock-body', 'lockup_sched', 'step', [['milestone'], ['date_text'], ['off_text', 'ax-num'], ['cs_text', 'ax-num'], ['big_text', 'ax-num'], ['fnd_text', 'ax-num']]);
+fillTable('ev-body', 'events', 'event', [['event'], ['status'], ['why_it_matters']]);
+const newestFirst = (name, src, key, cols) => dash.draw(name, (tb) => {
+  const d = dash.data(src);
+  if (d.status !== 'ok') { tb.replaceChildren(); return; }
+  tb.replaceChildren(...d.data.slice().reverse().map((r) => {
+    const tr = document.createElement('tr');
+    tr.dataset.key = String(r[key]);
+    cols.forEach(([f, cls]) => { const td = document.createElement('td'); if (cls) td.className = cls; td.textContent = r[f] === null || r[f] === undefined ? '' : String(r[f]); tr.appendChild(td); });
+    return tr;
+  }));
+});
+newestFirst('bs-body', 'bs_metrics', 'as_of', [['label'], ['gross_text', 'ax-num'], ['debt_text', 'ax-num'], ['net_text', 'ax-num'], ['notes_fv_text', 'ax-num'], ['lease_text', 'ax-num'], ['wc_text', 'ax-num'], ['ar_text', 'ax-num'], ['deferred_text', 'ax-num']]);
+newestFirst('bs-body-ko', 'bs_metrics', 'as_of', [['label_ko'], ['gross_text', 'ax-num'], ['debt_text_ko', 'ax-num'], ['net_text_ko', 'ax-num'], ['notes_fv_text', 'ax-num'], ['lease_text', 'ax-num'], ['wc_text', 'ax-num'], ['ar_text', 'ax-num'], ['deferred_text', 'ax-num']]);
+newestFirst('cf-body', 'cf_metrics', 'period', [['period'], ['ocf_text', 'ax-num'], ['capex_text', 'ax-num'], ['fcf_text', 'ax-num'], ['financing_text', 'ax-num']]);
+newestFirst('cf-body-ko', 'cf_metrics', 'period', [['period_ko'], ['ocf_text', 'ax-num'], ['capex_text', 'ax-num'], ['fcf_text', 'ax-num'], ['financing_text', 'ax-num']]);
+newestFirst('cap-body', 'bs_metrics', 'as_of', [['label'], ['assets_text', 'ax-num'], ['liabilities_text', 'ax-num'], ['preferred_text', 'ax-num'], ['equity_text', 'ax-num']]);
+newestFirst('cap-body-ko', 'bs_metrics', 'as_of', [['label_ko'], ['assets_text', 'ax-num'], ['liabilities_text', 'ax-num'], ['preferred_text', 'ax-num'], ['equity_text', 'ax-num']]);
+const linkDoc = (field) => (f, td, r) => {
+  if (f !== field || !/^https:\/\//.test(String(r.url || ''))) return;
+  const a = document.createElement('a');
+  a.href = r.url; a.target = '_blank'; a.rel = 'noopener noreferrer'; a.textContent = String(r[field]);
+  td.replaceChildren(a);
+};
+fillTable('src-body', 'sources', 'id', [['topic'], ['document'], ['publisher'], ['date'], ['covers']], linkDoc('document'));
+fillTable('src-body-ko', 'sources', 'id', [['topic_ko'], ['document_ko'], ['publisher'], ['date'], ['covers_ko']], linkDoc('document_ko'));
+dash.draw('src-line', (el) => {
+  const d = dash.data('sources');
+  if (d.status !== 'ok') { el.textContent = '—'; return; }
+  const ko = axLang() === 'ko';
+  const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+  const day = (v) => { const t = String(v || ''); if (!/^\d{4}-\d{2}-\d{2}/.test(t)) return t; const y = t.slice(0, 4), m = Number(t.slice(5, 7)), dd = Number(t.slice(8, 10)); return ko ? y + '년 ' + m + '월 ' + dd + '일' : months[m - 1] + ' ' + dd + ', ' + y; };
+  const ids = String(el.dataset.srcIds || '').split(' ').filter(Boolean);
+  const rows = ids.map((id) => d.data.find((r) => r.id === id)).filter(Boolean);
+  el.replaceChildren(document.createTextNode(ko ? '출처: ' : 'Sources: '));
+  rows.forEach((r, i) => {
+    if (i) el.append(document.createTextNode('; '));
+    el.append(document.createTextNode((ko ? r.topic_ko : r.topic) + ' — '));
+    const label = (ko ? r.document_ko : r.document) + ' (' + r.publisher + ', ' + day(r.date) + ')';
+    if (/^https:\/\//.test(String(r.url || ''))) {
+      const a = document.createElement('a');
+      a.href = r.url; a.target = '_blank'; a.rel = 'noopener noreferrer'; a.textContent = label;
+      el.append(a);
+    } else el.append(document.createTextNode(label));
+  });
+});
+fillTable('ev-body-ko', 'events', 'event', [['event_ko'], ['status_ko'], ['why_ko']]);
+fillTable('lock-body-ko', 'lockup_sched', 'step', [['milestone_ko'], ['date_text_ko'], ['off_text', 'ax-num'], ['cs_text', 'ax-num'], ['big_text', 'ax-num'], ['fnd_text', 'ax-num']]);
+fillTable('val-body-ko', 'valuation', 'scenario', [['scenario_ko'], ['growth_text', 'ax-num'], ['margin_text', 'ax-num'], ['rev_y5_text', 'ax-num'], ['value_text', 'ax-num'], ['vs_text', 'ax-num'], ['need_text', 'ax-num']], (f, td, r) => {
+  if (f === 'vs_text') td.style.color = r.vs_market_cap >= 0 ? 'var(--color-ok)' : 'var(--color-bad)';
+});
+</script>
+
+<script>
+// ---------- charts ----------
+const axisStyle = (g) => {
+  g.attr('font-size', null).attr('font-family', null);
+  g.selectAll('text').attr('fill', 'var(--color-fg-muted)').style('font-size', 'var(--cds-font-size-caption)');
+  g.selectAll('line').attr('stroke', 'var(--cds-chart-grid)');
+  g.select('.domain').remove();
+};
+const emptyChart = (el) => { el.replaceChildren(); };
+
+dash.draw('rev-chart', (el) => {
+  const d = dash.data('q_metrics');
+  if (d.status !== 'ok' || !d.data.length) return emptyChart(el);
+  const rows = d.data, W = Math.max(280, el.clientWidth), H = 260, m = { t: 12, r: 8, b: 28, l: 44 };
+  el.replaceChildren();
+  const svg = d3.select(el).append('svg').attr('width', '100%').attr('viewBox', `0 0 ${W} ${H}`);
+  const x = d3.scaleBand(rows.map((r) => r.quarter), [m.l, W - m.r]).paddingInner(0.25).paddingOuter(0.1);
+  const xi = d3.scaleBand(['rev', 'opex'], [0, x.bandwidth()]).padding(0.1);
+  const y = d3.scaleLinear([0, d3.max(rows, (r) => Math.max(r.revenue_bn, r.opex_bn)) * 1.1], [H - m.b, m.t]).nice();
+  svg.append('g').attr('transform', `translate(${m.l},0)`).call(d3.axisLeft(y).ticks(5).tickSize(-(W - m.l - m.r)).tickFormat((v) => '$' + v + 'B')).call(axisStyle);
+  svg.append('g').attr('transform', `translate(0,${H - m.b})`).call(d3.axisBottom(x).tickSize(0).tickPadding(8)).call(axisStyle);
+  const tip = axTip(el);
+  const g = svg.append('g').selectAll('g').data(rows).join('g').attr('transform', (r) => `translate(${x(r.quarter)},0)`);
+  const bar = (key, fill) => g.append('rect')
+    .attr('x', xi(key)).attr('width', xi.bandwidth()).attr('rx', 3)
+    .attr('y', (r) => y(key === 'rev' ? r.revenue_bn : r.opex_bn))
+    .attr('height', (r) => y(0) - y(key === 'rev' ? r.revenue_bn : r.opex_bn))
+    .attr('fill', fill)
+    .on('mousemove', (event, r) => tip.show(event, r.quarter, axLang() === 'ko' ? ['매출 ' + axFmt.bn(r.revenue_bn), '영업비용 ' + axFmt.bn(r.opex_bn)] : ['Revenue ' + axFmt.bn(r.revenue_bn), 'Operating expenses ' + axFmt.bn(r.opex_bn)]))
+    .on('mouseleave', () => tip.hide());
+  bar('rev', dash.colors[0]);
+  bar('opex', 'var(--cds-chart-muted)');
+});
+
+dash.draw('margin-chart', (el) => {
+  const d = dash.data('q_metrics');
+  if (d.status !== 'ok' || !d.data.length) return emptyChart(el);
+  const rows = d.data, W = Math.max(280, el.clientWidth), H = 260, m = { t: 14, r: 52, b: 28, l: 48 };
+  el.replaceChildren();
+  const svg = d3.select(el).append('svg').attr('width', '100%').attr('viewBox', `0 0 ${W} ${H}`);
+  const x = d3.scalePoint(rows.map((r) => r.quarter), [m.l, W - m.r]).padding(0.3);
+  const lo = d3.min(rows, (r) => Math.min(r.op_margin, r.adj_margin)), hi = d3.max(rows, (r) => Math.max(r.op_margin, r.adj_margin, 0));
+  const y = d3.scaleLinear([lo, hi], [H - m.b, m.t]).nice();
+  svg.append('g').attr('transform', `translate(${m.l},0)`).call(d3.axisLeft(y).ticks(5).tickSize(-(W - m.l - m.r)).tickFormat(d3.format('.0%'))).call(axisStyle);
+  svg.append('g').attr('transform', `translate(0,${H - m.b})`).call(d3.axisBottom(x).tickSize(0).tickPadding(8)).call(axisStyle);
+  svg.append('line').attr('x1', m.l).attr('x2', W - m.r).attr('y1', y(0)).attr('y2', y(0)).attr('stroke', 'var(--cds-chart-reference)').attr('stroke-dasharray', '4 3');
+  const series = [['adj_margin', dash.colors[0]], ['op_margin', dash.colors[1]]];
+  series.forEach(([k, c]) => {
+    svg.append('path').datum(rows).attr('fill', 'none').attr('stroke', c).attr('stroke-width', 2).attr('stroke-linecap', 'round').attr('stroke-linejoin', 'round')
+      .attr('d', d3.line((r) => x(r.quarter), (r) => y(r[k])));
+    const last = rows[rows.length - 1];
+    svg.append('circle').attr('cx', x(last.quarter)).attr('cy', y(last[k])).attr('r', 3.5).attr('fill', c);
+    svg.append('text').attr('x', x(last.quarter) + 8).attr('y', y(last[k]) + (k === 'adj_margin' ? -4 : 12)).attr('fill', c).style('font-size', 'var(--cds-font-size-caption)').text(axFmt.pct(last[k], 0));
+  });
+  const tip = axTip(el);
+  svg.append('g').selectAll('rect').data(rows).join('rect')
+    .attr('x', (r) => x(r.quarter) - x.step() / 2).attr('width', x.step()).attr('y', m.t).attr('height', H - m.t - m.b).attr('fill', 'transparent')
+    .on('mousemove', (event, r) => tip.show(event, r.quarter, [(axLang() === 'ko' ? '조정 ' : 'Adjusted ') + axFmt.pct(r.adj_margin), 'GAAP ' + axFmt.pct(r.op_margin)]))
+    .on('mouseleave', () => tip.hide());
+});
+
+dash.draw('commit-chart', (el) => {
+  const d = dash.data('commitments');
+  if (d.status !== 'ok' || !d.data.length) return emptyChart(el);
+  const rows = d.data.slice().sort((a, b) => Number(b.low_bn) - Number(a.low_bn));
+  const W = Math.max(280, el.clientWidth), rowH = 28, m = { t: 8, r: 120, b: 8, l: 0 };
+  el.replaceChildren();
+  const svg = d3.select(el).append('svg').attr('width', '100%');
+  const probe = svg.append('text').style('font-size', 'var(--cds-font-size-caption)');
+  const ko = axLang() === 'ko';
+  const nameOf = (r) => (ko && r.counterparty_ko ? r.counterparty_ko : r.counterparty);
+  const labelW = d3.max(rows, (r) => probe.text(nameOf(r)).node().getComputedTextLength()) + 12;
+  probe.remove();
+  m.l = Math.min(labelW, W * 0.45);
+  const H = m.t + rows.length * rowH + m.b;
+  svg.attr('viewBox', `0 0 ${W} ${H}`);
+  const x = d3.scaleLinear([0, d3.max(rows, (r) => Number(r.high_bn))], [m.l, Math.max(m.l + 40, W - m.r)]);
+  const y = d3.scaleBand(rows.map((r) => r.counterparty), [m.t, H - m.b]).padding(0.28);
+  const tip = axTip(el);
+  const g = svg.append('g').selectAll('g').data(rows).join('g');
+  g.append('text').attr('x', m.l - 10).attr('y', (r) => y(r.counterparty) + y.bandwidth() / 2 + 4).attr('text-anchor', 'end').attr('fill', 'var(--color-fg)').style('font-size', 'var(--cds-font-size-caption)').text((r) => nameOf(r));
+  g.filter((r) => Number(r.high_bn) > Number(r.low_bn)).append('rect').attr('x', (r) => x(r.low_bn)).attr('width', (r) => x(r.high_bn) - x(r.low_bn)).attr('y', (r) => y(r.counterparty)).attr('height', y.bandwidth()).attr('rx', 3).attr('fill', 'var(--cds-chart-muted)').attr('opacity', 0.45);
+  g.append('rect').attr('x', m.l).attr('width', (r) => x(r.low_bn) - m.l).attr('y', (r) => y(r.counterparty)).attr('height', y.bandwidth()).attr('rx', 3)
+    .attr('fill', (r) => (r.type === 'Firm minimum' ? dash.colors[0] : 'var(--cds-chart-muted)'));
+  g.append('text').attr('x', (r) => x(r.high_bn) + 6).attr('y', (r) => y(r.counterparty) + y.bandwidth() / 2 + 4).attr('fill', 'var(--color-fg-muted)').style('font-size', 'var(--cds-font-size-caption)')
+    .text((r) => (Number(r.high_bn) > Number(r.low_bn) ? '$' + Number(r.low_bn).toFixed(0) + '–' + Number(r.high_bn).toFixed(0) + 'B' : '$' + Number(r.low_bn).toFixed(1) + 'B'));
+  g.append('rect').attr('x', 0).attr('width', W).attr('y', (r) => y(r.counterparty) - 3).attr('height', y.bandwidth() + 6).attr('fill', 'transparent')
+    .on('mousemove', (event, r) => tip.show(event, nameOf(r), ko ? [r.type_ko || r.type, r.period_ko || r.period, r.exit_terms_ko || r.exit_terms] : [r.type, r.period, r.exit_terms]))
+    .on('mouseleave', () => tip.hide());
+});
+
+dash.draw('lock-chart', (el) => {
+  const d = dash.data('lockup_sched');
+  if (d.status !== 'ok' || !d.data.length) return emptyChart(el);
+  const rows = d.data, W = Math.max(280, el.clientWidth), H = 260, m = { t: 12, r: 12, b: 40, l: 44 };
+  el.replaceChildren();
+  const svg = d3.select(el).append('svg').attr('width', '100%').attr('viewBox', `0 0 ${W} ${H}`);
+  const x = d3.scaleLinear([0, rows.length - 1], [m.l, W - m.r]);
+  const y = d3.scaleLinear([0, 1], [H - m.b, m.t]);
+  svg.append('g').attr('transform', `translate(${m.l},0)`).call(d3.axisLeft(y).ticks(4).tickSize(-(W - m.l - m.r)).tickFormat(d3.format('.0%'))).call(axisStyle);
+  const named = axLang() === 'ko' ? { 1: '1일차', 6: 'FY26 실적', 12: '180일차', 17: 'Q2 2027', 23: '365일차' } : { 1: 'Day 1', 6: 'FY26', 12: 'Day 180', 17: 'Q2 2027', 23: 'Day 365' };
+  const ticks = rows.map((r, i) => [i, named[r.step]]).filter(([, t]) => t);
+  const xa = svg.append('g').attr('transform', `translate(0,${H - m.b})`);
+  ticks.forEach(([i, t]) => xa.append('text').attr('x', x(i)).attr('y', 16).attr('text-anchor', i === 0 ? 'start' : i === rows.length - 1 ? 'end' : 'middle').attr('fill', 'var(--color-fg-muted)').style('font-size', 'var(--cds-font-size-caption)').text(t));
+  const series = [['cofounders', dash.colors[0], 2.5], ['holders_over_half_pct', dash.colors[1], 2], ['certain_holders', dash.colors[2], 2], ['officers', dash.colors[3], 2]];
+  series.slice().reverse().forEach(([k, c, w]) => {
+    svg.append('path').datum(rows).attr('fill', 'none').attr('stroke', c).attr('stroke-width', w).attr('stroke-linejoin', 'round')
+      .attr('d', d3.line((r, i) => x(i), (r) => y(r[k])).curve(d3.curveStepAfter));
+  });
+  const tip = axTip(el);
+  svg.append('g').selectAll('rect').data(rows).join('rect')
+    .attr('x', (r, i) => x(i) - (x(1) - x(0)) / 2).attr('width', x(1) - x(0)).attr('y', m.t).attr('height', H - m.t - m.b).attr('fill', 'transparent')
+    .on('mousemove', (event, r) => (axLang() === 'ko' ? tip.show(event, r.milestone_ko + (r.date_text_ko ? ' · ' + r.date_text_ko : ''), ['공동창업자 ' + r.fnd_text, '0.5% 초과 보유자 ' + r.big_text, '기타 특정 주주 ' + r.cs_text, '임원 및 일부 직원 ' + r.off_text]) : tip.show(event, r.milestone + (r.date_text ? ' · ' + r.date_text : ''), ['Co-founders ' + r.fnd_text, 'Holders over 0.5% ' + r.big_text, 'Certain other holders ' + r.cs_text, 'Officers and some employees ' + r.off_text])))
+    .on('mouseleave', () => tip.hide());
+});
+
+dash.draw('commit-years-chart', (el) => {
+  const d = dash.data('commit_years');
+  if (d.status !== 'ok' || !d.data.length) return emptyChart(el);
+  const ko = axLang() === 'ko';
+  const rows = d.data, W = Math.max(280, el.clientWidth), H = 260, m = { t: 22, r: 8, b: 28, l: 48 };
+  el.replaceChildren();
+  const svg = d3.select(el).append('svg').attr('width', '100%').attr('viewBox', `0 0 ${W} ${H}`);
+  const x = d3.scaleBand(rows.map((r) => r.year), [m.l, W - m.r]).padding(0.35);
+  const y = d3.scaleLinear([0, d3.max(rows, (r) => r.total_bn) * 1.12], [H - m.b, m.t]).nice();
+  svg.append('g').attr('transform', `translate(${m.l},0)`).call(d3.axisLeft(y).ticks(5).tickSize(-(W - m.l - m.r)).tickFormat((v) => '$' + v + 'B')).call(axisStyle);
+  svg.append('g').attr('transform', `translate(0,${H - m.b})`).call(d3.axisBottom(x).tickSize(0).tickPadding(8)).call(axisStyle);
+  const tip = axTip(el);
+  const g = svg.append('g').selectAll('g').data(rows).join('g');
+  g.append('rect').attr('x', (r) => x(r.year)).attr('width', x.bandwidth()).attr('y', (r) => y(r.firm_bn)).attr('height', (r) => y(0) - y(r.firm_bn)).attr('fill', dash.colors[0]);
+  g.append('rect').attr('x', (r) => x(r.year)).attr('width', x.bandwidth()).attr('y', (r) => y(r.total_bn)).attr('height', (r) => y(r.firm_bn) - y(r.total_bn)).attr('rx', 3).attr('fill', 'var(--cds-chart-muted)');
+  g.append('text').attr('x', (r) => x(r.year) + x.bandwidth() / 2).attr('y', (r) => y(r.total_bn) - 6).attr('text-anchor', 'middle').attr('fill', 'var(--color-fg)').style('font-size', 'var(--cds-font-size-caption)').text((r) => '$' + r.total_bn.toFixed(0) + 'B');
+  g.append('rect').attr('x', (r) => x(r.year)).attr('width', x.bandwidth()).attr('y', m.t).attr('height', H - m.t - m.b).attr('fill', 'transparent')
+    .on('mousemove', (event, r) => tip.show(event, r.year + (r.kind === 'official' ? (ko ? ' · 공시' : ' · filed') : (ko ? ' · 추정' : ' · estimate')),
+      [(ko ? '확정 최소 약정 $' : 'Firm minimums $') + r.firm_bn.toFixed(1) + 'B', (ko ? '상한·조건부·추정 $' : 'Other $') + r.other_bn.toFixed(1) + 'B'].concat(String(ko ? r.deals_ko : r.deals).split('; '))))
+    .on('mouseleave', () => tip.hide());
+});
+</script>
+
+<script>
+// ---------- language ----------
+document.querySelectorAll('.ax-lang').forEach((b) => b.addEventListener('click', () => {
+  document.querySelectorAll('.ax').forEach((root) => root.classList.toggle('ax-ko', b.dataset.lang === 'ko'));
+  dash.setParams({ lang: b.dataset.lang });
+}));
+dash.onData(() => {
+  const ko = axLang() === 'ko';
+  document.querySelectorAll('.ax').forEach((root) => root.classList.toggle('ax-ko', ko));
+  document.querySelectorAll('.ax-lang').forEach((b) => b.setAttribute('aria-pressed', String((b.dataset.lang === 'ko') === ko)));
+});
+</script>
+
+<script>
+// ---------- scorecard cards ----------
+dash.draw('sc-grid', (el) => {
+  const sc = dash.data('scorecard'), tr = dash.data('trends');
+  if (sc.status !== 'ok' || tr.status !== 'ok') { el.replaceChildren(); return; }
+  const mk = (tag, cls, text) => { const e = document.createElement(tag); if (cls) e.className = cls; if (text !== undefined) e.textContent = text; return e; };
+  const ko = axLang() === 'ko';
+  const cards = sc.data.map((r) => {
+    const card = mk('div', 'ax-sc');
+    const top = mk('div', 'ax-sc-top');
+    top.append(mk('span', 'ax-sc-name', ko ? r.check_ko : r.check), mk('span', 'ax-pill ' + ({ 'On track': 'ok', Watch: 'warn', 'Thesis at risk': 'bad' }[r.status] || 'muted'), ko ? r.status_ko : r.status));
+    const val = mk('div', 'ax-sc-val', r.value_text || '—');
+    val.append(mk('span', 'ax-sc-per', r.period));
+    const chgEl = mk('div', 'ax-sc-chg', ko ? r.change_text_ko : r.change_text);
+    chgEl.style.color = r.change_good === null ? 'var(--color-fg-muted)' : r.change_good ? 'var(--color-ok)' : 'var(--color-bad)';
+    const spark = mk('div', 'ax-spark');
+    card.append(top, val, chgEl, spark, mk('div', 'ax-sc-thr', ko ? r.threshold_text_ko : r.threshold_text));
+    return { r, card, spark };
+  });
+  el.replaceChildren(...cards.map((c) => c.card));
+  cards.forEach(({ r, spark }) => {
+    const pts = tr.data.filter((t) => t.id === r.id);
+    const fmt = axFmt.byKind[r.fmt] || String;
+    const W = Math.max(120, spark.clientWidth), H = 56, pad = { t: 6, r: 6, b: 6, l: 6 };
+    const svg = d3.select(spark).append('svg').attr('width', '100%').attr('viewBox', `0 0 ${W} ${H}`);
+    if (!pts.length) return;
+    const vals = pts.map((p) => p.value).concat(r.on_track_at === null ? [] : [r.on_track_at]);
+    let [lo, hi] = d3.extent(vals);
+    if (lo === hi) { lo -= Math.abs(lo) * 0.5 || 1; hi += Math.abs(hi) * 0.5 || 1; }
+    const x = d3.scalePoint(pts.map((p, i) => i), [pad.l, W - pad.r]).padding(pts.length === 1 ? 0.5 : 0);
+    const y = d3.scaleLinear([lo, hi], [H - pad.b, pad.t]);
+    if (r.on_track_at !== null) svg.append('line').attr('x1', pad.l).attr('x2', W - pad.r).attr('y1', y(r.on_track_at)).attr('y2', y(r.on_track_at)).attr('stroke', 'var(--cds-chart-reference)').attr('stroke-dasharray', '3 3');
+    if (pts.length > 1) svg.append('path').datum(pts).attr('fill', 'none').attr('stroke', dash.colors[0]).attr('stroke-width', 2).attr('stroke-linecap', 'round').attr('stroke-linejoin', 'round').attr('d', d3.line((p, i) => x(i), (p) => y(p.value)));
+    svg.selectAll('circle').data(pts).join('circle').attr('cx', (p, i) => x(i)).attr('cy', (p) => y(p.value)).attr('r', (p, i) => (i === pts.length - 1 ? 3.5 : 2)).attr('fill', dash.colors[0]);
+    const tip = axTip(spark);
+    svg.append('g').selectAll('rect').data(pts).join('rect')
+      .attr('x', (p, i) => x(i) - Math.max(6, (W - pad.l - pad.r) / Math.max(1, pts.length - 1) / 2)).attr('width', (p, i) => Math.max(12, (W - pad.l - pad.r) / Math.max(1, pts.length - 1))).attr('y', 0).attr('height', H).attr('fill', 'transparent')
+      .on('mousemove', (event, p) => tip.show(event, ko ? p.label_ko || p.label : p.label, [fmt(p.value)]))
+      .on('mouseleave', () => tip.hide());
+  });
+});
+</script>
+
+<script>
+// ---------- what-if ----------
+const wi = (id) => { const els = document.querySelectorAll('#' + id); return els.length ? Number(els[0].value) : null; };
+const wiNames = ['wi-cagr-v', 'wi-margin-v', 'wi-pe-v', 'wi-disc-v', 'wi-dil-v', 'wi-value', 'wi-vs', 'wi-need'];
+const redrawWi = () => wiNames.forEach((n) => dash.draw(n));
+document.querySelectorAll('.ax-wi input').forEach((inp) => inp.addEventListener('input', redrawWi));
+const setBase = () => {
+  const d = dash.data('latest');
+  if (d.status !== 'ok' || !d.data.length) return false;
+  const L = d.data[0];
+  const set = (id, v) => document.querySelectorAll('#' + id).forEach((e) => { e.value = String(v); });
+  set('wi-cagr', L.base_cagr.toFixed(2)); set('wi-margin', L.base_margin); set('wi-pe', L.base_pe); set('wi-disc', L.base_discount); set('wi-dil', L.base_dilution);
+  return true;
+};
+document.querySelectorAll('#wi-reset').forEach((b) => b.addEventListener('click', () => { if (setBase()) redrawWi(); }));
+dash.onData(() => { if (!window.axWiSet && setBase()) window.axWiSet = true; });
+const slider = (name, id, fmt) => dash.draw(name, (el) => { const v = wi(id); el.textContent = v === null ? '—' : fmt(v); });
+slider('wi-cagr-v', 'wi-cagr', (v) => axFmt.pct(v, 0));
+slider('wi-margin-v', 'wi-margin', (v) => axFmt.pct(v, 0));
+slider('wi-pe-v', 'wi-pe', (v) => v.toFixed(0) + 'x');
+slider('wi-disc-v', 'wi-disc', (v) => axFmt.pct(v, 1));
+slider('wi-dil-v', 'wi-dil', (v) => axFmt.pct(v, 1));
+const wiCalc = () => {
+  const d = dash.data('latest');
+  if (d.status !== 'ok' || !d.data.length) return null;
+  const L = d.data[0], g = wi('wi-cagr'), m = wi('wi-margin'), pe = wi('wi-pe'), r = wi('wi-disc'), dil = wi('wi-dil'), t = 0.21;
+  const R = L.run_rate_bn, M = L.market_cap_bn, N = L.net_cash_bn;
+  const value = R * Math.pow(1 + g, 5) * m * (1 - t) * pe / Math.pow(1 + dil, 5) / Math.pow(1 + r, 5) + N;
+  const need5 = (M - N) * Math.pow(1 + r, 5) * Math.pow(1 + dil, 5) / pe / (m * (1 - t));
+  return { value, vs: value / M - 1, need: Math.pow(need5 / R, 1 / 5) - 1 };
+};
+dash.draw('wi-value', (el) => { const c = wiCalc(); el.textContent = c ? axFmt.bn(c.value) : '—'; });
+dash.draw('wi-vs', (el) => { const c = wiCalc(); el.textContent = c ? axFmt.signed(c.vs) : '—'; el.style.color = c ? (c.vs >= 0 ? 'var(--color-ok)' : 'var(--color-bad)') : ''; });
+dash.draw('wi-need', (el) => { const c = wiCalc(); el.textContent = c ? axFmt.pct(c.need, 0) : '—'; });
+</script>
+
+</div>
+</body>
+</html>

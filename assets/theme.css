@@ -1,0 +1,95 @@
+/* Theme tokens the tracker page uses, for the self-hosted copy. Light by default, dark when the system asks for it. */
+:root {
+  --font-anthropic-sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+  --font-anthropic-serif: "Source Serif 4", Georgia, "Noto Serif KR", serif;
+
+  --color-bg: #faf9f6;
+  --color-fg: #1f1e1b;
+  --color-fg-muted: #6b6860;
+  --color-panel: #ffffff;
+  --color-border-line: #e4e1d9;
+  --color-ok: #2f7d4f;
+  --color-warn: #a2650b;
+  --color-bad: #b33a2e;
+
+  --series-1: #2c6bd6;
+  --series-2: #d9673a;
+  --series-3: #2c9d6a;
+  --series-4: #26375c;
+  --series-5: #8a5cc2;
+  --series-6: #c2a03b;
+  --series-7: #3a9ec2;
+  --series-8: #b54d84;
+
+  --cds-chart-muted: #c3c0b6;
+  --cds-chart-grid: #ece9e2;
+  --cds-chart-axis: #b8b4aa;
+  --cds-chart-reference: #8f8b80;
+  --cds-surface-popover: #ffffff;
+  --cds-border: #dcd8ce;
+  --cds-shadow-popover: 0 4px 16px rgba(30, 28, 22, 0.12);
+  --cds-text-secondary: #6b6860;
+
+  --cds-font-size-caption: 0.8125rem;
+  --cds-font-size-body: 0.9375rem;
+  --cds-font-size-heading: 1.0625rem;
+  --cds-font-size-title: 1.75rem;
+  --cds-font-weight-medium: 600;
+
+  --cds-gap-xs: 4px;
+  --cds-gap-sm: 8px;
+  --cds-gap-md: 14px;
+  --cds-gap-lg: 20px;
+  --cds-gap-xl: 32px;
+  --cds-pad-xs: 4px;
+  --cds-pad-sm: 8px;
+  --cds-pad-md: 12px;
+  --cds-pad-lg: 18px;
+  --cds-pad-xl: 28px;
+  --cds-radius: 10px;
+  --cds-dur-slow: 300ms;
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-bg: #191917;
+    --color-fg: #ecebe6;
+    --color-fg-muted: #a19e95;
+    --color-panel: #22221f;
+    --color-border-line: #3a3935;
+    --color-ok: #6cc28f;
+    --color-warn: #e0a54a;
+    --color-bad: #ee7b6d;
+
+    --series-1: #6b9ef0;
+    --series-2: #ef8f63;
+    --series-3: #5cc493;
+    --series-4: #a7b6d8;
+    --series-5: #b08ce0;
+    --series-6: #dcc06a;
+    --series-7: #6cc0df;
+    --series-8: #dc80b0;
+
+    --cds-chart-muted: #5b5a54;
+    --cds-chart-grid: #2e2d2a;
+    --cds-chart-axis: #55534d;
+    --cds-chart-reference: #8a877e;
+    --cds-surface-popover: #2a2a27;
+    --cds-border: #44433e;
+    --cds-shadow-popover: 0 4px 16px rgba(0, 0, 0, 0.45);
+    --cds-text-secondary: #a19e95;
+    color-scheme: dark;
+  }
+}
+
+html, body { margin: 0; background: var(--color-bg); color: var(--color-fg); }
+body { font-family: var(--font-anthropic-sans); font-size: 15px; line-height: 1.45; -webkit-text-size-adjust: 100%; }
+#dash-root {
+  padding-block: 28px 48px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+@media (min-width: 900px) { #dash-root { padding-left: 32px; padding-right: 32px; } }
+#dash-root a { color: inherit; }
+.dash-skeleton { color: transparent !important; background: var(--color-border-line); border-radius: 6px; min-width: 4ch; display: inline-block; }

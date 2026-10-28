@@ -1,0 +1,232 @@
+[
+ {
+  "milestone": "First trading day",
+  "anchor": "first_trade",
+  "offset_days": 0,
+  "officers": 0.1,
+  "certain_holders": 0,
+  "holders_over_half_pct": 0,
+  "cofounders": 0,
+  "step": 1
+ },
+ {
+  "milestone": "Day 27",
+  "anchor": "prospectus",
+  "offset_days": 27,
+  "officers": 0,
+  "certain_holders": 0.06,
+  "holders_over_half_pct": 0.018,
+  "cofounders": 0,
+  "step": 2
+ },
+ {
+  "milestone": "Day 48",
+  "anchor": "prospectus",
+  "offset_days": 48,
+  "officers": 0,
+  "certain_holders": 0.06,
+  "holders_over_half_pct": 0.018,
+  "cofounders": 0,
+  "step": 3
+ },
+ {
+  "milestone": "Day 62",
+  "anchor": "prospectus",
+  "offset_days": 62,
+  "officers": 0,
+  "certain_holders": 0.07,
+  "holders_over_half_pct": 0.021,
+  "cofounders": 0,
+  "step": 4
+ },
+ {
+  "milestone": "Day 76",
+  "anchor": "prospectus",
+  "offset_days": 76,
+  "officers": 0,
+  "certain_holders": 0.07,
+  "holders_over_half_pct": 0.021,
+  "cofounders": 0,
+  "step": 5
+ },
+ {
+  "milestone": "FY2026 earnings",
+  "anchor": "fy26",
+  "offset_days": 0,
+  "officers": 0.35,
+  "certain_holders": 0.125,
+  "holders_over_half_pct": 0.0375,
+  "cofounders": 0,
+  "step": 6
+ },
+ {
+  "milestone": "FY2026 earnings + 13 days",
+  "anchor": "fy26",
+  "offset_days": 13,
+  "officers": 0,
+  "certain_holders": 0.095,
+  "holders_over_half_pct": 0.0285,
+  "cofounders": 0,
+  "step": 7
+ },
+ {
+  "milestone": "FY2026 earnings + 27 days",
+  "anchor": "fy26",
+  "offset_days": 27,
+  "officers": 0,
+  "certain_holders": 0.095,
+  "holders_over_half_pct": 0.0285,
+  "cofounders": 0,
+  "step": 8
+ },
+ {
+  "milestone": "FY2026 earnings + 41 days",
+  "anchor": "fy26",
+  "offset_days": 41,
+  "officers": 0,
+  "certain_holders": 0.095,
+  "holders_over_half_pct": 0.0285,
+  "cofounders": 0,
+  "step": 9
+ },
+ {
+  "milestone": "FY2026 earnings + 55 days",
+  "anchor": "fy26",
+  "offset_days": 55,
+  "officers": 0,
+  "certain_holders": 0.095,
+  "holders_over_half_pct": 0.0285,
+  "cofounders": 0,
+  "step": 10
+ },
+ {
+  "milestone": "FY2026 earnings + 69 days",
+  "anchor": "fy26",
+  "offset_days": 69,
+  "officers": 0,
+  "certain_holders": 0.095,
+  "holders_over_half_pct": 0.0285,
+  "cofounders": 0,
+  "step": 11
+ },
+ {
+  "milestone": "Q1 2027 earnings or day 180",
+  "anchor": "q1_or_180",
+  "offset_days": 0,
+  "officers": "rem",
+  "certain_holders": "rem",
+  "holders_over_half_pct": 0.042,
+  "cofounders": 0.29,
+  "step": 12
+ },
+ {
+  "milestone": "Q1 2027 earnings + 34 days",
+  "anchor": "q1",
+  "offset_days": 34,
+  "officers": 0,
+  "certain_holders": 0,
+  "holders_over_half_pct": 0.056,
+  "cofounders": 0,
+  "step": 13
+ },
+ {
+  "milestone": "Q1 2027 earnings + 48 days",
+  "anchor": "q1",
+  "offset_days": 48,
+  "officers": 0,
+  "certain_holders": 0,
+  "holders_over_half_pct": 0.056,
+  "cofounders": 0,
+  "step": 14
+ },
+ {
+  "milestone": "Q1 2027 earnings + 62 days",
+  "anchor": "q1",
+  "offset_days": 62,
+  "officers": 0,
+  "certain_holders": 0,
+  "holders_over_half_pct": 0.056,
+  "cofounders": 0,
+  "step": 15
+ },
+ {
+  "milestone": "Q1 2027 earnings + 76 days",
+  "anchor": "q1",
+  "offset_days": 76,
+  "officers": 0,
+  "certain_holders": 0,
+  "holders_over_half_pct": 0.056,
+  "cofounders": 0,
+  "step": 16
+ },
+ {
+  "milestone": "Q2 2027 earnings",
+  "anchor": "q2",
+  "offset_days": 0,
+  "officers": 0,
+  "certain_holders": 0,
+  "holders_over_half_pct": 0.07,
+  "cofounders": 0,
+  "step": 17
+ },
+ {
+  "milestone": "Q2 2027 earnings + 27 days",
+  "anchor": "q2",
+  "offset_days": 27,
+  "officers": 0,
+  "certain_holders": 0,
+  "holders_over_half_pct": 0.063,
+  "cofounders": 0,
+  "step": 18
+ },
+ {
+  "milestone": "Q2 2027 earnings + 41 days",
+  "anchor": "q2",
+  "offset_days": 41,
+  "officers": 0,
+  "certain_holders": 0,
+  "holders_over_half_pct": 0.063,
+  "cofounders": 0,
+  "step": 19
+ },
+ {
+  "milestone": "Q2 2027 earnings + 55 days",
+  "anchor": "q2",
+  "offset_days": 55,
+  "officers": 0,
+  "certain_holders": 0,
+  "holders_over_half_pct": 0.063,
+  "cofounders": 0,
+  "step": 20
+ },
+ {
+  "milestone": "Q2 2027 earnings + 69 days",
+  "anchor": "q2",
+  "offset_days": 69,
+  "officers": 0,
+  "certain_holders": 0,
+  "holders_over_half_pct": 0.063,
+  "cofounders": 0,
+  "step": 21
+ },
+ {
+  "milestone": "Q2 2027 earnings + 83 days",
+  "anchor": "q2",
+  "offset_days": 83,
+  "officers": 0,
+  "certain_holders": 0,
+  "holders_over_half_pct": 0.063,
+  "cofounders": 0,
+  "step": 22
+ },
+ {
+  "milestone": "Q3 2027 earnings or day 365",
+  "anchor": "q3_or_365",
+  "offset_days": 0,
+  "officers": 0,
+  "certain_holders": 0,
+  "holders_over_half_pct": "rem",
+  "cofounders": "rem",
+  "step": 23
+ }
+]

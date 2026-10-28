@@ -1,0 +1,90 @@
+[
+ {
+  "as_of": "2023-12-31",
+  "customers_100k": null,
+  "customers_1m": null,
+  "customers_10m": null,
+  "net_revenue_retention": null,
+  "marketplace_share": 0.11,
+  "outside_top5_share": null,
+  "employees": null,
+  "note": "Cloud marketplace share is FY2023"
+ },
+ {
+  "as_of": "2024-12-31",
+  "customers_100k": null,
+  "customers_1m": null,
+  "customers_10m": null,
+  "net_revenue_retention": null,
+  "marketplace_share": 0.32,
+  "outside_top5_share": null,
+  "employees": 940,
+  "note": "Marketplace share is FY2024"
+ },
+ {
+  "as_of": "2025-03-31",
+  "customers_100k": 400,
+  "customers_1m": null,
+  "customers_10m": null,
+  "net_revenue_retention": null,
+  "marketplace_share": null,
+  "outside_top5_share": null,
+  "employees": null,
+  "note": "About 400 customers $100k+"
+ },
+ {
+  "as_of": "2025-09-30",
+  "customers_100k": 950,
+  "customers_1m": null,
+  "customers_10m": null,
+  "net_revenue_retention": null,
+  "marketplace_share": null,
+  "outside_top5_share": null,
+  "employees": null,
+  "note": "More than 950"
+ },
+ {
+  "as_of": "2025-12-31",
+  "customers_100k": null,
+  "customers_1m": null,
+  "customers_10m": null,
+  "net_revenue_retention": null,
+  "marketplace_share": 0.47,
+  "outside_top5_share": null,
+  "employees": null,
+  "note": "Marketplace share is FY2025"
+ },
+ {
+  "as_of": "2026-03-31",
+  "customers_100k": null,
+  "customers_1m": null,
+  "customers_10m": null,
+  "net_revenue_retention": null,
+  "marketplace_share": null,
+  "outside_top5_share": 0.64,
+  "employees": null,
+  "note": "Revenue outside top 5, Q1 2026"
+ },
+ {
+  "as_of": "2026-06-30",
+  "customers_100k": 6000,
+  "customers_1m": null,
+  "customers_10m": null,
+  "net_revenue_retention": null,
+  "marketplace_share": 0.48,
+  "outside_top5_share": null,
+  "employees": null,
+  "note": "More than 6,000; marketplace share is H1 2026"
+ },
+ {
+  "as_of": "2026-09-30",
+  "customers_100k": 11900,
+  "customers_1m": 1900,
+  "customers_10m": 250,
+  "net_revenue_retention": 9.0,
+  "marketplace_share": null,
+  "outside_top5_share": 0.79,
+  "employees": 5300,
+  "note": "Floors of 'more than' figures; NRR excludes Pro/Max"
+ }
+]
